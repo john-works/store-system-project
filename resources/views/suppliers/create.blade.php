@@ -18,14 +18,13 @@
                 <div class="page-title">
                     <div class="row">
                         <div class="col-12 col-md-6 order-md-1 order-last">
-                            <h3>Form Layout</h3>
-                            <p class="text-subtitle text-muted">Multiple form layout you can use</p>
+                            
                         </div>
                         <div class="col-12 col-md-6 order-md-2 order-first">
                             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Form Layout</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Supplier</li>
                                 </ol>
                             </nav>
                         </div>
@@ -42,54 +41,80 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Multiple Column</h4>
+                                    <h4 class="card-title">Add New Supplier Details</h4>
                                 </div>
                                 <div class="card-content">
                                     <div class="card-body">
-                                        <form class="form">
+                                      <form action="{{ route('suppliers.store') }}" method="POST" class="form">
+                                    @csrf
+
+                                    
                                             <div class="row">
                                                 <div class="col-md-6 col-12">
                                                     <div class="form-group">
-                                                        <label for="first-name-column">First Name</label>
-                                                        <input type="text" id="first-name-column" class="form-control"
-                                                            placeholder="First Name" name="fname-column">
+                                                        <label for="supplier_name">Supplier Name</label>
+                                                        <input type="text" id="supplier_name" class="form-control"
+                                                             name="supplier_name" required>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-group">
+                                                        <label for="email">Email</label>
+                                                        <input type="email" id="email" class="form-control"
+                                                             name="email" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 col-12">
                                                     <div class="form-group">
-                                                        <label for="last-name-column">Last Name</label>
-                                                        <input type="text" id="last-name-column" class="form-control"
-                                                            placeholder="Last Name" name="lname-column">
+                                                        <label for="phone">Phone</label>
+                                                        <input type="text" id="phone" class="form-control"
+                                                            name="phone" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 col-12">
                                                     <div class="form-group">
-                                                        <label for="city-column">City</label>
-                                                        <input type="text" id="city-column" class="form-control"
-                                                            placeholder="City" name="city-column">
+                                                        <label for="address">Address</label>
+                                                        <input type="text" id="address" class="form-control"
+                                                            name="address" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 col-12">
                                                     <div class="form-group">
-                                                        <label for="country-floating">Country</label>
-                                                        <input type="text" id="country-floating" class="form-control"
-                                                            name="country-floating" placeholder="Country">
+                                                        <label for="tin">TIN</label>
+                                                        <input type="number" id="tin" class="form-control"
+                                                            name="tin" placeholder="0000000000" required>
                                                     </div>
                                                 </div>
+                                                
+
                                                 <div class="col-md-6 col-12">
                                                     <div class="form-group">
-                                                        <label for="company-column">Company</label>
-                                                        <input type="text" id="company-column" class="form-control"
-                                                            name="company-column" placeholder="Company">
+                                                        <label for="bank_account">Bank Account</label>
+                                                        <input type="number" id="bank_account" class="form-control"
+                                                            name="bank_account" placeholder="0000000000" required>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6 col-12">
+
+                                                 <div class="col-md-6 col-12">
                                                     <div class="form-group">
-                                                        <label for="email-id-column">Email</label>
-                                                        <input type="email" id="email-id-column" class="form-control"
-                                                            name="email-id-column" placeholder="Email">
+                                                        <label for="type_of_good">Category Good/ Service</label>
+                                                        <select type="number" id="type_of_good" class="form-control"
+                                                            name="type_of_good" required>
+                                                            <option>Electronic</option>
+                                                            <option>Stationary</option>
+                                                            <option>Raw Materials</option>
+
+                                                        </select>
                                                     </div>
                                                 </div>
+
+
+
+
+
+
                                                 <div class="form-group col-12">
                                                    
                                                 </div>
@@ -120,3 +145,4 @@
 </body>
 
 </html>
+

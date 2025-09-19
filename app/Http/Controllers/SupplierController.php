@@ -12,8 +12,8 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        return view('suppliers.index'); 
-
+        $suppliers = Supplier::all(); // fetch all suppliers
+        return view('suppliers.index', compact('suppliers'));
     }
 
     /**
@@ -29,7 +29,21 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'supplier_name' => 'required|string|max:255',
+            'email'         => 'required|email|unique:suppliers,email',
+            'phone'         => 'required|string|max:20',
+            'address'       => 'required|string|max:255',
+            'tin'           => 'required|digits:10',
+            'bank_account'  => 'required|digits:10',
+            'type_of_good'  => 'required|string',
+        ]);
+
+        // Save supplier
+        Supplier::create($request->all());
+
+        return redirect()->route('suppliers.index')
+                         ->with('success', 'Supplier created successfully.');
     }
 
     /**
@@ -45,7 +59,9 @@ class SupplierController extends Controller
      */
     public function edit(Supplier $supplier)
     {
-        //
+        
+       
+        return view('suppliers.edit', compact('supplier'));
     }
 
     /**
@@ -53,7 +69,21 @@ class SupplierController extends Controller
      */
     public function update(Request $request, Supplier $supplier)
     {
-        //
+        $request->validate([
+
+            'supplier_name' => 'required',
+            'email'         => 'required',
+            'phone'         => 'required',
+            'address'       => 'required',
+            'tin'           => 'required|digits:10',
+            'bank_account'  => 'required|digits:10',
+            'type_of_good'  => 'required',
+
+
+        ]);
+        $supplier->update($request->all());
+
+        return redirect()->route('suppliers.index');
     }
 
     /**
@@ -61,6 +91,9 @@ class SupplierController extends Controller
      */
     public function destroy(Supplier $supplier)
     {
-        //
+        $supplier = Supplier::findOrFail($id);
+        $supplier->delete();
+
+        return redirect()->route('suppliers.index')->with('success', 'Record deleted successfully.');
     }
 }

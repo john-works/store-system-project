@@ -80,24 +80,35 @@
                                 </thead>
                                 <tbody>
                                  
-                                    <tr>
-                                        <td>Harding</td>
-                                        <td>Lorem.ipsum.dolor@etnetuset.com</td>
-                                        <td>0800 1111</td>
-                                        <td>Obaix</td>
-                                        <td>
-                                            <span class="badge bg-success">Active</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Emmanuel</td>
-                                        <td>eget.lacus.Mauris@feugiatSednec.org</td>
-                                        <td>(016977) 8208</td>
-                                        <td>Saint-Remy-Geest</td>
-                                        <td>
-                                            <span class="badge bg-success">Active</span>
-                                        </td>
-                                    </tr>
+                                    
+                                    @forelse($suppliers as $supplier)
+                                <tr>
+                                   <td>{{ $supplier->id }}</td>
+                                    <td>{{ $supplier->supplier_name }}</td>
+                                    <td>{{ $supplier->email }}</td>
+                                    <td>{{ $supplier->phone }}</td>
+                                    <td>{{ $supplier->address }}</td>
+                                    <td>{{ $supplier->tin }}</td>
+                                    <td>{{ $supplier->bank_account }}</td>
+                                    <td>{{ $supplier->type_of_good }}</td>
+                                    <td>
+                                        <a href="{{ route('suppliers.show', $supplier->id) }}" class="btn btn-info btn-sm">Show</a>
+                                        <a href="{{ route('suppliers.edit', $supplier->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                        <form action="{{ route('suppliers.destroy', $supplier->id) }}" method="POST" style="display:inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm"
+                                                onclick="return confirm('Are you sure you want to delete this supplier?')">
+                                                Delete
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="9" class="text-center">No suppliers found.</td>
+                                </tr>
+                            @endforelse
                                 </tbody>
                             </table>
                         </div>

@@ -3,57 +3,9 @@
 @section('content')
 
 
+<div id="app">
 
 
-
-
-@endsection
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{{-- 
-
-
-
-
-
-
-            
             <div class="page-content">
                 <section class="row">
                     <div class="col-12 col-lg-9">
@@ -139,29 +91,6 @@
                                 </div>
                             </div>
                         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                         <div class="row">
                             <div class="col-12 col-xl-4">
@@ -340,4 +269,9 @@
                         </div>
                     </div>
                 </section>
-            </div> --}}
+            </div> 
+
+</div>
+
+
+            @endsection

@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('item_name');
             $table->string('asset_tag');
             $table->string('comment');
+            $table->string('status');
+
 
             $table->timestamps();
         });

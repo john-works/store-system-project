@@ -17,8 +17,9 @@ return new class extends Migration
             $table->string('request_by');
             $table->string('request_summary');
             $table->string('item_name');
-            $table->string('asset_tag');
-            $table->string('comment');
+            $table->string('current_step');
+            $table->string('status');
+            // $table->string('status');
             $table->timestamps();
         });
     }

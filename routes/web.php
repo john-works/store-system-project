@@ -69,3 +69,33 @@ Route::get('/goods/{good}', [GoodController::class, 'show'])->name('goods.show')
 Route::get('/goods/{good}/edit', [GoodController::class, 'edit'])->name('goods.edit');
 Route::put('/goods/{good}', [GoodController::class, 'update'])->name('goods.update');
 Route::delete('/goods/{good}', [GoodController::class, 'destroy'])->name('goods.destroy');
+
+
+//borrowings
+Route::get('/borrowings', [GoodController::class, 'index'])->name('borrowings.index');
+Route::get('/borrowings/create', [GoodController::class, 'create'])->name('borrowings.create');
+Route::post('/borrowings', [GoodController::class, 'store'])->name('borrowings.store');
+Route::get('/borrowings/{borrowing}', [GoodController::class, 'show'])->name('borrowings.show');
+Route::get('/borrowings/{borrowing}/edit', [GoodController::class, 'edit'])->name('borrowings.edit');
+Route::put('/borrowings/{borrowing}', [GoodController::class, 'update'])->name('borrowings.update');
+Route::delete('/borrowings/{borrowing}', [GoodController::class, 'destroy'])->name('borrowings.destroy');
+
+
+//moverments
+Route::get('/moverments', [GoodController::class, 'index'])->name('moverments.index');
+Route::get('/moverments/create', [GoodController::class, 'create'])->name('moverments.create');
+Route::post('/moverments', [GoodController::class, 'store'])->name('moverments.store');
+Route::get('/moverments/{moverment}', [GoodController::class, 'show'])->name('moverments.show');
+Route::get('/moverments/{moverment}/edit', [GoodController::class, 'edit'])->name('moverments.edit');
+Route::put('/moverments/{moverment}', [GoodController::class, 'update'])->name('moverments.update');
+Route::delete('/moverments/{moverment}', [GoodController::class, 'destroy'])->name('moverments.destroy');
+
+
+//requisitions
+Route::get('/requisitions', [GoodController::class, 'index'])->name('requisitions.index');
+Route::get('/requisitions/create', [GoodController::class, 'create'])->name('requisitions.create');
+Route::post('/requisitions', [GoodController::class, 'store'])->name('requisitions.store');
+Route::get('/requisitions/{requisition}', [GoodController::class, 'show'])->name('requisitions.show');
+Route::get('/requisitions/{requisition}/edit', [GoodController::class, 'edit'])->name('requisitions.edit');
+Route::put('/requisitions/{requisition}', [GoodController::class, 'update'])->name('requisitions.update');
+Route::delete('/requisitions/{requisition}', [GoodController::class, 'destroy'])->name('requisitions.destroy');

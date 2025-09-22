@@ -12,7 +12,7 @@ class BorrowingController extends Controller
      */
     public function index()
     {
-        $moverments = Moverment::all(); // fetch all suppliers
+        $borrowings = Borrowing::all(); // fetch all suppliers
         return view('borrowings.index', compact('borrowings'));
     }
 

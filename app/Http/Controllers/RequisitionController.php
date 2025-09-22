@@ -12,7 +12,7 @@ class RequisitionController extends Controller
      */
     public function index()
     {
-        $moverments = Moverment::all(); // fetch all suppliers
+        $requisitions = Requisition::all(); // fetch all suppliers
         return view('requisitions.index', compact('requisitions'));
     }
 

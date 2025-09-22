@@ -80,21 +80,24 @@
                                         <th>Status</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                 
-                          @forelse($invoices as $invoice)
+                      
+status          
+                          @forelse($borrowings as $borrowing)
                                 <tr>
-                                   <td>{{ $invoice->id }}</td>
-                                    <td>{{ $invoice->supplier_name }}</td>
-                                    <td>{{ $invoice->received_date }}</td>
-                                    <td>{{ $invoice->invoice_description }}</td>
-                                    <td>{{ $invoice->received_amount }}</td>
-                                    <td>{{ $invoice->invoice_date }}</td>
+                                   <td>{{ $borrowing->id }}</td>
+                                    <td>{{ $borrowing->request_date }}</td>
+                                    <td>{{ $borrowing->request_by }}</td>
+                                    <td>{{ $borrowing->request_summary }}</td>
+                                    <td>{{ $borrowing->item_name }}</td>
+                                    <td>{{ $borrowing->asset_tag }}</td>
+                                    <th>{{ $borrowing->comment }}
+                                     <th>{{ $borrowing->status }}
+
                                     
                                     <td>
-                                        <a href="{{ route('invoices.show', $invoice->id) }}" class="btn btn-info btn-sm">Show</a>
-                                        <a href="{{ route('invoices.edit', $invoice->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                        <form action="{{ route('invoices.destroy', $invoice->id) }}" method="POST" style="display:inline;">
+                                        <a href="{{ route('borrowings.show', $borrowing->id) }}" class="btn btn-info btn-sm">Show</a>
+                                        <a href="{{ route('borrowings.edit', $borrowing->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                        <form action="{{ route('borrowings.destroy', $borrowing->id) }}" method="POST" style="display:inline;">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm"
@@ -106,7 +109,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="9" class="text-center">No suppliers found.</td>
+                                    <td colspan="9" class="text-center">No Info found.</td>
                                 </tr>
                             @endforelse
                                 </tbody>

@@ -72,29 +72,31 @@
                                 <thead>
                                     <tr>
                                         <th>Id</th>
-                                        <th>Supplier Name</th>
-                                        <th>Received Date</th>
-                                        <th>Invoice Description</th>
-                                        <th>Received Amount</th>
-                                        <th>Invoice date</th>
+                                        <th>Request Date</th>
+                                        <th>Request By</th>
+                                        <th>Request Summary</th>
+                                        <th>Item Name</th>
+                                        <th>Current Step</th>
                                         <th>Status</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                  
-                          @forelse($invoices as $invoice)
+                       @forelse($requisitions as $requisition)
                                 <tr>
-                                   <td>{{ $invoice->id }}</td>
-                                    <td>{{ $invoice->supplier_name }}</td>
-                                    <td>{{ $invoice->received_date }}</td>
-                                    <td>{{ $invoice->invoice_description }}</td>
-                                    <td>{{ $invoice->received_amount }}</td>
-                                    <td>{{ $invoice->invoice_date }}</td>
+                                   <td>{{ $requisition->id }}</td>
+                                    <td>{{ $requisition->request_date }}</td>
+                                    <td>{{ $requisition->request_by }}</td>
+                                    <td>{{ $requisition->request_summary }}</td>
+                                    <td>{{ $requisition->item_name }}</td>
+                                    <td>{{ $requisition->current_step }}</td>
+                                    <td>{{ $requisition->status }}</td>
                                     
                                     <td>
-                                        <a href="{{ route('invoices.show', $invoice->id) }}" class="btn btn-info btn-sm">Show</a>
-                                        <a href="{{ route('invoices.edit', $invoice->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                        <form action="{{ route('invoices.destroy', $invoice->id) }}" method="POST" style="display:inline;">
+                                        <a href="{{ route('requisitions.show', $requisition->id) }}" class="btn btn-info btn-sm">Show</a>
+                                        <a href="{{ route('requisitions.edit', $requisition->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                        <form action="{{ route('requisitions.destroy', $requisition->id) }}" method="POST" style="display:inline;">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm"

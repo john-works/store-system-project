@@ -41,83 +41,65 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Add New Invoice Details</h4>
+                                    <h4 class="card-title">Edit Requisitions Details</h4>
                                 </div>
                                 <div class="card-content">
                                     <div class="card-body">
-                                       <form action="{{ route('invoices.update', $invoice->id) }}" method="POST">
+                                       <form action="{{ route('requisitions.update', $requisition->id) }}" method="POST">
         @csrf
         @method('PUT')    
-                                    
+                                   
 
-
-
-                                            <div class="row">
+    <div class="row">
                                                 <div class="col-md-6 col-12">
                                                     <div class="form-group">
-                                                        <label for="supplier_name">Supplier Name</label>
-                                                        <input type="text" id="supplier_name" class="form-control"
-                                                          value="{{ old('supplier_name', $invoice->supplier_name) }}"    name="supplier_name" required>
+                                                        <label for="request_date">Request Date</label>
+                                                        <input type="date" id="request_date" class="form-control"
+                                                             value="{{ old('request_date', $requisition->request_date) }}" name="request_date" required>
                                                     </div>
                                                 </div>
 
 
                                                 <div class="col-md-6 col-12">
                                                     <div class="form-group">
-                                                        <label for="received_date">Received Date</label>
-                                                        <input type="date" id="received_date" class="form-control"
-                                                           value="{{ old('received_date', $invoice->received_date) }}"   name="received_date" required>
+                                                        <label for="request_by"> Request By</label>
+                                                        <input type="text" id="request_by" class="form-control"
+                                                              value="{{ old('request_by', $requisition->request_by) }}"name="request_by" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 col-12">
                                                     <div class="form-group">
-                                                        <label for="invoice_number">Invoice Number</label>
-                                                        <input type="number" id="invoice_number" class="form-control"
-                                                           value="{{ old('invoice_number', $invoice->invoice_number) }}"  name="invoice_number" required>
+                                                        <label for="request_summary">Request Summary</label>
+                                                        <input type="text" id="request_summary" class="form-control"
+                                                             value="{{ old('request_summary', $requisition->request_summary) }}"name="request_summary" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 col-12">
                                                     <div class="form-group">
-                                                        <label for="invoice_description">Invoice Description</label>
-                                                        <input type="text" id="invoice_description" class="form-control"
-                                                           value="{{ old('invoice_description', $invoice->invoice_description) }}"  name="invoice_description" required>
+                                                        <label for="item_name">Item Name</label>
+                                                        <input type="text" id="item_name" class="form-control"
+                                                            value="{{ old('item_name', $requisition->item_name) }}" name="item_name" required>
                                                     </div>
                                                 </div>
         
 
                                                 <div class="col-md-6 col-12">
                                                     <div class="form-group">
-                                                        <label for="invoice_date">Invoice Date</label>
-                                                        <input type="date" id="invoice_date" class="form-control"
-                                                          value="{{ old('invoice_date', $invoice->invoice_date) }}"   name="invoice_date" prequired>
+                                                        <label for="current_step">Current Step</label>
+                                                        <input type="text" id="current_step" class="form-control"
+                                                            value="{{ old('current_step', $requisition->current_step) }}" name="current_step" prequired>
                                                     </div>
                                                 </div>
                                                 
 
                                                 <div class="col-md-6 col-12">
                                                     <div class="form-group">
-                                                        <label for="received_amount">Received Amount</label>
-                                                        <input type="number" id="received_amount" class="form-control"
-                                                          value="{{ old('received_amount', $invoice->received_amount) }}"   name="received_amount" required>
+                                                        <label for="status">Status</label>
+                                                        <input type="text" id="status" class="form-control"
+                                                           value="{{ old('status', $requisition->status) }}"  name="status" required>
                                                     </div>
                                                 </div>
                  
-                                                 <div class="col-md-6 col-12">
-                                                    <div class="form-group">
-                                                        <label for="invoice_currency">Invoice Currency</label>
-                                                        <input type="number" id="invoice_currency" class="form-control"
-                                                           value="{{ old('invoice_currency', $invoice->invoice_currency) }}"  name="invoice_currency" required>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-6 col-12">
-                                                    <div class="form-group">
-                                                        <label for="invoice_date">Invoice Date</label>
-                                                        <input type="date" id="invoice_date" class="form-control"
-                                                          value="{{ old('invoice_date', $invoice->invoice_date) }}"   name="invoice_date" required>
-                                                    </div>
-                                                </div>
-
 
 
 

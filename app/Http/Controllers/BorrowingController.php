@@ -12,7 +12,8 @@ class BorrowingController extends Controller
      */
     public function index()
     {
-        //
+        $moverments = Moverment::all(); // fetch all suppliers
+        return view('borrowings.index', compact('borrowings'));
     }
 
     /**
@@ -20,7 +21,7 @@ class BorrowingController extends Controller
      */
     public function create()
     {
-        //
+        return view('borrowings.create');
     }
 
     /**
@@ -28,7 +29,22 @@ class BorrowingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+          $request->validate([
+'request_date' => 'required',
+'request_by' => 'required',
+'request_summary' => 'required',
+'item_name' => 'required',
+'asset_tag' => 'required',
+'comment' => 'required',
+'status' => 'required',
+
+        ]);
+
+        // Save supplier
+        Borrowing::create($request->all());
+
+        return redirect()->route('borrowings.index')
+                         ->with('success', 'Supplier created successfully.');
     }
 
     /**
@@ -36,7 +52,7 @@ class BorrowingController extends Controller
      */
     public function show(Borrowing $borrowing)
     {
-        //
+         return view('borrowings.show', compact('borrowing'));
     }
 
     /**
@@ -44,7 +60,7 @@ class BorrowingController extends Controller
      */
     public function edit(Borrowing $borrowing)
     {
-        //
+        return view('borrowings.edit', compact('borrowing'));
     }
 
     /**
@@ -52,7 +68,20 @@ class BorrowingController extends Controller
      */
     public function update(Request $request, Borrowing $borrowing)
     {
-        //
+        $request->validate([
+'request_date' => 'required',
+'request_by' => 'required',
+'request_summary' => 'required',
+'item_name' => 'required',
+'asset_tag' => 'required',
+'comment' => 'required',
+'status' => 'required',
+
+
+        ]);
+        $borrowing->update($request->all());
+
+        return redirect()->route('borrowings.index');
     }
 
     /**

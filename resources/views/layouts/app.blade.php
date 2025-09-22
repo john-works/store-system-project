@@ -50,10 +50,10 @@
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                    <a href="component-alert.html">Alert</a>
+                                    <a href="{{ route('contracts.index') }}">View</a>
                                 </li>
                                 <li class="submenu-item ">
-                                    <a href="component-badge.html">Badge</a>
+                                    <a href="{{ route('contracts.create') }}">Create</a>
                                 </li>
                                
                                 
@@ -69,10 +69,10 @@
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                    <a href="">Alert</a>
+                                    <a href="{{ route('items.index') }}">View</a>
                                 </li>
                                 <li class="submenu-item ">
-                                    <a href="">Badge</a>
+                                    <a href="{{ route('items.create') }}">Create</a>
                                 </li>
                                
                                 
@@ -88,10 +88,10 @@
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                    <a href="component-alert.html">Alert</a>
+                                    <a href="{{ route('borrowings.index') }}">View</a>
                                 </li>
                                 <li class="submenu-item ">
-                                    <a href="component-badge.html">Badge</a>
+                                    <a href="{{ route('borrowings.create') }}">Create</a>
                                 </li>
                                
                                 
@@ -106,10 +106,10 @@
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                    <a href="component-alert.html">Alert</a>
+                                    <a href="{{ route('moverments.index') }}">view</a>
                                 </li>
                                 <li class="submenu-item ">
-                                    <a href="component-badge.html">Badge</a>
+                                    <a href="{{ route('moverments.create') }}">create</a>
                                 </li>
                                
                                 
@@ -123,10 +123,10 @@
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                    <a href="component-alert.html">Alert</a>
+                                    <a href="{{ route('requisitions.index') }}">view</a>
                                 </li>
                                 <li class="submenu-item ">
-                                    <a href="component-badge.html">Badge</a>
+                                    <a href="{{ route('requisitions.create') }}">create</a>
                                 </li>
                                
                                 
@@ -140,10 +140,10 @@
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                    <a href="component-alert.html">Alert</a>
+                                    <a href="{{ route('suppliers.index') }}">view</a>
                                 </li>
                                 <li class="submenu-item ">
-                                    <a href="component-badge.html">Badge</a>
+                                    <a href="{{ route('suppliers.create') }}">create</a>
                                 </li>
                                
                                 
@@ -157,10 +157,10 @@
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                    <a href="component-alert.html">Alert</a>
+                                    {{-- <a href="{{ route('invoices.index') }}">view</a> --}}
                                 </li>
                                 <li class="submenu-item ">
-                                    <a href="component-badge.html">Badge</a>
+                                    {{-- <a href="{{ route('invoices.index') }}">create</a> --}}
                                 </li>
                                
                                 
@@ -174,10 +174,10 @@
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                    <a href="component-alert.html">Alert</a>
+                                    <a href="{{ route('goods.index') }}">view</a>
                                 </li>
                                 <li class="submenu-item ">
-                                    <a href="component-badge.html">Badge</a>
+                                    <a href="{{ route('goods.create') }}">create</a>
                                 </li>
                                
                                 
@@ -191,10 +191,10 @@
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                    <a href="component-alert.html">Alert</a>
+                                    <a href="{{ route('services.index') }}">view</a>
                                 </li>
                                 <li class="submenu-item ">
-                                    <a href="component-badge.html">Badge</a>
+                                    <a href="{{ route('services.create') }}">create</a>
                                 </li>
                                
                                 
@@ -208,10 +208,10 @@
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                    <a href="">Alert</a>
+                                    <a href="">view</a>
                                 </li>
                                 <li class="submenu-item ">
-                                    <a href="">Badge</a>
+                                    <a href="">add</a>
                                 </li>
                                
                                 

@@ -12,7 +12,8 @@ class MovermentController extends Controller
      */
     public function index()
     {
-        //
+         $moverments = Moverment::all(); // fetch all suppliers
+        return view('moverments.index', compact('moverments'));
     }
 
     /**
@@ -20,7 +21,7 @@ class MovermentController extends Controller
      */
     public function create()
     {
-        //
+         return view('moverments.create');
     }
 
     /**
@@ -28,7 +29,27 @@ class MovermentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+'request_date' =>'required',
+'request_by' =>'required',
+'request_summary' =>'required',
+'current_step' =>'required',
+'status' =>'required',
+'item_description' =>'required',
+'asset_tag' =>'required',
+'serial_number' =>'required',
+'from_department' =>'required',
+'from_user' =>'required',
+'to_department' =>'required',
+'to_user' =>'required',
+           
+        ]);
+
+        // Save supplier
+        Moverment::create($request->all());
+
+        return redirect()->route('moverments.index')
+                         ->with('success', 'Supplier created successfully.');
     }
 
     /**
@@ -36,7 +57,7 @@ class MovermentController extends Controller
      */
     public function show(Moverment $moverment)
     {
-        //
+         return view('moverments.show', compact('moverment'));
     }
 
     /**
@@ -44,7 +65,7 @@ class MovermentController extends Controller
      */
     public function edit(Moverment $moverment)
     {
-        //
+        return view('moverments.edit', compact('moverment'));
     }
 
     /**
@@ -52,7 +73,27 @@ class MovermentController extends Controller
      */
     public function update(Request $request, Moverment $moverment)
     {
-        //
+        $request->validate([
+
+            'request_date' =>'required',
+'request_by' =>'required',
+'request_summary' =>'required',
+'current_step' =>'required',
+'status' =>'required',
+'item_description' =>'required',
+'asset_tag' =>'required',
+'serial_number' =>'required',
+'from_department' =>'required',
+'from_user' =>'required',
+'to_department' =>'required',
+'to_user' =>'required',
+       
+
+
+        ]);
+        $moverment->update($request->all());
+
+        return redirect()->route('moverments.index');
     }
 
     /**

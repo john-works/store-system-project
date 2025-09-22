@@ -12,7 +12,8 @@ class RequisitionController extends Controller
      */
     public function index()
     {
-        //
+        $moverments = Moverment::all(); // fetch all suppliers
+        return view('requisitions.index', compact('requisitions'));
     }
 
     /**
@@ -20,7 +21,7 @@ class RequisitionController extends Controller
      */
     public function create()
     {
-        //
+        return view('requisitions.create');
     }
 
     /**
@@ -28,7 +29,21 @@ class RequisitionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $request->validate([
+'request_date' => 'required',
+'request_by' => 'required',
+'request_summary' => 'required',
+'item_name' => 'required',
+'current_step' => 'required',
+'status' => 'required',
+            
+        ]);
+
+        // Save supplier
+        Requisition::create($request->all());
+
+        return redirect()->route('requisitions.index')
+                         ->with('success', 'Supplier created successfully.');
     }
 
     /**
@@ -36,7 +51,7 @@ class RequisitionController extends Controller
      */
     public function show(Requisition $requisition)
     {
-        //
+         return view('requisitions.show', compact('requisition'));
     }
 
     /**
@@ -44,7 +59,7 @@ class RequisitionController extends Controller
      */
     public function edit(Requisition $requisition)
     {
-        //
+          return view('requisitions.edit', compact('requisition'));
     }
 
     /**
@@ -52,7 +67,20 @@ class RequisitionController extends Controller
      */
     public function update(Request $request, Requisition $requisition)
     {
-        //
+        $request->validate([
+
+'request_date' => 'required',
+'request_by' => 'required',
+'request_summary' => 'required',
+'item_name' => 'required',
+'current_step' => 'required',
+'status' => 'required',
+
+
+        ]);
+        $requisition->update($request->all());
+
+        return redirect()->route('requisitions.index');
     }
 
     /**

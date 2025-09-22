@@ -12,7 +12,8 @@ class ContractController extends Controller
      */
     public function index()
     {
-        //
+         $contracts = Contract::all(); // fetch all suppliers
+        return view('contracts.index', compact('contracts'));
     }
 
     /**
@@ -20,7 +21,7 @@ class ContractController extends Controller
      */
     public function create()
     {
-        //
+         return view('contracts.create');
     }
 
     /**
@@ -28,7 +29,25 @@ class ContractController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+                           
+        'supplier_name' => 'required|string',
+'procurement_type' => 'required|string',
+'amount_cost' => 'required|string',
+'signing_date' => 'required|string',
+'start_date' => 'required|string',
+'end_date' => 'required|string',
+'procument_subject' => 'required|string',
+'termination_clauses' => 'required|string',
+            
+        ]);
+
+        // Save supplier
+        Contract::create($request->all());
+
+        return redirect()->route('contracts.index');
+        
     }
 
     /**
@@ -44,7 +63,7 @@ class ContractController extends Controller
      */
     public function edit(Contract $contract)
     {
-        //
+        return view('contracts.edit', compact('contract'));
     }
 
     /**
@@ -52,7 +71,21 @@ class ContractController extends Controller
      */
     public function update(Request $request, Contract $contract)
     {
-        //
+        $request->validate([
+
+           'supplier_name' => 'required|string',
+'procurement_type' => 'required|string',
+'amount_cost' => 'required|string',
+'signing_date' => 'required|string',
+'start_date' => 'required|string',
+'end_date' => 'required|string',
+'procument_subject' => 'required|string',
+'termination_clauses' => 'required|string',
+
+        ]);
+        $contract->update($request->all());
+
+        return redirect()->route('contracts.index');
     }
 
     /**

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Contract;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 
@@ -97,4 +97,9 @@ class SupplierController extends Controller
 
         return redirect()->route('suppliers.index')->with('success', 'Record deleted successfully.');
     }
+
+
+
+
+
 }

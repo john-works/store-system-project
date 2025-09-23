@@ -8,7 +8,7 @@ class Contract extends Model
 {
     protected $fillable=[
 
-'supplier_name',
+'supplier_id',
 'procurement_type',
 'amount_cost',
 'signing_date',
@@ -19,4 +19,8 @@ class Contract extends Model
 
     ];
 
+    public function supplier()
+    {
+        return $this->belongsTo(Supplier::class);
+    }
 }

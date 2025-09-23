@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('contracts', function (Blueprint $table) {
             $table->id();
-            $table->string('supplier_name');
+            $table->unsignedBigInteger('supplier_id');
             $table->string('procurement_type');
             $table->string('amount_cost');
             $table->string('signing_date');
@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('end_date');
             $table->string('procument_subject');
             $table->string('termination_clauses');
+
+            $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('cascade');
             $table->timestamps();
         });
     }

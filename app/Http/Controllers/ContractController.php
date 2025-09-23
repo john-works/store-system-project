@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contract;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 
 class ContractController extends Controller
@@ -12,8 +13,11 @@ class ContractController extends Controller
      */
     public function index()
     {
-         $contracts = Contract::all(); // fetch all suppliers
+          // Eager load supplier to avoid N+1 queries
+        $contracts = Contract::with('supplier')->get();
         return view('contracts.index', compact('contracts'));
+
+        
     }
 
     /**
@@ -21,7 +25,9 @@ class ContractController extends Controller
      */
     public function create()
     {
-         return view('contracts.create');
+          // Get all suppliers to populate the dropdown
+        $suppliers = Supplier::all();
+        return view('contracts.create', compact('suppliers'));
     }
 
     /**
@@ -32,7 +38,7 @@ class ContractController extends Controller
 
         $request->validate([
                            
-        'supplier_name' => 'required|string',
+        'supplier_id' => 'required|string',
 'procurement_type' => 'required|string',
 'amount_cost' => 'required|string',
 'signing_date' => 'required|string',
@@ -63,7 +69,8 @@ class ContractController extends Controller
      */
     public function edit(Contract $contract)
     {
-        return view('contracts.edit', compact('contract'));
+        $suppliers = Supplier::all(); // get all suppliers for dropdown
+    return view('contracts.edit', compact('contract', 'suppliers'));
     }
 
     /**
@@ -73,7 +80,7 @@ class ContractController extends Controller
     {
         $request->validate([
 
-           'supplier_name' => 'required|string',
+           'supplier_id' => 'required|string',
 'procurement_type' => 'required|string',
 'amount_cost' => 'required|string',
 'signing_date' => 'required|string',

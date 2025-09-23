@@ -17,4 +17,11 @@ class Supplier extends Model
     'type_of_good',
   'bank_account',
     ];
+
+
+         // Supplier has many contracts
+    public function contracts()
+    {
+        return $this->hasMany(Contract::class);
+    }
 }

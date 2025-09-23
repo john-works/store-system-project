@@ -89,7 +89,7 @@
                                                                        
     
                                    <td>{{ $contract->id }}</td>
-                                    <td>{{ $contract->supplier_name }}</td>
+                                <td>{{ $contract->supplier->supplier_name }}</td>
                                     <td>{{ $contract->procurement_type }}</td>
                                     <td>{{ $contract->amount_cost }}</td>
                                     <td>{{ $contract->procument_subject }}</td>

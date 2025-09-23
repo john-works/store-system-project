@@ -30,11 +30,11 @@ class MovermentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-'request_date' =>'required',
-'request_by' =>'required',
-'request_summary' =>'required',
-'current_step' =>'required',
-'status' =>'required',
+// 'request_date' =>'required',
+// 'request_by' =>'required',
+// 'request_summary' =>'required',
+// 'current_step' =>'required',
+// 'status' =>'required',
 'item_description' =>'required',
 'asset_tag' =>'required',
 'serial_number' =>'required',
@@ -75,11 +75,11 @@ class MovermentController extends Controller
     {
         $request->validate([
 
-            'request_date' =>'required',
-'request_by' =>'required',
-'request_summary' =>'required',
-'current_step' =>'required',
-'status' =>'required',
+//             'request_date' =>'required',
+// 'request_by' =>'required',
+// 'request_summary' =>'required',
+// 'current_step' =>'required',
+// 'status' =>'required',
 'item_description' =>'required',
 'asset_tag' =>'required',
 'serial_number' =>'required',

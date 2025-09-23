@@ -24,7 +24,7 @@
                             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Supplier</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Movement</li>
                                 </ol>
                             </nav>
                         </div>
@@ -41,79 +41,73 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Add New Invoice Details</h4>
+                                    <h4 class="card-title">Add New Movement Details</h4>
                                 </div>
                                 <div class="card-content">
                                     <div class="card-body">
-                                      <form action="{{ route('invoices.store') }}" method="POST" class="form">
+                                      <form action="{{ route('moverments.store') }}" method="POST" class="form">
                                     @csrf
 
 
                                             <div class="row">
                                                 <div class="col-md-6 col-12">
                                                     <div class="form-group">
-                                                        <label for="supplier_name">Supplier Name</label>
-                                                        <input type="text" id="supplier_name" class="form-control"
-                                                             name="supplier_name" required>
+                                                        <label for="item_description">Item Description</label>
+                                                        <input type="text" id="item_description" class="form-control"
+                                                             name="item_description" required>
                                                     </div>
                                                 </div>
 
 
                                                 <div class="col-md-6 col-12">
                                                     <div class="form-group">
-                                                        <label for="received_date">Received Date</label>
-                                                        <input type="date" id="received_date" class="form-control"
-                                                             name="received_date" required>
+                                                        <label for="asset_tag">Asset Tag</label>
+                                                        <input type="text" id="asset_tag" class="form-control"
+                                                             name="asset_tag" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 col-12">
                                                     <div class="form-group">
-                                                        <label for="invoice_number">Invoice Number</label>
-                                                        <input type="number" id="invoice_number" class="form-control"
-                                                            name="invoice_number" required>
-                                                    </div>
+                                                        <label for="serial_number">Serial Number</label>
+                                                        <input type="text" id="serial_number" class="form-control"
+                                                            name="serial_number" required>
+                                                 </div>
                                                 </div>
                                                 <div class="col-md-6 col-12">
                                                     <div class="form-group">
-                                                        <label for="invoice_description">Invoice Description</label>
-                                                        <input type="text" id="invoice_description" class="form-control"
-                                                            name="invoice_description" required>
+                                                        <label for="from_department">From Department</label>
+                                                        <input type="text" id="from_department" class="form-control"
+                                                            name="from_department" required>
                                                     </div>
                                                 </div>
         
 
                                                 <div class="col-md-6 col-12">
                                                     <div class="form-group">
-                                                        <label for="invoice_date">Invoice Date</label>
-                                                        <input type="date" id="tin" class="form-control"
-                                                            name="invoice_date" prequired>
+                                                        <label for="from_user">From User</label>
+                                                        <input type="text" id="from_user" class="form-control"
+                                                            name="from_user" prequired>
                                                     </div>
                                                 </div>
                                                 
 
                                                 <div class="col-md-6 col-12">
                                                     <div class="form-group">
-                                                        <label for="received_amount">Received Amount</label>
-                                                        <input type="number" id="received_amount" class="form-control"
-                                                            name="received_amount" required>
+                                                        <label for="to_department">To Department</label>
+                                                        <input type="text" id="to_department" class="form-control"
+                                                            name="to_department" required>
                                                     </div>
                                                 </div>
                  
                                                  <div class="col-md-6 col-12">
                                                     <div class="form-group">
-                                                        <label for="invoice_currency">Invoice Currency</label>
-                                                        <input type="number" id="invoice_currency" class="form-control"
-                                                            name="invoice_currency" required>
+                                                        <label for="to_user">To User</label>
+                                                        <input type="text" id="to_user" class="form-control"
+                                                            name="to_user" required>
                                                     </div>
                                                 </div>
 
-                                                <div class="col-md-6 col-12">
-                                                    <div class="form-group">
-                                                        <label for="invoice_date">Invoice Date</label>
-                                                        <input type="date" id="invoice_date" class="form-control"
-                                                            name="invoice_date" required>
-                                                    </div>
-                                                </div>
+                                               
 
 
 

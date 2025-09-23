@@ -67,34 +67,37 @@
                         <div class="card-header">
                             Simple Datatable
                         </div>
+                        <div class="card-footer text-end">
+                                <a href="{{ route('moverments.create') }}" class="btn btn-secondary">Add New Moverment Request</a>
+                            </div>
                         <div class="card-body">
                             <table class="table table-striped" id="table1">
                                 <thead>
                                     <tr>
                                         <th>Id</th>
-                                        <th>Supplier Name</th>
-                                        <th>Received Date</th>
-                                        <th>Invoice Description</th>
-                                        <th>Received Amount</th>
-                                        <th>Invoice date</th>
+                                        <th>Item Description</th>
+                                        <th>Asset Tag</th>
+                                        <th>From User</th>
+                                        <th>To user</th>
+                                        {{-- <th>Invoice date</th> --}}
                                         <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                 
-                          @forelse($invoices as $invoice)
+                              
+                          @forelse($moverments as $moverment)
                                 <tr>
-                                   <td>{{ $invoice->id }}</td>
-                                    <td>{{ $invoice->supplier_name }}</td>
-                                    <td>{{ $invoice->received_date }}</td>
-                                    <td>{{ $invoice->invoice_description }}</td>
-                                    <td>{{ $invoice->received_amount }}</td>
-                                    <td>{{ $invoice->invoice_date }}</td>
+                                   <td>{{ $moverment->id }}</td>
+                                    <td>{{ $moverment->item_description }}</td>
+                                    <td>{{ $moverment->asset_tag }}</td>
+                                    <td>{{ $moverment->from_user }}</td>
+                                    <td>{{ $moverment->to_user }}</td>
+                                    {{-- <td>{{ $moverment->invoice_date }}</td> --}}
                                     
                                     <td>
-                                        <a href="{{ route('invoices.show', $invoice->id) }}" class="btn btn-info btn-sm">Show</a>
-                                        <a href="{{ route('invoices.edit', $invoice->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                        <form action="{{ route('invoices.destroy', $invoice->id) }}" method="POST" style="display:inline;">
+                                        <a href="{{ route('moverments.show', $moverment->id) }}" class="btn btn-info btn-sm">Show</a>
+                                        <a href="{{ route('moverments.edit', $moverment->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                        <form action="{{ route('moverments.destroy', $moverment->id) }}" method="POST" style="display:inline;">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm"
@@ -106,7 +109,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="9" class="text-center">No suppliers found.</td>
+                                    <td colspan="9" class="text-center">No info found.</td>
                                 </tr>
                             @endforelse
                                 </tbody>

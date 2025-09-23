@@ -66,6 +66,9 @@
                         <div class="card-header">
                             Simple Datatable
                         </div>
+                        <div class="card-footer text-end">
+                                <a href="{{ route('contracts.create') }}" class="btn btn-secondary">Add New Contratct Request</a>
+                            </div>
                         <div class="card-body">
                             <table class="table table-striped" id="table1">
                                 <thead>

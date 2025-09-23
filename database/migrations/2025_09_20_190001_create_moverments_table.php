@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('moverments', function (Blueprint $table) {
             $table->id();
-            $table->string('request_date');
-            $table->string('request_by');
-            $table->string('request_summary'); 
-            $table->string('current_step');
-            $table->string('status');
+            // $table->string('request_date');
+            // $table->string('request_by');
+            // $table->string('request_summary'); 
+            // $table->string('current_step');
+            // $table->string('status');
             $table->string('item_description');
             $table->string('asset_tag');
             $table->string('serial_number');

@@ -7,7 +7,7 @@ use App\Http\Controllers\ContractController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\GoodController;
 use App\Http\Controllers\ServiceController;
-
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\RequisitionController;
 use App\Http\Controllers\BorrowingController;
 use App\Http\Controllers\MovermentController;
@@ -103,3 +103,14 @@ Route::get('/requisitions/{requisition}', [RequisitionController::class, 'show']
 Route::get('/requisitions/{requisition}/edit', [RequisitionController::class, 'edit'])->name('requisitions.edit');
 Route::put('/requisitions/{requisition}', [RequisitionController::class, 'update'])->name('requisitions.update');
 Route::delete('/requisitions/{requisition}', [RequisitionController::class, 'destroy'])->name('requisitions.destroy');
+
+
+
+//users
+Route::get('/users', [UserController::class, 'index'])->name('users.index');
+Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+Route::post('/users', [UserController::class, 'store'])->name('users.store');
+Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
+Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
+Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');

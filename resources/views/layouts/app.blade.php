@@ -201,6 +201,7 @@
                             </ul>
                         </li>
 
+
                           <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
                                 <i class="bi bi-stack"></i>
@@ -208,10 +209,10 @@
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                    <a href="">view</a>
+                                   <a href="{{ route('users.index') }}">User info</a>
                                 </li>
                                 <li class="submenu-item ">
-                                    <a href="">add</a>
+                                   <a href="">create</a>
                                 </li>
                                
                                 

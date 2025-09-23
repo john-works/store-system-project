@@ -1,4 +1,4 @@
-@extends('layouts.app')
+{{-- @extends('layouts.app')
 
 @section('content')
 
@@ -32,7 +32,7 @@
                     <div class="col-12">
                         <div class="card shadow-lg border-0">
                             <div class="card-header bg-primary text-white">
-                                <h4 class="card-title">Invoice #{{ $invoice->invoice_number }}</h4>
+                                {{-- <h4 class="card-title">Invoice #{{ $invoice->invoice_number }}</h4> --
                             </div>
                             <div class="card-body">
                                 <table class="table table-bordered table-striped">
@@ -95,4 +95,4 @@
             <!-- End Show Invoice -->
         </div>
     
-@endsection
+@endsection --}}

@@ -95,7 +95,7 @@
                                     <td>{{ $invoice->invoice_date }}</td>
                                     
                                     <td>
-                                        <a href="{{ route('invoices.show', $invoice->id) }}" class="btn btn-info btn-sm">Show</a>
+                                        {{-- <a href="{{ route('invoices.show', $invoice->id) }}" class="btn btn-info btn-sm">Show</a>
                                         <a href="{{ route('invoices.edit', $invoice->id) }}" class="btn btn-warning btn-sm">Edit</a>
                                         <form action="{{ route('invoices.destroy', $invoice->id) }}" method="POST" style="display:inline;">
                                             @csrf
@@ -104,12 +104,12 @@
                                                 onclick="return confirm('Are you sure you want to delete this supplier?')">
                                                 Delete
                                             </button>
-                                        </form>
+                                        </form> --}} <span class="action-icon" data-id="{{ $invoice->id }}">📄</span>
                                     </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="9" class="text-center">No suppliers found.</td>
+                                    <td colspan="9" class="text-center">No Info found.</td>
                                 </tr>
                             @endforelse
                                 </tbody>
@@ -123,6 +123,120 @@
            
         </div>
     </div>
+
+    
+<!-- Popup Menu -->
+<div class="popup-menu" id="popupMenu">
+    <ul>
+        <li onclick="handleAction('view')">👁 View</li>
+        <li onclick="handleAction('edit')">✏️ Edit</li>
+        <li onclick="handleAction('delete')">🗑 Delete</li>
+        <li onclick="handleAction('history')">📜 History</li>
+    </ul>
+</div>
+
+<style>
+    .action-icon {
+        cursor: pointer;
+        font-size: 18px;
+        color: #007bff;
+    }
+
+    .popup-menu {
+        display: none;
+        position: absolute;
+        background: #fff;
+        border: 1px solid #ccc;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        border-radius: 5px;
+        z-index: 1000;
+        min-width: 110px;
+        font-size: 13px;
+    }
+
+    .popup-menu ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .popup-menu ul li {
+        padding: 6px 8px;
+        cursor: pointer;
+        border-bottom: 1px solid #eee;
+    }
+
+    .popup-menu ul li:last-child {
+        border-bottom: none;
+    }
+
+    .popup-menu ul li:hover {
+        background: #f5f5f5;
+    }
+</style>
+
+<script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendors/simple-datatables/simple-datatables.js"></script>
+<script>
+    // Simple Datatable
+    let table1 = document.querySelector('#table1');
+    let dataTable = new simpleDatatables.DataTable(table1);
+
+    const popupMenu = document.getElementById("popupMenu");
+    let currentIcon = null;
+
+    // Show popup when clicking file icon
+    document.querySelectorAll(".action-icon").forEach(icon => {
+        icon.addEventListener("click", (event) => {
+            event.stopPropagation();
+            currentIcon = event.target;
+
+            popupMenu.style.display = "block";
+
+            const rect = currentIcon.getBoundingClientRect();
+            const popupHeight = popupMenu.offsetHeight;
+            const popupWidth = popupMenu.offsetWidth;
+
+            const left = rect.right + window.scrollX - popupWidth;
+            const top = rect.top + window.scrollY - popupHeight - 12;
+
+            popupMenu.style.left = left + "px";
+            popupMenu.style.top = top + "px";
+        });
+    });
+
+    // Hide popup when clicking outside
+    document.addEventListener("click", () => {
+        popupMenu.style.display = "none";
+    });
+
+    // Action handler
+    function handleAction(action) {
+        let id = currentIcon?.getAttribute("data-id");
+        if (!id) return;
+
+        if (action === "view") {
+            window.location.href = `/invoices/${id}`;
+        } else if (action === "edit") {
+            window.location.href = `/invoices/${id}/edit`;
+        } else if (action === "delete") {
+            if (confirm("Are you sure you want to delete this user?")) {
+                fetch(`/users/${id}`, {
+                    method: "DELETE",
+                    headers: {
+                        "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                        "Content-Type": "application/json"
+                    }
+                }).then(() => window.location.reload());
+            }
+        } else if (action === "history") {
+            alert("History for user ID: " + id);
+        }
+
+        popupMenu.style.display = "none";
+    }
+</script>
     <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
 

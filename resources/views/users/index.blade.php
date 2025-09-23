@@ -67,49 +67,54 @@
                         <div class="card-header">
                             Simple Datatable
                         </div>
+
                         <div class="card-footer text-end">
-                                <a href="{{ route('moverments.create') }}" class="btn btn-secondary">Add New Moverment Request</a>
+                                <a href="{{ route('users.create') }}" class="btn btn-secondary">Add New User</a>
                             </div>
                         <div class="card-body">
                             <table class="table table-striped" id="table1">
                                 <thead>
                                     <tr>
                                         <th>Id</th>
-                                        <th>Item Description</th>
-                                        <th>Asset Tag</th>
-                                        <th>From User</th>
-                                        <th>To user</th>
-                                        {{-- <th>Invoice date</th> --}}
-                                        <th>Status</th>
+                                        <th>User Name</th>
+                                        <th>Phone</th>
+                                        <th>Email</th>
+                                        <th>Role</th>
+                                        <th>Department</th>
+                                        
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                              
-                          @forelse($moverments as $moverment)
+                                
+
+                          @forelse($users as $user)
                                 <tr>
-                                   <td>{{ $moverment->id }}</td>
-                                    <td>{{ $moverment->item_description }}</td>
-                                    <td>{{ $moverment->asset_tag }}</td>
-                                    <td>{{ $moverment->from_user }}</td>
-                                    <td>{{ $moverment->to_user }}</td>
-                                    {{-- <td>{{ $moverment->invoice_date }}</td> --}}
+                                   <td>{{ $user->id }}</td>
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->phone }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>{{ $user->role }}</td>
+                                    <td>{{ $user->department }}</td>
+                                    {{-- <td>{{ $item->qty }}</td> --}}
                                     
                                     <td>
-                                        {{-- <a href="{{ route('moverments.show', $moverment->id) }}" class="btn btn-info btn-sm">Show</a>
-                                        <a href="{{ route('moverments.edit', $moverment->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                        <form action="{{ route('moverments.destroy', $moverment->id) }}" method="POST" style="display:inline;">
+                                        {{-- <a href="{{ route('users.show', $user->id) }}" class="btn btn-info btn-sm">Show</a>
+                                        <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                        <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display:inline;">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm"
                                                 onclick="return confirm('Are you sure you want to delete this supplier?')">
                                                 Delete
                                             </button>
-                                        </form> --}}  <span class="action-icon" data-id="{{ $moverment->id }}">📄</span>
+                                        </form> --}}  <span class="action-icon" data-id="{{ $user->id }}">📄</span>
+                                    </td>
                                     </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="9" class="text-center">No info found.</td>
+                                    <td colspan="9" class="text-center">No Info found.</td>
                                 </tr>
                             @endforelse
                                 </tbody>
@@ -217,9 +222,9 @@
         if (!id) return;
 
         if (action === "view") {
-            window.location.href = `/moverments/${id}`;
+            window.location.href = `/services/${id}`;
         } else if (action === "edit") {
-            window.location.href = `/moverments/${id}/edit`;
+            window.location.href = `/services/${id}/edit`;
         } else if (action === "delete") {
             if (confirm("Are you sure you want to delete this user?")) {
                 fetch(`/users/${id}`, {

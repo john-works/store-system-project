@@ -26,9 +26,22 @@ class Supplier extends Model
     }
 
 
-     // items has many contracts
+     // items 
     public function items()
     {
         return $this->hasMany(Item::class);
+    }
+
+
+     // services 
+    public function services()
+    {
+        return $this->hasMany(servise::class);
+    }
+
+     // goods 
+    public function goods()
+    {
+        return $this->hasMany(Good::class);
     }
 }

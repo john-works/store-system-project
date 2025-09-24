@@ -8,17 +8,62 @@
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css')">
+    <link rel="stylesheet" href="{{asset('assets/css/bootstrap.css')}}">
 
-    <link rel="stylesheet" href="{{ asset('assets/vendors/iconly/bold.css')">
+    <link rel="stylesheet" href="{{asset('assets/vendors/iconly/bold.css')}}">
 
-    <link rel="stylesheet" href="{{ asset('assets/vendors/perfect-scrollbar/perfect-scrollbar.css')">
-    <link rel="stylesheet" href="{{ asset('assets/vendors/bootstrap-icons/bootstrap-icons.css')">
-    <link rel="stylesheet" href="{{ asset('assets/css/app.css')">
+    <link rel="stylesheet" href="{{asset('assets/vendors/perfect-scrollbar/perfect-scrollbar.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/vendors/bootstrap-icons/bootstrap-icons.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/app.css')}}">
     <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon">
 </head>
 
 <body>
+
+    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+            
+
+            
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Left Side Of Navbar -->
+                    <ul class="navbar-nav me-auto">
+
+                    </ul>
+
+                    <!-- Right Side Of Navbar -->
+                    <ul class="navbar-nav ms-auto">
+                        <!-- Authentication Links -->
+                        @guest
+                            
+
+                          
+                        @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }}
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                        @endguest
+                    </ul>
+                </div>
+            </div>
+        </nav>
     <div id="app">
         <div id="sidebar" class="active">
             <div class="sidebar-wrapper active">
@@ -50,10 +95,10 @@
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                    <a href="component-alert.html">Alert</a>
+                                    <a href="{{ route('contracts.index') }}">View</a>
                                 </li>
                                 <li class="submenu-item ">
-                                    <a href="component-badge.html">Badge</a>
+                                    <a href="{{ route('contracts.create') }}">Create</a>
                                 </li>
                                
                                 
@@ -69,10 +114,10 @@
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                    <a href="">Alert</a>
+                                    <a href="{{ route('items.index') }}">View</a>
                                 </li>
                                 <li class="submenu-item ">
-                                    <a href="">Badge</a>
+                                    <a href="{{ route('items.create') }}">Create</a>
                                 </li>
                                
                                 
@@ -88,10 +133,10 @@
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                    <a href="component-alert.html">Alert</a>
+                                    <a href="{{ route('borrowings.index') }}">View</a>
                                 </li>
                                 <li class="submenu-item ">
-                                    <a href="component-badge.html">Badge</a>
+                                    <a href="{{ route('borrowings.create') }}">Create</a>
                                 </li>
                                
                                 
@@ -106,10 +151,10 @@
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                    <a href="component-alert.html">Alert</a>
+                                    <a href="{{ route('moverments.index') }}">view</a>
                                 </li>
                                 <li class="submenu-item ">
-                                    <a href="component-badge.html">Badge</a>
+                                    <a href="{{ route('moverments.create') }}">create</a>
                                 </li>
                                
                                 
@@ -123,10 +168,10 @@
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                    <a href="component-alert.html">Alert</a>
+                                    <a href="{{ route('requisitions.index') }}">view</a>
                                 </li>
                                 <li class="submenu-item ">
-                                    <a href="component-badge.html">Badge</a>
+                                    <a href="{{ route('requisitions.create') }}">create</a>
                                 </li>
                                
                                 
@@ -140,10 +185,10 @@
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                    <a href="component-alert.html">Alert</a>
+                                    <a href="{{ route('suppliers.index') }}">view</a>
                                 </li>
                                 <li class="submenu-item ">
-                                    <a href="component-badge.html">Badge</a>
+                                    <a href="{{ route('suppliers.create') }}">create</a>
                                 </li>
                                
                                 
@@ -157,10 +202,10 @@
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                    <a href="component-alert.html">Alert</a>
+                                    {{-- <a href="{{ route('invoices.index') }}">view</a> --}}
                                 </li>
                                 <li class="submenu-item ">
-                                    <a href="component-badge.html">Badge</a>
+                                    {{-- <a href="{{ route('invoices.index') }}">create</a> --}}
                                 </li>
                                
                                 
@@ -174,10 +219,10 @@
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                    <a href="component-alert.html">Alert</a>
+                                    <a href="{{ route('goods.index') }}">view</a>
                                 </li>
                                 <li class="submenu-item ">
-                                    <a href="component-badge.html">Badge</a>
+                                    <a href="{{ route('goods.create') }}">create</a>
                                 </li>
                                
                                 
@@ -191,15 +236,16 @@
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                    <a href="component-alert.html">Alert</a>
+                                    <a href="{{ route('services.index') }}">view</a>
                                 </li>
                                 <li class="submenu-item ">
-                                    <a href="component-badge.html">Badge</a>
+                                    <a href="{{ route('services.create') }}">create</a>
                                 </li>
                                
                                 
                             </ul>
                         </li>
+
 
                           <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
@@ -208,10 +254,10 @@
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                    <a href="">Alert</a>
+                                   <a href="{{ route('users.index') }}">User info</a>
                                 </li>
                                 <li class="submenu-item ">
-                                    <a href="">Badge</a>
+                                   <a href="">create</a>
                                 </li>
                                
                                 
@@ -268,13 +314,13 @@
             </footer>
         </div>
     </div>
-    <script src="{{ asset('assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js')"></script>
-    <script src="{{ asset('assets/js/bootstrap.bundle.min.js')"></script>
+    <script src="{{ asset('assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
 
-    <script src="{{ asset('assets/vendors/apexcharts/apexcharts.js')"></script>
-    <script src="{{ asset('assets/js/pages/dashboard.js')"></script>
+    <script src="{{ asset('assets/vendors/apexcharts/apexcharts.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/dashboard.js') }}"></script>
 
-    <script src="{{ asset('assets/js/main.js')"></script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
 </body>
 
 </html>

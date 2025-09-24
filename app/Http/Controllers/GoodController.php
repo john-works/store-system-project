@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Good;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 
 class GoodController extends Controller
@@ -13,7 +14,8 @@ class GoodController extends Controller
     public function index()
     {
         
-          $goods = Good::all(); // fetch all suppliers
+         // Eager load supplier to avoid N+1 queries
+        $goods = Good::with('supplier')->get();
         return view('goods.index', compact('goods'));
     }
 
@@ -22,7 +24,9 @@ class GoodController extends Controller
      */
     public function create()
     {
-         return view('goods.create');
+         // Get all suppliers to populate the dropdown
+        $suppliers = Supplier::all();
+        return view('goods.create', compact('suppliers'));
     }
 
     /**
@@ -32,7 +36,7 @@ class GoodController extends Controller
     {
          $request->validate([
                            
-        'supplier_name'=>'required',
+        'supplier_id'=>'required',
 'request_date'=>'required',
 'request_by'=>'required',
 'verified_by'=>'required',
@@ -72,7 +76,7 @@ class GoodController extends Controller
     {
         $request->validate([
 
-               'supplier_name'=>'required',
+               'supplier_id'=>'required',
 'request_date'=>'required',
 'request_by'=>'required',
 'verified_by'=>'required',

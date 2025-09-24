@@ -11,10 +11,15 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\RequisitionController;
 use App\Http\Controllers\BorrowingController;
 use App\Http\Controllers\MovermentController;
-Route::get('/', function () {
-    return view('welcome');
-});
 
+
+// Route::get('/', function () {
+//     return view('home');
+// });
+
+Route::get('/', function () {
+    return redirect()->route('login');
+});
 
 
 //supplier
@@ -114,3 +119,11 @@ Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show')
 Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
 Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
 Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

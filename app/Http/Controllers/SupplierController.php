@@ -5,6 +5,7 @@ use App\Models\Contract;
 use App\Models\Supplier;
 use App\Models\Item;
 use App\Models\service;
+use App\Models\Good;
 use Illuminate\Http\Request;
 
 class SupplierController extends Controller

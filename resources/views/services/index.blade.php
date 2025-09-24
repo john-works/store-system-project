@@ -75,6 +75,7 @@
                             <table class="table table-striped" id="table1">
                                 <thead>
                                     <tr>
+                                        <td>Id</td>
                                         <th>Supplier Name</th>
                                         <th>Request Date</th>
                                         <th>Request By</th>
@@ -90,7 +91,7 @@
                                     @forelse($services as $service)
                                 <tr>
                                    <td>{{ $service->id }}</td>
-                                    <td>{{ $service->supplier_name }}</td>
+                                    <td>{{ $service->supplier->supplier_name }}</td>
                                     <td>{{ $service->request_date }}</td>
                                     <td>{{ $service->request_by }}</td>
                                     <td>{{ $service->verified_by }}</td>

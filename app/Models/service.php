@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class service extends Model
 {
     protected $fillable=[
-'supplier_name',
+'supplier_id',
 'request_date',
 'request_by',
 'verified_by',
@@ -16,4 +16,8 @@ class service extends Model
 'quality',
 
 ];
+ public function supplier()
+    {
+        return $this->belongsTo(Supplier::class);
+    }
 }

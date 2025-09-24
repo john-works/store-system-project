@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Good extends Model
 {
     protected $fillable=[
-'supplier_name',
+'supplier_id',
 'request_date',
 'request_by',
 'verified_by',
@@ -16,4 +16,9 @@ class Good extends Model
 'quality',
 
     ];
+
+     public function supplier()
+    {
+        return $this->belongsTo(Supplier::class);
+    }
 }

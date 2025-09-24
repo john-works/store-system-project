@@ -89,7 +89,7 @@
                           @forelse($goods as $good)
                                 <tr>
                                    <td>{{ $good->id }}</td>
-                                    <td>{{ $good->supplier_name }}</td>
+                                    <td>{{ $good->supplier->supplier_name }}</td>
                                     <td>{{ $good->request_date }}</td>
                                     <td>{{ $good->invoice_description }}</td>
                                     <td>{{ $good->item__description }}</td>

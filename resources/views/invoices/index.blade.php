@@ -88,7 +88,7 @@
                           @forelse($invoices as $invoice)
                                 <tr>
                                    <td>{{ $invoice->id }}</td>
-                                    <td>{{ $invoice->supplier_name }}</td>
+                                    <td>{{ $invoice->supplier->supplier_name }}</td>
                                     <td>{{ $invoice->received_date }}</td>
                                     <td>{{ $invoice->invoice_description }}</td>
                                     <td>{{ $invoice->received_amount }}</td>

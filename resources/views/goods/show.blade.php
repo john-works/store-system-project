@@ -48,7 +48,7 @@
                             <div class="card-content">
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-md-6 col-12"><p><strong>Supplier Name:</strong> {{ $good->supplier_name }}</p></div>
+                                        <div class="col-md-6 col-12"><p><strong>Supplier Name:</strong> {{ $good->supplier->supplier_name }}</p></div>
                                         <div class="col-md-6 col-12"><p><strong>Request Date:</strong> {{ \Carbon\Carbon::parse($good->request_date)->format('M d, Y') }}</p></div>
                                         <div class="col-md-6 col-12"><p><strong>Requested By:</strong> {{ $good->request_by }}</p></div>
                                         <div class="col-md-6 col-12"><p><strong>Verified By:</strong> {{ $good->verified_by }}</p></div>

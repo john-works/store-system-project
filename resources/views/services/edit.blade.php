@@ -49,14 +49,17 @@
         @csrf
         @method('PUT')
                                                     <div class="row">
-                                                <div class="col-md-6 col-12">
+                                                 <div class="col-md-6 col-12">
                                                     <div class="form-group">
-                                                        <label for="supplier_name">Supplier Name</label>
-                                                        <input type="text" id="supplier_name" class="form-control"
-                                                           value="{{ old('supplier_name', $service->supplier_name) }}"   name="supplier_name" required>
+                                                         <label for="supplier_id" class="form-label">Supplier</label>
+                                                <select name="supplier_id" id="supplier_id" class="form-control" required>
+                                        <option value="">Select Supplier</option>
+                                            @foreach($suppliers as $supplier)
+                                             <option value="{{ $supplier->id }}">{{ $supplier->supplier_name }}</option>
+                                        @endforeach
+                                            </select>
                                                     </div>
-                                                </div> 
-
+                                                </div>
 
 
                                                 <div class="col-md-6 col-12">

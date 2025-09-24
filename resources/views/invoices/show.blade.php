@@ -39,7 +39,7 @@
                                     <tbody>
                                         <tr>
                                             <th>Supplier Name</th>
-                                            <td>{{ $invoice->supplier_name }}</td>
+                                            <td>{{ $invoice->supplier->supplier_name }}</td>
                                         </tr>
                                         <tr>
                                             <th>Received Date</th>

@@ -49,7 +49,7 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-6 col-12"><p><strong>Item Name:</strong> {{ $item->item_name }}</p></div>
-                                        <div class="col-md-6 col-12"><p><strong>Supplier Name:</strong> {{ $item->supplier_name }}</p></div>
+                                        <div class="col-md-6 col-12"><p><strong>Supplier Name:</strong> {{ $item->supplier->supplier_name }}</p></div>
                                         <div class="col-md-6 col-12"><p><strong>Unit of Measure:</strong> {{ $item->unit_of_measure }}</p></div>
                                         <div class="col-md-6 col-12"><p><strong>Serial Number:</strong> {{ $item->serier_number }}</p></div>
                                         <div class="col-md-6 col-12"><p><strong>Asset Tag:</strong> {{ $item->asset_tag }}</p></div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\service;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller
@@ -12,8 +13,11 @@ class ServiceController extends Controller
      */
     public function index()
     {
-          $services = Service::all(); // fetch all suppliers
+         
+          // Eager load supplier to avoid N+1 queries
+        $services = service::with('supplier')->get();
         return view('services.index', compact('services'));
+
     }
 
     /**
@@ -21,7 +25,9 @@ class ServiceController extends Controller
      */
     public function create()
     {
-         return view('services.create');
+         // Get all suppliers to populate the dropdown
+        $suppliers = Supplier::all();
+        return view('services.create', compact('suppliers'));
     }
 
     /**
@@ -31,7 +37,7 @@ class ServiceController extends Controller
     {
          $request->validate([
                            
-         'supplier_name'=>'required',
+         'supplier_id'=>'required',
 'request_date'=>'required',
 'request_by'=>'required',
 'verified_by'=>'required',
@@ -74,7 +80,7 @@ class ServiceController extends Controller
     {
         $request->validate([
 
-'supplier_name'=>'required',
+'supplier_id'=>'required',
 'request_date'=>'required',
 'request_by'=>'required',
 'verified_by'=>'required',

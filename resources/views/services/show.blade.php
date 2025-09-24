@@ -49,7 +49,7 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-6 col-12">
-                                            <p><strong>Supplier Name:</strong> {{ $service->supplier_name }}</p>
+                                            <p><strong>Supplier Name:</strong> {{ $service->supplier->supplier_name }}</p>
                                         </div>
                                         <div class="col-md-6 col-12">
                                             <p><strong>Service Description:</strong> {{ $service->service_description }}</p>

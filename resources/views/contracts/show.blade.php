@@ -47,7 +47,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-md-6"><p><strong>Supplier Name:</strong> {{ $contract->supplier_name }}</p></div>
+                                    <div class="col-md-6"><p><strong>Supplier Name:</strong> {{ $contract->supplier->supplier_name }}</p></div>
                                     <div class="col-md-6"><p><strong>Procurement Type:</strong> {{ $contract->procurement_type }}</p></div>
                                     <div class="col-md-6"><p><strong>Amount Cost:</strong> {{ number_format($contract->amount_cost, 2) }}</p></div>
                                     <div class="col-md-6"><p><strong>Signing Date:</strong> {{ \Carbon\Carbon::parse($contract->signing_date)->format('M d, Y') }}</p></div>

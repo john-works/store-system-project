@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Item;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller
@@ -13,7 +14,8 @@ class ItemController extends Controller
     public function index()
     {
         
-          $items = Item::all(); // fetch all suppliers
+          // Eager load supplier to avoid N+1 queries
+        $items = Item::with('supplier')->get();
         return view('items.index', compact('items'));
     }
 
@@ -22,7 +24,9 @@ class ItemController extends Controller
      */
     public function create()
     {
-         return view('items.create');
+        // Get all suppliers to populate the dropdown
+        $suppliers = Supplier::all();
+        return view('items.create', compact('suppliers'));
     }
 
     /**
@@ -32,7 +36,7 @@ class ItemController extends Controller
     {
          $request->validate([
                            
-           'supplier_name'=> 'required',
+ 'supplier_id'=> 'required',
 'item_name'=> 'required',
 'unit_of_measure'=> 'required',
 'serier_number'=> 'required',
@@ -43,7 +47,8 @@ class ItemController extends Controller
             
         ]);
 
-        // Save supplier
+        // Save item
+        
         Item::create($request->all());
 
         return redirect()->route('items.index');
@@ -72,7 +77,7 @@ class ItemController extends Controller
     {
         $request->validate([
 
-          'supplier_name'=> 'required',
+          'supplier_id'=> 'required',
 'item_name'=> 'required',
 'unit_of_measure'=> 'required',
 'serier_number'=> 'required',

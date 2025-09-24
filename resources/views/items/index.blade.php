@@ -92,7 +92,7 @@
                                 <tr>
                                    <td>{{ $item->id }}</td>
                                     <td>{{ $item->item_name }}</td>
-                                    <td>{{ $item->supplier_name }}</td>
+                                    <td>{{ $item->supplier->supplier_name }}</td>
                                     <td>{{ $item->serier_number }}</td>
                                     <td>{{ $item->asset_tag }}</td>
                                     <td>{{ $item->expiry_date }}</td>

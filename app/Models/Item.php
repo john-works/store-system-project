@@ -9,7 +9,7 @@ class Item extends Model
 {
     protected $fillable=[
 
-        'supplier_name',
+        'supplier_id',
 'item_name',
 'unit_of_measure',
 'serier_number',
@@ -18,4 +18,10 @@ class Item extends Model
 'expiry_date',
 'qty',
     ];
+
+
+public function supplier()
+    {
+        return $this->belongsTo(Supplier::class);
+    }
 }

@@ -67,7 +67,8 @@ class ItemController extends Controller
      */
     public function edit(Item $item)
     {
-        return view('items.edit', compact('item'));
+        $suppliers = Supplier::all(); // get all suppliers for dropdown
+    return view('items.edit', compact('item', 'suppliers'));
     }
 
     /**

@@ -1,5 +1,5 @@
 
-@extends('layouts.app')
+@extends('layouts.public')
 
 @section('content')
 
@@ -222,9 +222,9 @@
         if (!id) return;
 
         if (action === "view") {
-            window.location.href = `/services/${id}`;
+            window.location.href = `/users/${id}`;
         } else if (action === "edit") {
-            window.location.href = `/services/${id}/edit`;
+            window.location.href = `/users/${id}/edit`;
         } else if (action === "delete") {
             if (confirm("Are you sure you want to delete this user?")) {
                 fetch(`/users/${id}`, {

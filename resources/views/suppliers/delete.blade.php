@@ -1,5 +1,5 @@
 {{-- resources/views/delete.blade.php --}}
-@extends('layouts.app')
+@extends('layouts.public')
 
 @section('content')
 <div class="container mx-auto p-6">

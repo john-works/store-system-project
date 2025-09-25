@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.public')
 
 @section('content')
 
@@ -54,6 +54,9 @@
 
                                     <dt class="col-sm-3">Department:</dt>
                                     <dd class="col-sm-9">{{ $user->department }}</dd>
+
+                                    <dt class="col-sm-3">Password:</dt>
+                                    <dd class="col-sm-9">{{ $user->password }}</dd>
 
                                     <dt class="col-sm-3">Created At:</dt>
                                     <dd class="col-sm-9">{{ $user->created_at->format('d M, Y H:i') }}</dd>

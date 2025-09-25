@@ -48,8 +48,20 @@
                                       <form action="{{ route('services.store') }}" method="POST" class="form">
                                     @csrf
 
-                                    
+
                                             <div class="row">
+
+
+
+                                                 <div class="col-md-6 col-12">
+                                                    <div class="form-group">
+                                                        <label for="request_item">Request Item</label>
+                                                        <input type="text" id="request_item" class="form-control"
+                                                             name="request_item" required>
+                                                    </div>
+                                                </div>
+
+
                                                  <div class="col-md-6 col-12">
                                                     <div class="form-group">
                                                          <label for="supplier_id" class="form-label">Supplier</label>
@@ -63,60 +75,73 @@
                                                 </div>
 
 
-                                                <div class="col-md-6 col-12">
-                                                    <div class="form-group">
-                                                        <label for="service_description">Service Description</label>
-                                                        <input type="text" id="service_description" class="form-control"
-                                                             name="service_description" required>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6 col-12">
-                                                    <div class="form-group">
-                                                        <label for="invoice_number">Invoice Number</label>
-                                                        <input type="text" id="invoice_number" class="form-control"
-                                                            name="invoice_number" required>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6 col-12">
+                                                {{-- <div class="col-md-6 col-12">
                                                     <div class="form-group">
                                                         <label for="request_date">Request Date</label>
                                                         <input type="date" id="request_date" class="form-control"
-                                                            name="request_date" required>
+                                                             name="request_date" required>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-6 col-12">
+                                                </div> --}}
+
+                                                 {{-- <div class="col-md-6 col-12">
                                                     <div class="form-group">
                                                         <label for="request_by">Request By</label>
                                                         <input type="text" id="request_by" class="form-control"
-                                                            name="request_by" required>
+                                                             name="request_by" required>
                                                     </div>
-                                                  
+                                                </div>  --}}
+
+                                               
+                                                {{-- <div class="col-md-6 col-12">
+                                                    <div class="form-group">
+                                                        <label for="verified_by">Verified By</label>
+                                                        <input type="text" id="verified_by" class="form-control"
+                                                            name="verified_by" required>
+                                                    </div>
+                                                </div> --}}
+        
+
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-group">
+                                                        <label for="invoice_number">Invoice Number</label>
+                                                        <input type="number" id="invoice_number" class="form-control"
+                                                            name="invoice_number" prequired>
+                                                    </div>
                                                 </div>
+
+
+                                                 <div class="col-md-6 col-12">
+                                                    <div class="form-group">
+                                                        <label for="invoice_value">Invoice Value</label>
+                                                        <input type="number" id="invoice_value" class="form-control"
+                                                             name="invoice_value" required>
+                                                    </div>
+                                                </div>
+
                                                 
 
                                                 <div class="col-md-6 col-12">
                                                     <div class="form-group">
-                                                        <label for="verified_by">Verified By</label>
-                                                        <input type="text" id="verified_by" class="form-control"
-                                                            name="verified_by"  required>
+                                                        <label for="item__description">Item_ Description</label>
+                                                        <input type="text" id="item__description" class="form-control"
+                                                            name="item__description" required>
                                                     </div>
                                                 </div>
-
-                                                 <div class="col-md-6 col-12">
+                 
+                                                 {{-- <div class="col-md-6 col-12">
                                                     <div class="form-group">
-                                                        <label for="quality">Quality</label>
-                                                        <select type="number" id="quality" class="form-control"
+                                                        <label for="quantiy">Quantity</label>
+                                                        <input type="number" id="quality" class="form-control"
                                                             name="quality" required>
-                                                            <option>Selete below</option>
-                                                            <option>Good</option>
-                                                            <option>Poor</option>
-                                                            
-
-                                                        </select>
                                                     </div>
-                                                </div>
+                                                </div> --}}
 
 
+
+  <!-- Hidden defaults -->
+                                            <input type="hidden" name="request_summary" value="Summary of item needed">
+                                            <input type="hidden" name="request_date" value="{{ now()->toDateString() }}">
+                                            <input type="hidden" name="request_by" value="{{ auth()->user()->email }}">
 
 
 

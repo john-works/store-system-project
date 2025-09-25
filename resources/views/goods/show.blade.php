@@ -50,14 +50,18 @@
                                     <div class="row">
                                         <div class="col-md-6 col-12"><p><strong>Supplier Name:</strong> {{ $good->supplier->supplier_name }}</p></div>
                                         <div class="col-md-6 col-12"><p><strong>Request Date:</strong> {{ \Carbon\Carbon::parse($good->request_date)->format('M d, Y') }}</p></div>
-                                        <div class="col-md-6 col-12"><p><strong>Requested By:</strong> {{ $good->request_by }}</p></div>
-                                        <div class="col-md-6 col-12"><p><strong>Verified By:</strong> {{ $good->verified_by }}</p></div>
+                                        {{-- <div class="col-md-6 col-12"><p><strong>Requested By:</strong> {{ $good->request_by }}</p></div> --}}
+                                        <div class="col-md-6 col-12"><p><strong>Request By:</strong> {{ $good->request_by }}</p></div>
                                         <div class="col-md-6 col-12"><p><strong>Invoice Number:</strong> {{ $good->invoice_number }}</p></div>
-                                        <div class="col-md-6 col-12"><p><strong>Item Description:</strong> {{ $good->item__description }}</p></div>
+                                        {{-- <div class="col-md-6 col-12"><p><strong>Item Description:</strong> {{ $good->invoice_number }}</p></div> --}}
+                                        <div class="col-md-6 col-12"><p><strong>Invoice Number:</strong> {{ $good->invoice_value }}</p></div>
+                                        <div class="col-md-6 col-12"><p><strong>Item Name:</strong> {{ $good->request_item }}</p></div>
+                                        
                                         <div class="col-md-6 col-12"><p><strong>Quantity:</strong> {{ $good->quality }}</p></div>
                                     </div>
                                 </div>
                             </div>
+
                             <div class="card-footer text-end">
                                 <a href="{{ route('goods.index') }}" class="btn btn-secondary">Back to List</a>
                             </div>

@@ -10,10 +10,12 @@ class service extends Model
 'supplier_id',
 'request_date',
 'request_by',
-'verified_by',
 'invoice_number',
-'service_description',
-'quality',
+'invoice_value',
+'request_item',
+'item__description',
+// 'quality',
+'request_summary',
 
 ];
  public function supplier()

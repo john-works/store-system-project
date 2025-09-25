@@ -34,9 +34,11 @@ class GoodController extends Controller
      */
     public function store(Request $request)
     {
+        //  $sum = $invoice_value * $quality;
+
          $request->validate([
                            
-        'supplier_id'=>'required',
+'supplier_id'=>'required',
 'request_date'=>'required',
 'request_by'=>'required',
 'invoice_number'=>'required',
@@ -45,6 +47,7 @@ class GoodController extends Controller
 'quality'=>'required',
 'invoice_value'=>'required',
 'request_item'=>'required',
+
 
         
         ]);
@@ -79,10 +82,11 @@ class GoodController extends Controller
     {
         $request->validate([
 
-               'supplier_id'=>'required',
-'request_date'=>'required',
-'request_by'=>'required',
+                'supplier_id'=>'required',
+// 'request_date'=>'required',
+// 'request_by'=>'required',
 'invoice_number'=>'required',
+// 'verified_by'=> 'required',
 'item__description'=>'required',
 'quality'=>'required',
 'invoice_value'=>'required',

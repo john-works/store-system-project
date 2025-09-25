@@ -10,7 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DataTable - Mazer Admin Dashboard</title>
+    <title>DataTable </title>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -41,74 +41,49 @@
 			
 
             <div class="page-heading">
-                <div class="page-title">
-                    <div class="row">
-                        <div class="col-12 col-md-6 order-md-1 order-last">
-                            <h3>DataTable</h3>
-                            <p class="text-subtitle text-muted">For user to check they list</p>
-                        </div>
-                        <div class="col-12 col-md-6 order-md-2 order-first">
-                            <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">DataTable</li>
-                                </ol>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-				
-				
-				
-				
-				
+             
+			
                 <section class="section">
                     <div class="card">
                         <div class="card-header">
-                            Simple Datatable
+                            Good Details
                         </div>
 
                         <div class="card-footer text-end">
-                                <a href="{{ route('services.create') }}" class="btn btn-secondary">Add New Service Request</a>
+                                <a href="{{ route('services.create') }}" class="btn btn-secondary">Add New Good  Detail</a>
                             </div>
                         <div class="card-body">
                             <table class="table table-striped" id="table1">
                                 <thead>
                                     <tr>
-                                        <td>Id</td>
+                                        <th>Id</th>
                                         <th>Supplier Name</th>
                                         <th>Request Date</th>
+                                        <th>Request Item</th>
+                                        <th>Invoice Value</th>
+                                         {{-- <th>Quantity</th> --}}
                                         <th>Request By</th>
-                                        <th>Verified By</th>
-                                        <th>Invoice Number</th>
-                                        <th>Service Description</th>
-                                        <th>Quantity</th>
+                                        
                                         <th>Status</th>
+                                       
                                     </tr>
                                 </thead>
                                 <tbody>
-                                     
-                                    @forelse($services as $service)
+                               
+                          @forelse($services as $service)
                                 <tr>
                                    <td>{{ $service->id }}</td>
                                     <td>{{ $service->supplier->supplier_name }}</td>
                                     <td>{{ $service->request_date }}</td>
-                                    <td>{{ $service->request_by }}</td>
-                                    <td>{{ $service->verified_by }}</td>
+                                    <td>{{ $service->request_item }}</td>
                                     <td>{{ $service->invoice_number }}</td>
-                                    <td>{{ $service->service_description }}</td>
-                                    <td>{{ $service->quality }}</td>
+                                    {{-- <td>{{ $service->quality }}</td> --}}
+                                    <td>{{ $service->request_by }}</td>
+                                     {{-- <td>{{ $service->sum }}</td> --}}
+                                
+                                    
                                     <td>
-                                        {{-- <a href="{{ route('services.show', $service->id) }}" class="btn btn-info btn-sm">Show</a>
-                                        <a href="{{ route('services.edit', $service->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                        <form action="{{ route('services.destroy', $service->id) }}" method="POST" style="display:inline;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm"
-                                                onclick="return confirm('Are you sure you want to delete this supplier?')">
-                                                Delete
-                                            </button>
-                                        </form> --}} <span class="action-icon" data-id="{{ $service->id }}">📄</span>
+                                          <span class="action-icon" data-id="{{ $service->id }}">📄</span>
                                     </td>
                                 </tr>
                             @empty
@@ -128,7 +103,7 @@
         </div>
     </div>
 
-
+    
 <!-- Popup Menu -->
 <div class="popup-menu" id="popupMenu">
     <ul>

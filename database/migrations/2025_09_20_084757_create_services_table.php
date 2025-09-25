@@ -14,15 +14,24 @@ return new class extends Migration
         Schema::create('services', function (Blueprint $table) {
             $table->id();
             // $table->string('supplier_name');
-            $table->string('request_date');
-            $table->string('request_by');
-            $table->string('verified_by');
+             $table->string('request_date');
+            $table->string('request_by') ;
+            // $table->string('verified_by')  ->nullable();
+            $table->string('request_item');
+            $table->string('request_summary');
+            $table->string('status') ->nullable();
+            $table->string('current_step')->nullable();
+            $table->string('current_step_user')->nullable();
+            $table->string('current_step_start')->nullable();
             $table->string('invoice_number');
-            $table->string('service_description');
-            $table->string('quality');
-             $table->unsignedBigInteger('supplier_id');
-             
-            $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('cascade');
+            $table->string('invoice_value');
+            $table->string('item__description');
+            // $table->string('quality');
+
+            
+        $table->unsignedBigInteger('supplier_id');
+        $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('cascade');
+            
             $table->timestamps();
         });
     }

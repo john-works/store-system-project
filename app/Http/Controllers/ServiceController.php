@@ -40,10 +40,13 @@ class ServiceController extends Controller
          'supplier_id'=>'required',
 'request_date'=>'required',
 'request_by'=>'required',
-'verified_by'=>'required',
 'invoice_number'=>'required',
-'service_description'=>'required',
-'quality'=>'required',
+// 'verified_by'=> 'required',
+'item__description'=>'required',
+// 'quality'=>'required',
+'invoice_value'=>'required',
+'request_item'=>'required',
+
 
         ]);
 
@@ -81,10 +84,12 @@ class ServiceController extends Controller
 'supplier_id'=>'required',
 'request_date'=>'required',
 'request_by'=>'required',
-'verified_by'=>'required',
 'invoice_number'=>'required',
-'service_description'=>'required',
-'quality'=>'required',
+// 'verified_by'=> 'required',
+'item__description'=>'required',
+// 'quality'=>'required',
+'invoice_value'=>'required',
+'request_item'=>'required',
 
         ]);
         $service->update($request->all());

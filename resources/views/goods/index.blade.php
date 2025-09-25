@@ -78,10 +78,13 @@
                                         <th>Id</th>
                                         <th>Supplier Name</th>
                                         <th>Request Date</th>
-                                        <th>Verified By</th>
-                                        <th>Item Description</th>
+                                        <th>Request Item</th>
+                                        <th>Invoice Value</th>
+                                         <th>Quantity</th>
                                         <th>Request By</th>
+                                        
                                         <th>Status</th>
+                                       
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -91,21 +94,13 @@
                                    <td>{{ $good->id }}</td>
                                     <td>{{ $good->supplier->supplier_name }}</td>
                                     <td>{{ $good->request_date }}</td>
-                                    <td>{{ $good->invoice_description }}</td>
-                                    <td>{{ $good->item__description }}</td>
+                                    <td>{{ $good->request_item }}</td>
+                                    <td>{{ $good->invoice_number }}</td>
+                                    <td>{{ $good->quality }}</td>
                                     <td>{{ $good->request_by }}</td>
                                     
                                     <td>
-                                        {{-- <a href="{{ route('goods.show', $good->id) }}" class="btn btn-info btn-sm">Show</a>
-                                        <a href="{{ route('goods.edit', $good->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                        <form action="{{ route('goods.destroy', $good->id) }}" method="POST" style="display:inline;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm"
-                                                onclick="return confirm('Are you sure you want to delete this supplier?')">
-                                                Delete
-                                            </button>
-                                        </form> --}}  <span class="action-icon" data-id="{{ $good->id }}">📄</span>
+                                          <span class="action-icon" data-id="{{ $good->id }}">📄</span>
                                     </td>
                                 </tr>
                             @empty

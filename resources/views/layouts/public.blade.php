@@ -66,7 +66,7 @@
         </nav>
 
 
-        
+
     <div id="app">
         <div id="sidebar" class="active">
             <div class="sidebar-wrapper active">
@@ -98,10 +98,14 @@
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                    <a href="{{ route('contracts.index') }}">View</a>
+                                    <a href="{{ route('contracts.index') }}">My Request</a>
                                 </li>
                                 <li class="submenu-item ">
-                                    <a href="{{ route('contracts.create') }}">Create</a>
+                                    <a href="">Pending Request</a>
+                                </li>
+
+                                <li class="submenu-item ">
+                                    <a href="">All</a>
                                 </li>
                                
                                 
@@ -188,10 +192,7 @@
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                    <a href="{{ route('suppliers.index') }}">view</a>
-                                </li>
-                                <li class="submenu-item ">
-                                    <a href="{{ route('suppliers.create') }}">create</a>
+                                    <a href="{{ route('suppliers.index') }}">Supplier Details</a>
                                 </li>
                                
                                 
@@ -222,10 +223,16 @@
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                    <a href="{{ route('goods.index') }}">view</a>
+                                    <a href="{{ route('goods.index') }}">My Request</a>
                                 </li>
-                                <li class="submenu-item ">
-                                    <a href="{{ route('goods.create') }}">create</a>
+                               
+                                 <li class="submenu-item ">
+                                    <a href=""> Pending for Approval</a>
+            
+                                </li>
+
+                                 <li class="submenu-item ">
+                                    <a href="">All</a>
                                 </li>
                                
                                 
@@ -239,11 +246,9 @@
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                    <a href="{{ route('services.index') }}">view</a>
+                                    <a href="{{ route('services.index') }}">Services Details</a>
                                 </li>
-                                <li class="submenu-item ">
-                                    <a href="{{ route('services.create') }}">create</a>
-                                </li>
+                               
                                
                                 
                             </ul>
@@ -257,10 +262,10 @@
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                   <a href="{{ route('users.index') }}">User info</a>
+                                   <a href="{{ route('users.index') }}">User Details</a>
                                 </li>
                                 <li class="submenu-item ">
-                                   <a href="">create</a>
+                                   <a href="">Grate Permission</a>
                                 </li>
                                
                                 

@@ -95,10 +95,12 @@ class SupplierController extends Controller
      */
     public function destroy(Supplier $supplier)
     {
-        $supplier = Supplier::findOrFail($id);
+         $supplier = Supplier::findOrFail($id);
+
         $supplier->delete();
 
-        return redirect()->route('suppliers.index')->with('success', 'Record deleted successfully.');
+        return redirect()->route('suppliers.index')
+                         ->with('success', 'Item deleted successfully.');
     }
 
 

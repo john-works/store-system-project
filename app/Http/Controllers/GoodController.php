@@ -39,12 +39,14 @@ class GoodController extends Controller
         'supplier_id'=>'required',
 'request_date'=>'required',
 'request_by'=>'required',
-'verified_by'=>'required',
 'invoice_number'=>'required',
+// 'verified_by'=> 'required',
 'item__description'=>'required',
 'quality'=>'required',
+'invoice_value'=>'required',
+'request_item'=>'required',
 
-            
+        
         ]);
 
         // Save supplier
@@ -66,7 +68,8 @@ class GoodController extends Controller
      */
     public function edit(Good $good)
     {
-        return view('goods.edit', compact('good'));
+        $suppliers = Supplier::all(); // get all suppliers for dropdown
+    return view('goods.edit', compact('good', 'suppliers'));
     }
 
     /**
@@ -79,10 +82,11 @@ class GoodController extends Controller
                'supplier_id'=>'required',
 'request_date'=>'required',
 'request_by'=>'required',
-'verified_by'=>'required',
 'invoice_number'=>'required',
 'item__description'=>'required',
 'quality'=>'required',
+'invoice_value'=>'required',
+'request_item'=>'required',
 
         ]);
         $good->update($request->all());

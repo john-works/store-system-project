@@ -80,8 +80,18 @@
                                                 <div class="col-md-6 col-12">
                                                     <div class="form-group">
                                                         <label for="unit_of_measure"> Unit Of Measure</label>
-                                                        <input type="text" id="unit_of_measure" class="form-control"
+                                                        <select type="text" id="unit_of_measure" class="form-control"
                                                              name="unit_of_measure" required>
+
+                                                             <option>Selete Unit</option>
+                                                             <option>Dozen</option>
+                                                             <option> Pieces</option>
+                                                             <option> Ream</option>
+                                                             <option> packets</option>
+                                                             <option>Box </option>
+                                                             <option> Lts</option>
+
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 col-12">

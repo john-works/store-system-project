@@ -54,9 +54,6 @@ class ServiceController extends Controller
     }
 
 
-
-   
-
     /**
      * Display the specified resource.
      */
@@ -70,7 +67,8 @@ class ServiceController extends Controller
      */
     public function edit(service $service)
     {
-        return view('services.edit', compact('service'));
+        $suppliers = Supplier::all(); // get all suppliers for dropdown
+    return view('services.edit', compact('service', 'suppliers'));
     }
 
     /**

@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('end_date');
             $table->string('procument_subject');
             $table->string('termination_clauses');
-
             $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('cascade');
             $table->timestamps();
         });

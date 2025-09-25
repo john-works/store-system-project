@@ -10,10 +10,12 @@ class Good extends Model
 'supplier_id',
 'request_date',
 'request_by',
-'verified_by',
 'invoice_number',
+'invoice_value',
+'request_item',
 'item__description',
 'quality',
+'request_summary',
 
     ];
 

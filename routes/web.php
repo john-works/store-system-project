@@ -63,6 +63,7 @@ Route::delete('/items/{item}', [ItemController::class, 'destroy'])->name('items.
 
 //services
 Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
+// Route::get('/services', [ServiceController::class, 'all'])->name('services.all');
 Route::get('/services/create', [ServiceController::class, 'create'])->name('services.create');
 Route::post('/services', [ServiceController::class, 'store'])->name('services.store');
 Route::get('/services/{service}', [ServiceController::class, 'show'])->name('services.show');

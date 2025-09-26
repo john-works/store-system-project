@@ -18,13 +18,21 @@ return new class extends Migration
             // $table->string('request_summary'); 
             // $table->string('current_step');
             // $table->string('status');
-            $table->string('item_description');
+          $table->unsignedBigInteger('item_id');
             $table->string('asset_tag');
             $table->string('serial_number');
             $table->string('from_department');
             $table->string('from_user');
             $table->string('to_department');
              $table->string('to_user');
+
+             $table->string('status') ->nullable();
+             $table->string('current_step') ->nullable();
+            $table->string('current_step_user') ->nullable();
+            $table->string('current_step_start') ->nullable();
+
+            $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
+            
             $table->timestamps();
         });
     }

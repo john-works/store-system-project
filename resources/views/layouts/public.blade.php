@@ -248,8 +248,15 @@
                                 <li class="submenu-item ">
                                     <a href="{{ route('services.index') }}">Services Details</a>
                                 </li>
+
+
+                                 <li class="submenu-item ">
+                                    <a href="">Pending Actions</a>
+                                </li>
                                
-                               
+                                <li class="submenu-item ">
+                                    <a href="">All</a>
+                                </li>
                                 
                             </ul>
                         </li>

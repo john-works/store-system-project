@@ -104,4 +104,15 @@ class ServiceController extends Controller
     {
         //
     }
+
+
+
+    //   public function all()
+    // {
+         
+    //       // Eager load supplier to avoid N+1 queries
+    //     $services = service::with('supplier')->get();
+    //     return view('services.all', compact('services'));
+
+    // }
 }

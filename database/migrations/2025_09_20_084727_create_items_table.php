@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('expiry_date');
             $table->string('qty');
             $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('cascade');
+            
             $table->timestamps();
         });
     }

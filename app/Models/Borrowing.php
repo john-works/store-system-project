@@ -14,5 +14,6 @@ class Borrowing extends Model
 'asset_tag',
 'comment',
 'status',
+''
     ];
 }

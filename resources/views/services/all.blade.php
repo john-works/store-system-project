@@ -41,60 +41,54 @@
 			
 
             <div class="page-heading">
-                
+             
+			
                 <section class="section">
                     <div class="card">
                         <div class="card-header">
-                            User Information
+                            Good Details
                         </div>
 
                         <div class="card-footer text-end">
-                                <a href="{{ route('users.create') }}" class="btn btn-secondary">Add New User</a>
+                                <a href="{{ route('services.create') }}" class="btn btn-secondary">Add New Good  Detail</a>
                             </div>
                         <div class="card-body">
                             <table class="table table-striped" id="table1">
                                 <thead>
                                     <tr>
                                         <th>Id</th>
-                                        <th>User Name</th>
-                                        <th>Phone</th>
-                                        <th>Email</th>
-                                        <th>Role</th>
-                                        <th>Department</th>
+                                        <th>Supplier Name</th>
+                                        <th>Request Date</th>
+                                        <th>Request Item</th>
+                                        <th>Invoice Value</th>
+                                         {{-- <th>Quantity</th> --}}
+                                        <th>Request By</th>
                                         
-                                        <th>Action</th>
+                                        <th>Status</th>
+                                       
                                     </tr>
                                 </thead>
                                 <tbody>
-                                
-
-                          @forelse($users as $user)
+                               
+                          @forelse($services as $service)
                                 <tr>
-                                   <td>{{ $user->id }}</td>
-                                    <td>{{ $user->name }}</td>
-                                    <td>{{ $user->phone }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td>{{ $user->role }}</td>
-                                    <td>{{ $user->department }}</td>
-                                    {{-- <td>{{ $item->qty }}</td> --}}
+                                   <td>{{ $service->id }}</td>
+                                    <td>{{ $service->supplier->supplier_name }}</td>
+                                    <td>{{ $service->request_date }}</td>
+                                    <td>{{ $service->request_item }}</td>
+                                    <td>{{ $service->invoice_number }}</td>
+                                    {{-- <td>{{ $service->quality }}</td> --}}
+                                    <td>{{ $service->request_by }}</td>
+                                     {{-- <td>{{ $service->sum }}</td> --}}
+                                
                                     
                                     <td>
-                                        {{-- <a href="{{ route('users.show', $user->id) }}" class="btn btn-info btn-sm">Show</a>
-                                        <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                        <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display:inline;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm"
-                                                onclick="return confirm('Are you sure you want to delete this supplier?')">
-                                                Delete
-                                            </button>
-                                        </form> --}}  <span class="action-icon" data-id="{{ $user->id }}">📄</span>
-                                    </td>
+                                          <span class="action-icon" data-id="{{ $service->id }}">📄</span>
                                     </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="9" class="text-center">No Info found.</td>
+                                    <td colspan="9" class="text-center">No Service found.</td>
                                 </tr>
                             @endforelse
                                 </tbody>
@@ -202,9 +196,9 @@
         if (!id) return;
 
         if (action === "view") {
-            window.location.href = `/users/${id}`;
+            window.location.href = `/services/${id}`;
         } else if (action === "edit") {
-            window.location.href = `/users/${id}/edit`;
+            window.location.href = `/services/${id}/edit`;
         } else if (action === "delete") {
             if (confirm("Are you sure you want to delete this user?")) {
                 fetch(`/users/${id}`, {
@@ -222,6 +216,8 @@
         popupMenu.style.display = "none";
     }
 </script>
+
+
     <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
 

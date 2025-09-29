@@ -2,7 +2,7 @@
 
 @section('content')
 
-
+<p>jjjj</p>
 <body>
     <div id="app">
 

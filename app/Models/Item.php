@@ -36,4 +36,9 @@ public function supplier()
     {
         return $this->belongsTo(Borrowing::class);
     }
+
+    public function moverments()
+    {
+        return $this->hasMany(Moverment::class);
+    }
 }

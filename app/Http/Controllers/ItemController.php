@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Item;
 use App\Models\Supplier;
 use App\Models\Borrowing;
+use App\Models\Moverment;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller

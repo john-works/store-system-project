@@ -75,30 +75,6 @@
                                                 </div>
 
 
-                                                {{-- <div class="col-md-6 col-12">
-                                                    <div class="form-group">
-                                                        <label for="request_date">Request Date</label>
-                                                        <input type="date" id="request_date" class="form-control"
-                                                             name="request_date" required>
-                                                    </div>
-                                                </div> --}}
-
-                                                 {{-- <div class="col-md-6 col-12">
-                                                    <div class="form-group">
-                                                        <label for="request_by">Request By</label>
-                                                        <input type="text" id="request_by" class="form-control"
-                                                             name="request_by" required>
-                                                    </div>
-                                                </div>  --}}
-
-                                               
-                                                {{-- <div class="col-md-6 col-12">
-                                                    <div class="form-group">
-                                                        <label for="verified_by">Verified By</label>
-                                                        <input type="text" id="verified_by" class="form-control"
-                                                            name="verified_by" required>
-                                                    </div>
-                                                </div> --}}
         
 
                                                 <div class="col-md-6 col-12">

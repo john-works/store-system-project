@@ -88,8 +88,8 @@
                           @forelse($moverments as $moverment)
                                 <tr>
                                    <td>{{ $moverment->id }}</td>
-                                    <td>{{ $moverment->item_description }}</td>
-                                    <td>{{ $moverment->asset_tag }}</td>
+                                    <td>{{ $moverment->item->item_name }}</td>
+                                    <td>{{ $moverment->item->asset_tag }}</td>
                                     <td>{{ $moverment->from_user }}</td>
                                     <td>{{ $moverment->to_user }}</td>
                                     {{-- <td>{{ $moverment->invoice_date }}</td> --}}

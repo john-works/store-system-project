@@ -50,37 +50,38 @@
 
 
                                             <div class="row">
-                                                <div class="col-md-6 col-12">
+
+
+                                                  <div class="col-md-6 col-12">
                                                     <div class="form-group">
-                                                        <label for="item_description">Item Description</label>
-                                                        <input type="text" id="item_description" class="form-control"
-                                                             name="item_description" required>
+                                                         <label for="item_id" class="form-label">Item Name</label>
+                                                <select name="item_id" id="item_id" class="form-control" required>
+                                        <option value="">Select item</option>
+                                            @foreach($items as $item)
+                                             <option value="{{ $item->id }}">{{ $item->item_name }}</option>
+                                        @endforeach
+                                            </select>
                                                     </div>
                                                 </div>
 
 
-                                                <div class="col-md-6 col-12">
+                                              
+                                           
+                                             <div class="col-md-6 col-12">
                                                     <div class="form-group">
-                                                        <label for="asset_tag">Asset Tag</label>
-                                                        <input type="text" id="asset_tag" class="form-control"
-                                                             name="asset_tag" required>
+                                                        <label for="from_department"> From Department</label>
+                                                        <select type="text" id="from_department" class="form-control"
+                                                             name="from_department" required>
+
+                                                             <option>Selete Department</option>
+                                                             <option>Hr</option>
+                                                             <option>Finance</option>
+                                                             <option>Planning</option>
+                                                             
+
+                                                        </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6 col-12">
-                                                    <div class="form-group">
-                                                        <label for="serial_number">Serial Number</label>
-                                                        <input type="text" id="serial_number" class="form-control"
-                                                            name="serial_number" required>
-                                                 </div>
-                                                </div>
-                                                <div class="col-md-6 col-12">
-                                                    <div class="form-group">
-                                                        <label for="from_department">From Department</label>
-                                                        <input type="text" id="from_department" class="form-control"
-                                                            name="from_department" required>
-                                                    </div>
-                                                </div>
-        
 
                                                 <div class="col-md-6 col-12">
                                                     <div class="form-group">
@@ -93,9 +94,17 @@
 
                                                 <div class="col-md-6 col-12">
                                                     <div class="form-group">
-                                                        <label for="to_department">To Department</label>
-                                                        <input type="text" id="to_department" class="form-control"
-                                                            name="to_department" required>
+                                                        <label for="to_department"> To Department</label>
+                                                        <select type="text" id="to_department" class="form-control"
+                                                             name="to_department" required>
+
+                                                             <option>Selete Department</option>
+                                                             <option>Hr</option>
+                                                             <option> Finance</option>
+                                                             <option> Planning</option>
+                                                             
+
+                                                        </select>
                                                     </div>
                                                 </div>
                  
@@ -110,6 +119,9 @@
                                                
 
 
+                                            <input type="hidden" name="request_summary" value="Summary of item needed">
+                                            <input type="hidden" name="request_date" value="{{ now()->toDateString() }}">
+                                            <input type="hidden" name="request_by" value="{{ auth()->user()->email }}">
 
 
 

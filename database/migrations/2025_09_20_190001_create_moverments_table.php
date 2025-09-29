@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('request_by');
             $table->string('request_summary');
           $table->unsignedBigInteger('item_id');
+          $table->unsignedBigInteger('user_id')->nullable();
             // $table->string('asset_tag');
             // $table->string('serial_number');
             $table->string('from_department');
@@ -29,6 +30,7 @@ return new class extends Migration
             $table->string('current_step_user') ->nullable();
             $table->string('current_step_start') ->nullable();
             $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             
             $table->timestamps();
         });

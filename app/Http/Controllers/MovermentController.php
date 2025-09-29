@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Moverment;
 use App\Models\Item;
+use App\Models\User;
+
 use Illuminate\Http\Request;
 
 class MovermentController extends Controller
@@ -14,9 +16,9 @@ class MovermentController extends Controller
     public function index()
     {
 
-        $moverments = Moverment::with('item')->get();
-       
-        return view('moverments.index', compact('moverments'));
+    $moverments = Moverment::with(['item', 'user'])->get();
+    $users = User::all();
+    return view('moverments.index', compact('moverments', 'users'));
     }
 
     /**
@@ -24,8 +26,10 @@ class MovermentController extends Controller
      */
     public function create()
     {
-        $items = Item::all();
-        return view('moverments.create', compact('items')); 
+         // Get items for dropdown
+    $items = Item::all();
+    $users = User::all();
+    return view('moverments.create', compact('items', 'users'));
 
         
     }
@@ -36,17 +40,16 @@ class MovermentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-'request_date' =>'required',
-'request_by' =>'required',
-'request_summary' =>'required',
-'item_id' =>'required',
-// 'asset_tag' =>'required',
-// 'serial_number' =>'required',
-'from_department' =>'required',
-'from_user' =>'required',
-'to_department' =>'required',
-'to_user' =>'required',
+'request_date' => 'required',
+'request_by' => 'required',
+'request_summary' => 'required',
+'item_id' => 'required',
+'from_department' => 'required',
+'from_user' => 'required',
+'to_department' => 'required',
+'to_user' => 'required',
 
+dd($request)
            
         ]);
 
@@ -79,17 +82,15 @@ class MovermentController extends Controller
     public function update(Request $request, Moverment $moverment)
     {
         $request->validate([
-'request_date' =>'required',
-'request_by' =>'required',
-'request_summary' =>'required',
-'item_id' =>'required',
-// 'asset_tag' =>'required',
-// 'serial_number' =>'required',
-'from_department' =>'required',
-'from_user' =>'required',
-'to_department' =>'required',
-'to_user' =>'required',
-       
+'request_date' => 'required',
+'request_by' => 'required',
+'request_summary' => 'required',
+'item_id' => 'required',
+'from_department' => 'required',
+'from_user' => 'required',
+'to_department' => 'required',
+'to_user' => 'required',
+
 
 
         ]);

@@ -75,8 +75,11 @@
                                 <thead>
                                     <tr>
                                         <th>Id</th>
-                                        <th>Item Description</th>
+                                        <th>Request Date</th>
+                                        <th>Request By</th>
+                                        <th>Item Name</th>
                                         <th>Asset Tag</th>
+                                        <th>Serial Number</th>
                                         <th>From User</th>
                                         <th>To user</th>
                                         {{-- <th>Invoice date</th> --}}
@@ -88,23 +91,18 @@
                           @forelse($moverments as $moverment)
                                 <tr>
                                    <td>{{ $moverment->id }}</td>
+                                   <td>{{ $moverment->request_date }}</td>
+                                   <td>{{ $moverment->request_by }}</td>
                                     <td>{{ $moverment->item->item_name }}</td>
                                     <td>{{ $moverment->item->asset_tag }}</td>
+                                      <td>{{ $moverment->item->serier_number }}</td>
                                     <td>{{ $moverment->from_user }}</td>
+                                    {{-- <td>{{ $moverment->from_user }}</td> --}}
                                     <td>{{ $moverment->to_user }}</td>
                                     {{-- <td>{{ $moverment->invoice_date }}</td> --}}
                                     
                                     <td>
-                                        {{-- <a href="{{ route('moverments.show', $moverment->id) }}" class="btn btn-info btn-sm">Show</a>
-                                        <a href="{{ route('moverments.edit', $moverment->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                        <form action="{{ route('moverments.destroy', $moverment->id) }}" method="POST" style="display:inline;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm"
-                                                onclick="return confirm('Are you sure you want to delete this supplier?')">
-                                                Delete
-                                            </button>
-                                        </form> --}}  <span class="action-icon" data-id="{{ $moverment->id }}">📄</span>
+                                       <span class="action-icon" data-id="{{ $moverment->id }}">📄</span>
                                     </td>
                                 </tr>
                             @empty

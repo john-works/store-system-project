@@ -104,7 +104,7 @@
                                                 <div class="col-md-6 col-12">
                                                     <div class="form-group">
                                                         <label for="asset_tag">Asset Tag</label>
-                                                        <input type="text" id="asset_tag" class="form-control"
+                                                        <input type="number" id="asset_tag" class="form-control"
                                                             name="asset_tag" required>
                                                     </div>
                                                 </div>

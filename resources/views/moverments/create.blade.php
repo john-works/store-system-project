@@ -83,13 +83,18 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-md-6 col-12">
+                                              <div class="col-md-6 col-12">
                                                     <div class="form-group">
-                                                        <label for="from_user">From User</label>
-                                                        <input type="text" id="from_user" class="form-control"
-                                                            name="from_user" prequired>
+                                                         <label for="user_id" class="form-label">Supplier</label>
+                                                <select name="user_id" id="user_id" class="form-control" required>
+                                        <option value="">Select User</option>
+                                            @foreach($users as $user)
+                                             <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                        @endforeach
+                                            </select>
                                                     </div>
                                                 </div>
+
                                                 
 
                                                 <div class="col-md-6 col-12">
@@ -108,11 +113,15 @@
                                                     </div>
                                                 </div>
                  
-                                                 <div class="col-md-6 col-12">
+                                                <div class="col-md-6 col-12">
                                                     <div class="form-group">
-                                                        <label for="to_user">To User</label>
-                                                        <input type="text" id="to_user" class="form-control"
-                                                            name="to_user" required>
+                                                         <label for="user_id" class="form-label">Supplier</label>
+                                                <select name="user_id" id="user_id" class="form-control" required>
+                                        <option value="">Select User</option>
+                                            @foreach($users as $user)
+                                             <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                        @endforeach
+                                            </select>
                                                     </div>
                                                 </div>
 

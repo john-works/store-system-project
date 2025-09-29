@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Requisition;
+use App\Models\Item;
 use Illuminate\Http\Request;
 
 class RequisitionController extends Controller
@@ -12,7 +13,9 @@ class RequisitionController extends Controller
      */
     public function index()
     {
-        $requisitions = Requisition::all(); // fetch all suppliers
+
+        //Getting Item name
+        $requisitions = Requisition::with('item')->get();
         return view('requisitions.index', compact('requisitions'));
     }
 
@@ -21,7 +24,9 @@ class RequisitionController extends Controller
      */
     public function create()
     {
-        return view('requisitions.create');
+        $items = Item::all();
+        return view('requisitions.create', compact('items'));
+    
     }
 
     /**
@@ -33,9 +38,9 @@ class RequisitionController extends Controller
 'request_date' => 'required',
 'request_by' => 'required',
 'request_summary' => 'required',
-'item_name' => 'required',
-'current_step' => 'required',
-'status' => 'required',
+'item_id' => 'required',
+'asset_tag'=>'required',
+'serial_number ' =>'required',
             
         ]);
 
@@ -72,9 +77,9 @@ class RequisitionController extends Controller
 'request_date' => 'required',
 'request_by' => 'required',
 'request_summary' => 'required',
-'item_name' => 'required',
-'current_step' => 'required',
-'status' => 'required',
+'item_id' => 'required',
+'asset_tag'=>'required',
+'serial_number ' =>'required',
 
 
         ]);

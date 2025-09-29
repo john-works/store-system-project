@@ -14,4 +14,11 @@ class Requisition extends Model
 'current_step',
 'status',
     ];
+
+
+     public function items()
+    {
+        return $this->hasMany(Item::class);
+    }
+
 }

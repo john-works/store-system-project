@@ -24,4 +24,16 @@ public function supplier()
     {
         return $this->belongsTo(Supplier::class);
     }
+
+    
+     public function requisition()
+    {
+        return $this->belongsTo(Requisition::class);
+    }
+
+
+     public function borrowing()
+    {
+        return $this->belongsTo(Borrowing::class);
+    }
 }

@@ -50,57 +50,42 @@
 
 
                                             <div class="row">
-                                                <div class="col-md-6 col-12">
-                                                    <div class="form-group">
-                                                        <label for="request_date">Request Date</label>
-                                                        <input type="date" id="request_date" class="form-control"
-                                                             name="request_date" required>
-                                                    </div>
-                                                </div>
 
 
-                                                <div class="col-md-6 col-12">
+                                            <div class="col-md-6 col-12">
                                                     <div class="form-group">
-                                                        <label for="request_by"> Request By</label>
-                                                        <input type="text" id="request_by" class="form-control"
-                                                             name="request_by" required>
+                                                         <label for="item_id" class="form-label">Item Name</label>
+                                                <select name="item_id" id="item_id" class="form-control" required>
+                                        <option value="">Select Item</option>
+                                            @foreach($items as $item)
+                                             <option value="{{ $item->id }}">{{ $item->item_name }}</option>
+                                        @endforeach
+                                            </select>
                                                     </div>
                                                 </div>
+     
                                                 <div class="col-md-6 col-12">
                                                     <div class="form-group">
-                                                        <label for="request_summary">Request Summary</label>
-                                                        <input type="text" id="request_summary" class="form-control"
-                                                            name="request_summary" required>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6 col-12">
-                                                    <div class="form-group">
-                                                        <label for="item_name">Item Name</label>
-                                                        <input type="text" id="item_name" class="form-control"
-                                                            name="item_name" required>
-                                                    </div>
-                                                </div>
-        
-
-                                                <div class="col-md-6 col-12">
-                                                    <div class="form-group">
-                                                        <label for="current_step">Current Step</label>
-                                                        <input type="text" id="current_step" class="form-control"
-                                                            name="current_step" prequired>
+                                                        <label for="asset_tag">Asset Tag</label>
+                                                        <input type="text" id="asset_tag" class="form-control"
+                                                            name="asset_tag" prequired>
                                                     </div>
                                                 </div>
                                                 
 
                                                 <div class="col-md-6 col-12">
                                                     <div class="form-group">
-                                                        <label for="status">Status</label>
-                                                        <input type="text" id="status" class="form-control"
-                                                            name="status" required>
+                                                        <label for="serial_number">Serial Number</label>
+                                                        <input type="text" id="serial_number" class="form-control"
+                                                            name="serial_number" required>
                                                     </div>
                                                 </div>
                  
                                                  
 
+                                            <input type="hidden" name="request_summary" value="Summary of item needed">
+                                            <input type="hidden" name="request_date" value="{{ now()->toDateString() }}">
+                                            <input type="hidden" name="request_by" value="{{ auth()->user()->email }}">
 
 
 
@@ -115,6 +100,9 @@
                                                     <button type="reset"
                                                         class="btn btn-light-secondary me-1 mb-1">Reset</button>
                                                 </div>
+
+
+                                                
                                             </div>
                                         </form>
                                     </div>

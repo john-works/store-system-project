@@ -76,39 +76,30 @@
                                 <thead>
                                     <tr>
                                         <th>Id</th>
-                                        <th>Supplier Name</th>
-                                        <th>Received Date</th>
-                                        <th>Invoice Description</th>
-                                        <th>Received Amount</th>
-                                        <th>Invoice date</th>
+                                        <th>Request Date</th>
+                                        <th>Request By</th>
+                                        <th>Request Summary</th>
+                                        <th>Item Name</th>
+                                        <th>Asset Tag</th>
+                                        <th>Serial Number</th>
                                         <th>Status</th>
                                     </tr>
                                 </thead>
-                      
-status          
+     
                           @forelse($borrowings as $borrowing)
                                 <tr>
                                    <td>{{ $borrowing->id }}</td>
                                     <td>{{ $borrowing->request_date }}</td>
                                     <td>{{ $borrowing->request_by }}</td>
                                     <td>{{ $borrowing->request_summary }}</td>
-                                    <td>{{ $borrowing->item_name }}</td>
+                                    <td>{{ $borrowing->item->item_name }}</td>
                                     <td>{{ $borrowing->asset_tag }}</td>
-                                    <th>{{ $borrowing->comment }}
+                                    <th>{{ $borrowing->serial_number }}
                                      <th>{{ $borrowing->status }}
 
                                     
                                     <td>
-                                        {{-- <a href="{{ route('borrowings.show', $borrowing->id) }}" class="btn btn-info btn-sm">Show</a>
-                                        <a href="{{ route('borrowings.edit', $borrowing->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                        <form action="{{ route('borrowings.destroy', $borrowing->id) }}" method="POST" style="display:inline;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm"
-                                                onclick="return confirm('Are you sure you want to delete this supplier?')">
-                                                Delete
-                                            </button>
-                                        </form> --}} <span class="action-icon" data-id="{{ $borrowing->id }}">📄</span>
+                                     <span class="action-icon" data-id="{{ $borrowing->id }}">📄</span>
                                     </td>
                                 </tr>
                             @empty

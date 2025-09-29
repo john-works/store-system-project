@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Borrowing;
+use App\Models\Item;
 use Illuminate\Http\Request;
 
 class BorrowingController extends Controller
@@ -12,7 +13,8 @@ class BorrowingController extends Controller
      */
     public function index()
     {
-        $borrowings = Borrowing::all(); // fetch all suppliers
+         //Getting Item name
+        $borrowings = Borrowing::with('item')->get();
         return view('borrowings.index', compact('borrowings'));
     }
 
@@ -21,7 +23,8 @@ class BorrowingController extends Controller
      */
     public function create()
     {
-        return view('borrowings.create');
+       $items = Item::all();
+        return view('borrowings.create', compact('items'));
     }
 
     /**
@@ -30,13 +33,14 @@ class BorrowingController extends Controller
     public function store(Request $request)
     {
           $request->validate([
-'request_date' => 'required',
-'request_by' => 'required',
-'request_summary' => 'required',
-'item_name' => 'required',
-'asset_tag' => 'required',
-'comment' => 'required',
-'status' => 'required',
+
+'request_date'=> 'required',
+'request_by'=> 'required',
+'request_summary'=> 'required',
+'item_id'=> 'required',
+'asset_tag'=> 'required',
+'serial_number'=> 'required',
+
 
         ]);
 
@@ -45,6 +49,9 @@ class BorrowingController extends Controller
 
         return redirect()->route('borrowings.index')
                          ->with('success', 'Supplier created successfully.');
+
+
+                         
     }
 
     /**
@@ -69,13 +76,13 @@ class BorrowingController extends Controller
     public function update(Request $request, Borrowing $borrowing)
     {
         $request->validate([
-'request_date' => 'required',
-'request_by' => 'required',
-'request_summary' => 'required',
-'item_name' => 'required',
-'asset_tag' => 'required',
-'comment' => 'required',
-'status' => 'required',
+'request_date'=> 'required',
+'request_by'=> 'required',
+'request_summary'=> 'required',
+'item_id'=> 'required',
+'asset_tag'=> 'required',
+'serial_number'=> 'required',
+
 
 
         ]);

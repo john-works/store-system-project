@@ -93,8 +93,8 @@
                                     <td>{{ $borrowing->request_by }}</td>
                                     <td>{{ $borrowing->request_summary }}</td>
                                     <td>{{ $borrowing->item->item_name }}</td>
-                                    <td>{{ $borrowing->asset_tag }}</td>
-                                    <th>{{ $borrowing->serial_number }}
+                                    <td>{{ $borrowing->item->asset_tag }}</td>
+                                    <th>{{ $borrowing->item->serier_number }}
                                      <th>{{ $borrowing->status }}
 
                                     

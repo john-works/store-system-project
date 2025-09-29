@@ -67,7 +67,8 @@ class BorrowingController extends Controller
      */
     public function edit(Borrowing $borrowing)
     {
-        return view('borrowings.edit', compact('borrowing'));
+         $items = Item::all(); 
+        return view('borrowings.edit', compact('borrowing', 'items'));
     }
 
     /**
@@ -76,18 +77,17 @@ class BorrowingController extends Controller
     public function update(Request $request, Borrowing $borrowing)
     {
         $request->validate([
-'request_date'=> 'required',
-'request_by'=> 'required',
-'request_summary'=> 'required',
+// 'request_date'=> 'required',
+// 'request_by'=> 'required',
+// 'request_summary'=> 'required',
 'item_id'=> 'required',
-'asset_tag'=> 'required',
-'serial_number'=> 'required',
+// 'asset_tag'=> 'required',
+// 'serial_number'=> 'required',
 
 
 
         ]);
         $borrowing->update($request->all());
-
         return redirect()->route('borrowings.index');
     }
 

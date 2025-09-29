@@ -54,63 +54,41 @@
 
 
                                             <div class="row">
-                                                <div class="col-md-6 col-12">
-                                                    <div class="form-group">
-                                                        <label for="request_date">Request Date</label>
-                                                        <input type="date" id="request_date" class="form-control"
-                                                            value="{{ old('request_date', $borrowing->request_date) }}"  name="request_date" required>
-                                                    </div>
-                                                </div>
+                                               
+                                         
 
-                                          <div class="col-md-6 col-12">
+                                     <div class="col-md-6 col-12">
                                                     <div class="form-group">
-                                                        <label for="request_by">Request By</label>
-                                                        <input type="text" id="request_by" class="form-control"
-                                                            value="{{ old('request_by', $borrowing->request_by) }}"  name="request_by" required>
+                                                         <label for="item_id" class="form-label">Item Name</label>
+                                                <select name="item_id" id="item_id" class="form-control" required >
+                                        <option value="">Select Item</option>
+                                            @foreach($items as $item)
+                                             <option value="{{ $item->id }}">{{ $item->item_name }}</option>
+                                        @endforeach
+                                            </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6 col-12">
-                                                    <div class="form-group">
-                                                        <label for="request_summary">Request Summary</label>
-                                                        <input type="text" id="request_summary" class="form-control"
-                                                            value="{{ old('request_summary', $borrowing->request_summary) }}" name="request_summary" required>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6 col-12">
-                                                    <div class="form-group">
-                                                        <label for="item_name">Item Name</label>
-                                                        <input type="text" id="item_name" class="form-control"
-                                                           value="{{ old('item_name', $borrowing->item_name) }}"  name="item_name" required>
-                                                    </div>
-                                                </div>
-        
 
 
       
+                                            
+{{-- 
                                                 <div class="col-md-6 col-12">
                                                     <div class="form-group">
                                                         <label for="asset_tag">Asset Tag</label>
                                                         <input type="text" id="asset_tag" class="form-control"
-                                                           value="{{ old('asset_tag', $borrowing->asset_tag) }}"  name="asset_tag" prequired>
-                                                    </div>
-                                                </div>
-                                                
-
-                                                <div class="col-md-6 col-12">
-                                                    <div class="form-group">
-                                                        <label for="comment">Comment</label>
-                                                        <input type="text" id="comment" class="form-control"
-                                                          value="{{ old('comment', $borrowing->comment) }}"   name="comment" required>
+                                                           value="{{ old('asset_tag', $borrowing->asset_tag) }}" name="asset_tag" required>
                                                     </div>
                                                 </div>
                  
                                                  <div class="col-md-6 col-12">
                                                     <div class="form-group">
-                                                        <label for="status">Status</label>
-                                                        <input type="text" id="status" class="form-control"
-                                                          value="{{ old('status', $borrowing->status) }}"   name="status" required>
+                                                        <label for="serial_number">Serial Number</label>
+                                                        <input type="text" id="serial_number" class="form-control"
+                                                          value="{{ old('serial_number', $borrowing->serial_number) }}"  name="serial_number" required>
                                                     </div>
-                                                </div>
+                                                </div> --}}
+
 
 
 

@@ -51,7 +51,7 @@ class DisposalController extends Controller
         ]);
 
         // Save supplier
-        Borrowing::create($request->all());
+        Disposal::create($request->all());
 
         return redirect()->route('disposals.index')
                          ->with('success', 'Supplier created successfully.');

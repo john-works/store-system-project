@@ -19,6 +19,13 @@ class GoodController extends Controller
         return view('goods.index', compact('goods'));
     }
 
+
+    public function indexs()
+{
+    $goods = Good::with('supplier')->get();
+    return view('goods.indexs', compact('goods'));
+}
+
     /**
      * Show the form for creating a new resource.
      */

@@ -42,7 +42,8 @@ Route::put('/invoices/{invoice}', [InvoiceController::class, 'update'])->name('i
 Route::delete('/invoices/{invoice}', [InvoiceController::class, 'destroy'])->name('invoices.destroy');
 
 //contracts
-Route::get('/contracts', [ContractController::class, 'index'])->name('contracts.index');
+Route::get('/contracts/index', [ContractController::class, 'index'])->name('contracts.index');
+Route::get('/contracts', [ContractController::class, 'indexs'])->name('contracts.indexs');
 Route::get('/contracts/create', [ContractController::class, 'create'])->name('contracts.create');
 Route::post('/contracts', [ContractController::class, 'store'])->name('contracts.store');
 Route::get('/contracts/{contract}', [ContractController::class, 'show'])->name('contracts.show');
@@ -62,8 +63,8 @@ Route::put('/items/{item}', [ItemController::class, 'update'])->name('items.upda
 Route::delete('/items/{item}', [ItemController::class, 'destroy'])->name('items.destroy');
 
 //services
-Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
-// Route::get('/services', [ServiceController::class, 'all'])->name('services.all');
+Route::get('/services/index', [ServiceController::class, 'index'])->name('services.index');
+Route::get('/services', [ServiceController::class, 'indexs'])->name('services.indexs');
 Route::get('/services/create', [ServiceController::class, 'create'])->name('services.create');
 Route::post('/services', [ServiceController::class, 'store'])->name('services.store');
 Route::get('/services/{service}', [ServiceController::class, 'show'])->name('services.show');
@@ -72,13 +73,15 @@ Route::put('/services/{service}', [ServiceController::class, 'update'])->name('s
 Route::delete('/services/{service}', [ServiceController::class, 'destroy'])->name('services.destroy');
 
 //goods
-Route::get('/goods', [GoodController::class, 'index'])->name('goods.index');
+Route::get('/goods/index', [GoodController::class, 'index'])->name('goods.index');
+Route::get('/goods', [GoodController::class, 'indexs'])->name('goods.indexs');
 Route::get('/goods/create', [GoodController::class, 'create'])->name('goods.create');
 Route::post('/goods', [GoodController::class, 'store'])->name('goods.store');
 Route::get('/goods/{good}', [GoodController::class, 'show'])->name('goods.show');
 Route::get('/goods/{good}/edit', [GoodController::class, 'edit'])->name('goods.edit');
 Route::put('/goods/{good}', [GoodController::class, 'update'])->name('goods.update');
 Route::delete('/goods/{good}', [GoodController::class, 'destroy'])->name('goods.destroy');
+
 
 
 //borrowings

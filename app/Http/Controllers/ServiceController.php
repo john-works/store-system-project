@@ -20,6 +20,14 @@ class ServiceController extends Controller
 
     }
 
+
+
+    public function indexs()
+{
+    $services = service::with('supplier')->get();
+    return view('services.indexs', compact('services'));
+}
+
     /**
      * Show the form for creating a new resource.
      */

@@ -49,22 +49,21 @@
                             Good Details
                         </div>
 
-                        <div class="card-footer text-end">
-                                <a href="{{ route('services.create') }}" class="btn btn-secondary">Add New Good  Detail</a>
-                            </div>
+                        
                         <div class="card-body">
                             <table class="table table-striped" id="table1">
                                 <thead>
                                     <tr>
-                                        <th>Id</th>
-                                        <th>Supplier Name</th>
                                         <th>Request Date</th>
-                                        <th>Request Item</th>
-                                        <th>Invoice Value</th>
-                                         {{-- <th>Quantity</th> --}}
                                         <th>Request By</th>
-                                        
+                                        <th>Request Item</th>
                                         <th>Status</th>
+                                        <th>Current Step</th>
+                                        <th>Current Step User</th>
+                                         <th>Current Step Start</th>
+                                        
+                                        
+                                        <th>Action</th>
                                        
                                     </tr>
                                 </thead>
@@ -72,23 +71,21 @@
                                
                           @forelse($services as $service)
                                 <tr>
-                                   <td>{{ $service->id }}</td>
-                                    <td>{{ $service->supplier->supplier_name }}</td>
-                                    <td>{{ $service->request_date }}</td>
-                                    <td>{{ $service->request_item }}</td>
-                                    <td>{{ $service->invoice_number }}</td>
-                                    {{-- <td>{{ $service->quality }}</td> --}}
+                                   <td>{{ $service->request_date }}</td>
                                     <td>{{ $service->request_by }}</td>
-                                     {{-- <td>{{ $service->sum }}</td> --}}
+                                    <td>{{ $service->request_item }}</td>
+                                     <td>{{ $service->status }}</td>
+                                    <td>{{ $service->current_step }}</td>
+                                    <td>{{ $service->current_step_user }}</td>
+                                    <td>{{ $service->current_step_start }}</td>
                                 
-                                    
                                     <td>
                                           <span class="action-icon" data-id="{{ $service->id }}">📄</span>
                                     </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="9" class="text-center">No Service found.</td>
+                                    <td colspan="9" class="text-center">No Good found.</td>
                                 </tr>
                             @endforelse
                                 </tbody>
@@ -196,9 +193,9 @@
         if (!id) return;
 
         if (action === "view") {
-            window.location.href = `/services/${id}`;
+            window.location.href = `/goods/${id}`;
         } else if (action === "edit") {
-            window.location.href = `/services/${id}/edit`;
+            window.location.href = `/goods/${id}/edit`;
         } else if (action === "delete") {
             if (confirm("Are you sure you want to delete this user?")) {
                 fetch(`/users/${id}`, {
@@ -216,8 +213,6 @@
         popupMenu.style.display = "none";
     }
 </script>
-
-
     <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
 

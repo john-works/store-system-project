@@ -13,10 +13,8 @@ return new class extends Migration
     {
         Schema::create('goods', function (Blueprint $table) {
             $table->id();
-            //  $table->string('supplier_name');
             $table->string('request_date');
             $table->string('request_by') ;
-            // $table->string('verified_by')  ->nullable();
             $table->string('request_item');
             $table->string('request_summary');
             $table->string('status') ->nullable();

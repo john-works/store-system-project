@@ -105,7 +105,7 @@
                                 </li>
 
                                 <li class="submenu-item ">
-                                    <a href="">All</a>
+                                    <a href="{{ route('contracts.indexs') }}">All</a>
                                 </li>
                                
                                 
@@ -232,7 +232,7 @@
                                 </li>
 
                                  <li class="submenu-item ">
-                                    <a href="">All</a>
+                                    <a href="{{ route('goods.indexs') }}">All</a>
                                 </li>
                                
                                 
@@ -255,7 +255,7 @@
                                 </li>
                                
                                 <li class="submenu-item ">
-                                    <a href="">All</a>
+                                    <a href="{{ route('services.indexs') }}">All</a>
                                 </li>
                                 
                             </ul>

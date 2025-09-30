@@ -20,6 +20,13 @@ class ContractController extends Controller
         
     }
 
+
+    public function indexs()
+{
+    $contracts = Contract::with('supplier')->get();
+    return view('contracts.indexs', compact('contracts'));
+}
+
     /**
      * Show the form for creating a new resource.
      */

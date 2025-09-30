@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Disposal;
+use App\Models\Item;
 use Illuminate\Http\Request;
 
 class DisposalController extends Controller
@@ -43,8 +44,8 @@ class DisposalController extends Controller
 'request_by'=> 'required',
 'request_summary'=> 'required',
 'item_id'=> 'required',
-'asset_tag'=> 'required',
-'serial_number'=> 'required',
+// 'asset_tag'=> 'required',
+// 'serial_number'=> 'required',
 
 
         ]);
@@ -84,8 +85,8 @@ class DisposalController extends Controller
 'request_by'=> 'required',
 'request_summary'=> 'required',
 'item_id'=> 'required',
-'asset_tag'=> 'required',
-'serial_number'=> 'required',
+// 'asset_tag'=> 'required',
+// 'serial_number'=> 'required',
 
 
 

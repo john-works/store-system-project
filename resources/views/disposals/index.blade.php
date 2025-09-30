@@ -69,7 +69,7 @@
                         </div>
 
                         <div class="card-footer text-end">
-                                <a href="{{ route('borrowings.create') }}" class="btn btn-secondary">Add New Borrowing Request</a>
+                                <a href="{{ route('disposals.create') }}" class="btn btn-secondary">Add New Disposal Request</a>
                             </div>
                         <div class="card-body">
                             <table class="table table-striped" id="table1">

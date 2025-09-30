@@ -16,16 +16,14 @@ return new class extends Migration
             $table->string('request_date');
             $table->string('request_by');
             $table->string('request_summary');
-           $table->unsignedBigInteger('item_id');
-            // $table->string('current_step');
-            // $table->string('status');
-            // $table->string('status');
+            $table->string('amount');
+            $table->string('status');
+            $table->string('status');
             $table->string('status') ->nullable();
              $table->string('current_step') ->nullable();
             $table->string('current_step_user') ->nullable();
             $table->string('current_step_start') ->nullable();
 
-            $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
             
             $table->timestamps();
         });

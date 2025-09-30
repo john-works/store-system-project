@@ -11,6 +11,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\RequisitionController;
 use App\Http\Controllers\BorrowingController;
 use App\Http\Controllers\MovermentController;
+use App\Http\Controllers\DisposalController;
 
 
 // Route::get('/', function () {
@@ -61,6 +62,18 @@ Route::get('/items/{item}', [ItemController::class, 'show'])->name('items.show')
 Route::get('/items/{item}/edit', [ItemController::class, 'edit'])->name('items.edit');
 Route::put('/items/{item}', [ItemController::class, 'update'])->name('items.update');
 Route::delete('/items/{item}', [ItemController::class, 'destroy'])->name('items.destroy');
+
+
+
+//dispoal in store
+Route::get('/disposals', [DisposalController::class, 'index'])->name('disposals.index');
+Route::get('/disposals/create', [DisposalController::class, 'create'])->name('disposals.create');
+Route::post('/disposals', [DisposalController::class, 'store'])->name('disposals.store');
+Route::get('/disposals/{disposal}', [DisposalController::class, 'show'])->name('disposals.show');
+Route::get('/disposals/{disposal}/edit', [DisposalController::class, 'edit'])->name('disposals.edit');
+Route::put('/disposals/{disposal}', [DisposalController::class, 'update'])->name('disposals.update');
+Route::delete('/disposals/{disposal}', [DisposalController::class, 'destroy'])->name('disposals.destroy');
+
 
 //services
 Route::get('/services/index', [ServiceController::class, 'index'])->name('services.index');

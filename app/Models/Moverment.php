@@ -11,11 +11,6 @@ class Moverment extends Model
 'request_by',
 'request_summary',
 'item_id',
-<<<<<<< HEAD
-=======
-// 'asset_tag',
-// 'serial_number',
->>>>>>> 706ab9a (New changes)
 'from_department',
 'to_department',
 'user_id',
@@ -27,12 +22,9 @@ class Moverment extends Model
         return $this->belongsTo(Item::class);
     }
 
-<<<<<<< HEAD
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-=======
->>>>>>> 706ab9a (New changes)
 }

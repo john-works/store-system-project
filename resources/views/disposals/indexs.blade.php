@@ -35,79 +35,53 @@
                     <i class="bi bi-justify fs-3"></i>
                 </a>
             </header>
-			
-			
-			
-			
-
+	
             <div class="page-heading">
-                <div class="page-title">
-                    <div class="row">
-                        <div class="col-12 col-md-6 order-md-1 order-last">
-                            <h3>DataTable</h3>
-                            <p class="text-subtitle text-muted">For user to check they list</p>
-                        </div>
-                        <div class="col-12 col-md-6 order-md-2 order-first">
-                            <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">DataTable</li>
-                                </ol>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-				
-				
-				
-				
-				
+             
+			
                 <section class="section">
                     <div class="card">
                         <div class="card-header">
-                            Simple Datatable
+                            Contracts Details
                         </div>
-                        <div class="card-footer text-end">
-                                <a href="{{ route('moverments.create') }}" class="btn btn-secondary">Add New Moverment Request</a>
-                            </div>
+
+                        
                         <div class="card-body">
                             <table class="table table-striped" id="table1">
                                 <thead>
                                     <tr>
-                                        <th>Id</th>
                                         <th>Request Date</th>
                                         <th>Request By</th>
-                                        <th>Item Name</th>
-                                        <th>Asset Tag</th>
-                                        <th>Serial Number</th>
-                                        <th>From User</th>
-                                        <th>To user</th>
-                                        {{-- <th>Invoice date</th> --}}
+                                        <th>Request Item</th>
                                         <th>Status</th>
+                                        <th>Current Step</th>
+                                        <th>Current Step User</th>
+                                         <th>Current Step Start</th>
+                                        
+                                        
+                                        <th>Action</th>
+                                       
                                     </tr>
                                 </thead>
                                 <tbody>
-                              
-                          @forelse($moverments as $moverment)
+                               
+                          @forelse($borrowings as $borrowing)
                                 <tr>
-                                   <td>{{ $moverment->id }}</td>
-                                   <td>{{ $moverment->request_date }}</td>
-                                   <td>{{ $moverment->request_by }}</td>
-                                    <td>{{ $moverment->item->item_name }}</td>
-                                    <td>{{ $moverment->item->asset_tag }}</td>
-                                      <td>{{ $moverment->item->serier_number }}</td>
-                                    <td>{{ $moverment->user->name }}</td>
-                                    {{-- <td>{{ $moverment->from_user }}</td> --}}
-                                    <td>{{ $moverment->supplier_id }}</td>
-                                    {{-- <td>{{ $moverment->invoice_date }}</td> --}}
-                                    
+                                   <td>{{ $borrowing->request_date }}</td>
+                                    <td>{{ $borrowing->request_by }}</td>
+                                    <td>{{ $borrowing->item->item_name }}</td>
+                                     <td>{{ $borrowing->status }}</td>
+                                    <td>{{ $borrowing->current_step }}</td>
+                                    <td>{{ $borrowing->current_step_user }}</td>
+                                    <td>{{ $borrowing->current_step_start }}</td>
+                                
                                     <td>
-                                       <span class="action-icon" data-id="{{ $moverment->id }}">📄</span>
+                                          <span class="action-icon" data-id="{{ $borrowing->id }}">📄</span>
                                     </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="9" class="text-center">No info found.</td>
+                                    <td colspan="9" class="text-center">No Good found.</td>
                                 </tr>
                             @endforelse
                                 </tbody>
@@ -215,9 +189,9 @@
         if (!id) return;
 
         if (action === "view") {
-            window.location.href = `/moverments/${id}`;
+            window.location.href = `/goods/${id}`;
         } else if (action === "edit") {
-            window.location.href = `/moverments/${id}/edit`;
+            window.location.href = `/goods/${id}/edit`;
         } else if (action === "delete") {
             if (confirm("Are you sure you want to delete this user?")) {
                 fetch(`/users/${id}`, {

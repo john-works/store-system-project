@@ -24,7 +24,7 @@
                             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Movement</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Disposal</li>
                                 </ol>
                             </nav>
                         </div>
@@ -41,22 +41,24 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Add New Movement Details</h4>
+                                    <h4 class="card-title">Desposal Details</h4>
                                 </div>
                                 <div class="card-content">
                                     <div class="card-body">
-                                      <form action="{{ route('moverments.store') }}" method="POST" class="form">
+                                      <form action="{{ route('disposals.store') }}" method="POST" class="form">
                                     @csrf
 
 
+
                                             <div class="row">
+                                              
 
 
-                                                  <div class="col-md-6 col-12">
+                                     <div class="col-md-6 col-12">
                                                     <div class="form-group">
                                                          <label for="item_id" class="form-label">Item Name</label>
                                                 <select name="item_id" id="item_id" class="form-control" required>
-                                        <option value="">Select item</option>
+                                        <option value="">Select Item</option>
                                             @foreach($items as $item)
                                              <option value="{{ $item->id }}">{{ $item->item_name }}</option>
                                         @endforeach
@@ -65,73 +67,38 @@
                                                 </div>
 
 
-                                              
-                                           
-                                             <div class="col-md-6 col-12">
+      
+                                                <div class="col-md-6 col-12">
                                                     <div class="form-group">
-                                                        <label for="from_department"> From Department</label>
-                                                        <select type="text" id="from_department" class="form-control"
-                                                             name="from_department" required>
-
-                                                             <option>Selete Department</option>
-                                                             <option>Hr</option>
-                                                             <option>Finance</option>
-                                                             <option>Planning</option>
-                                                             
-
-                                                        </select>
+                                                        <label for="asset_tag">Asset Tag</label>
+                                                        <input type="text" id="asset_tag" class="form-control"
+                                                            name="asset_tag" prequired>
                                                     </div>
                                                 </div>
-
-                                              <div class="col-md-6 col-12">
-                                                    <div class="form-group">
-                                                         <label for="user_id" class="form-label">From User</label>
-                                                <select name="user_id" id="user_id" class="form-control" required>
-                                        <option value="">Select User</option>
-                                            @foreach($users as $user)
-                                             <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                        @endforeach
-                                            </select>
-                                                    </div>
-                                                </div>
-
                                                 
 
                                                 <div class="col-md-6 col-12">
                                                     <div class="form-group">
-                                                        <label for="to_department"> To Department</label>
-                                                        <select type="text" id="to_department" class="form-control"
-                                                             name="to_department" required>
-
-                                                             <option>Selete Department</option>
-                                                             <option>Hr</option>
-                                                             <option> Finance</option>
-                                                             <option> Planning</option>
-                                                             
-
-                                                        </select>
+                                                        <label for="asset_tag">Asset Tag</label>
+                                                        <input type="text" id="asset_tag" class="form-control"
+                                                            name="asset_tag" required>
                                                     </div>
                                                 </div>
                  
-                                                <div class="col-md-6 col-12">
+                                                 <div class="col-md-6 col-12">
                                                     <div class="form-group">
-                                                         <label for="supplier_id" class="form-label">To User</label>
-                                                <select name="supplier_id" id="supplier_id" class="form-control" required>
-                                        <option value="">Select User</option>
-                                            @foreach($users as $user)
-                                             <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                        @endforeach
-                                            </select>
+                                                        <label for="serial_number">Serial Number</label>
+                                                        <input type="text" id="serial_number" class="form-control"
+                                                            name="serial_number" required>
                                                     </div>
                                                 </div>
 
-                                               
+
 
 
                                             <input type="hidden" name="request_summary" value="Summary of item needed">
                                             <input type="hidden" name="request_date" value="{{ now()->toDateString() }}">
                                             <input type="hidden" name="request_by" value="{{ auth()->user()->email }}">
-
 
 
 

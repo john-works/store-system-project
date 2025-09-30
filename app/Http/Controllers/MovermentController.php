@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Moverment;
+use App\Models\User;
+use App\Models\Item;
 use Illuminate\Http\Request;
 
 class MovermentController extends Controller
@@ -12,7 +14,8 @@ class MovermentController extends Controller
      */
     public function index()
     {
-         $moverments = Moverment::all(); // fetch all suppliers
+          //Getting Item name
+        $moverments = Moverment::with('item')->get();
         return view('moverments.index', compact('moverments'));
     }
 
@@ -23,7 +26,9 @@ class MovermentController extends Controller
      */
     public function create()
     {
-         return view('moverments.create');
+         $items = Item::all();
+         $users= User::all();
+        return view('moverments.create', compact('items', 'users'));
     }
 
     /**

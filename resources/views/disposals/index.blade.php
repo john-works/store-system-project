@@ -67,8 +67,9 @@
                         <div class="card-header">
                             Simple Datatable
                         </div>
+
                         <div class="card-footer text-end">
-                                <a href="{{ route('moverments.create') }}" class="btn btn-secondary">Add New Moverment Request</a>
+                                <a href="{{ route('borrowings.create') }}" class="btn btn-secondary">Add New Borrowing Request</a>
                             </div>
                         <div class="card-body">
                             <table class="table table-striped" id="table1">
@@ -77,37 +78,33 @@
                                         <th>Id</th>
                                         <th>Request Date</th>
                                         <th>Request By</th>
+                                        <th>Request Summary</th>
                                         <th>Item Name</th>
                                         <th>Asset Tag</th>
                                         <th>Serial Number</th>
-                                        <th>From User</th>
-                                        <th>To user</th>
-                                        {{-- <th>Invoice date</th> --}}
                                         <th>Status</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                              
-                          @forelse($moverments as $moverment)
+     
+                          @forelse($borrowings as $borrowing)
                                 <tr>
-                                   <td>{{ $moverment->id }}</td>
-                                   <td>{{ $moverment->request_date }}</td>
-                                   <td>{{ $moverment->request_by }}</td>
-                                    <td>{{ $moverment->item->item_name }}</td>
-                                    <td>{{ $moverment->item->asset_tag }}</td>
-                                      <td>{{ $moverment->item->serier_number }}</td>
-                                    <td>{{ $moverment->user->name }}</td>
-                                    {{-- <td>{{ $moverment->from_user }}</td> --}}
-                                    <td>{{ $moverment->supplier_id }}</td>
-                                    {{-- <td>{{ $moverment->invoice_date }}</td> --}}
+                                   <td>{{ $borrowing->id }}</td>
+                                    <td>{{ $borrowing->request_date }}</td>
+                                    <td>{{ $borrowing->request_by }}</td>
+                                    <td>{{ $borrowing->request_summary }}</td>
+                                    <td>{{ $borrowing->item->item_name }}</td>
+                                    <td>{{ $borrowing->item->asset_tag }}</td>
+                                    <th>{{ $borrowing->item->serier_number }}
+                                     <th>{{ $borrowing->status }}
+
                                     
                                     <td>
-                                       <span class="action-icon" data-id="{{ $moverment->id }}">📄</span>
+                                     <span class="action-icon" data-id="{{ $borrowing->id }}">📄</span>
                                     </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="9" class="text-center">No info found.</td>
+                                    <td colspan="9" class="text-center">No Info found.</td>
                                 </tr>
                             @endforelse
                                 </tbody>
@@ -121,7 +118,6 @@
            
         </div>
     </div>
-
     
 <!-- Popup Menu -->
 <div class="popup-menu" id="popupMenu">
@@ -215,9 +211,9 @@
         if (!id) return;
 
         if (action === "view") {
-            window.location.href = `/moverments/${id}`;
+            window.location.href = `/borrowings/${id}`;
         } else if (action === "edit") {
-            window.location.href = `/moverments/${id}/edit`;
+            window.location.href = `/borrowings/${id}/edit`;
         } else if (action === "delete") {
             if (confirm("Are you sure you want to delete this user?")) {
                 fetch(`/users/${id}`, {

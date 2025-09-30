@@ -72,6 +72,19 @@
                                                         <label for="from_department"> From Department</label>
                                                         <select type="text" id="from_department" class="form-control"
                                                              name="from_department" required>
+<<<<<<< HEAD
+=======
+
+                                                             <option>Selete Department</option>
+                                                             <option>Hr</option>
+                                                             <option>Finance</option>
+                                                             <option>Planning</option>
+                                                             
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+>>>>>>> 706ab9a (New changes)
 
                                                              <option>Selete Department</option>
                                                              <option>Hr</option>

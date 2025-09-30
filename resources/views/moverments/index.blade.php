@@ -91,6 +91,7 @@
                           @forelse($moverments as $moverment)
                                 <tr>
                                    <td>{{ $moverment->id }}</td>
+<<<<<<< HEAD
                                    <td>{{ $moverment->request_date }}</td>
                                    <td>{{ $moverment->request_by }}</td>
                                     <td>{{ $moverment->item->item_name }}</td>
@@ -99,6 +100,12 @@
                                     <td>{{ $moverment->user->name }}</td>
                                     {{-- <td>{{ $moverment->from_user }}</td> --}}
                                     <td>{{ $moverment->supplier_id }}</td>
+=======
+                                    <td>{{ $moverment->item->item_name }}</td>
+                                    <td>{{ $moverment->item->asset_tag }}</td>
+                                    <td>{{ $moverment->from_user }}</td>
+                                    <td>{{ $moverment->to_user }}</td>
+>>>>>>> 706ab9a (New changes)
                                     {{-- <td>{{ $moverment->invoice_date }}</td> --}}
                                     
                                     <td>

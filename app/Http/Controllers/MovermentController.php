@@ -3,9 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Moverment;
-use App\Models\Item;
-use App\Models\User;
-
 use Illuminate\Http\Request;
 
 class MovermentController extends Controller
@@ -15,18 +12,8 @@ class MovermentController extends Controller
      */
     public function index()
     {
-
-    $moverments = Moverment::with(['item', 'user'])->get();
-    $users = User::all();
-    return view('moverments.index', compact('moverments', 'users'));
-    }
-
-   public function indexs()
-    {
-
-    $moverments = Moverment::with(['item', 'user'])->get();
-    $users = User::all();
-    return view('moverments.indexs', compact('moverments', 'users'));
+         $moverments = Moverment::all(); // fetch all suppliers
+        return view('moverments.index', compact('moverments'));
     }
 
 
@@ -36,12 +23,7 @@ class MovermentController extends Controller
      */
     public function create()
     {
-         // Get items for dropdown
-    $items = Item::all();
-    $users = User::all();
-    return view('moverments.create', compact('items', 'users'));
-
-        
+         return view('moverments.create');
     }
 
     /**
@@ -49,17 +31,20 @@ class MovermentController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
-
-        $data = $request->validate([
-            'request_date' => 'required',
-            'request_by' => 'required',
-            'request_summary' => 'required',
-            'item_id' => 'required',
-            'from_department' => 'required',
-            'user_id' => 'required',
-            'to_department' => 'required',
-            'supplier_id' => 'required',
+        $request->validate([
+// 'request_date' =>'required',
+// 'request_by' =>'required',
+// 'request_summary' =>'required',
+// 'current_step' =>'required',
+// 'status' =>'required',
+'item_description' =>'required',
+'asset_tag' =>'required',
+'serial_number' =>'required',
+'from_department' =>'required',
+'from_user' =>'required',
+'to_department' =>'required',
+'to_user' =>'required',
+           
         ]);
 
         // Save supplier
@@ -91,15 +76,20 @@ class MovermentController extends Controller
     public function update(Request $request, Moverment $moverment)
     {
         $request->validate([
-'request_date' => 'required',
-'request_by' => 'required',
-'request_summary' => 'required',
-'item_id' => 'required',
-'from_department' => 'required',
-'from_user' => 'required',
-'to_department' => 'required',
-'to_user' => 'required',
 
+//             'request_date' =>'required',
+// 'request_by' =>'required',
+// 'request_summary' =>'required',
+// 'current_step' =>'required',
+// 'status' =>'required',
+'item_description' =>'required',
+'asset_tag' =>'required',
+'serial_number' =>'required',
+'from_department' =>'required',
+'from_user' =>'required',
+'to_department' =>'required',
+'to_user' =>'required',
+       
 
 
         ]);

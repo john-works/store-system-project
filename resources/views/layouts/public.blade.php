@@ -140,12 +140,15 @@
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                    <a href="{{ route('borrowings.index') }}">View</a>
+                                    <a href="{{ route('borrowings.index') }}">My Request</a>
                                 </li>
                                 <li class="submenu-item ">
                                     <a href="{{ route('borrowings.create') }}">Create</a>
                                 </li>
                                
+                                <li class="submenu-item ">
+                                    <a href="{{ route('borrowings.indexs') }}">All</a>
+                                </li>
                                 
                             </ul>
                         </li>
@@ -158,12 +161,15 @@
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                    <a href="{{ route('moverments.index') }}">view</a>
+                                    <a href="{{ route('moverments.index') }}">My Request</a>
                                 </li>
                                 <li class="submenu-item ">
-                                    <a href="{{ route('moverments.create') }}">create</a>
+                                    <a href="{{ route('moverments.create') }}">Pending  Requests</a>
                                 </li>
-                               
+
+                               <li class="submenu-item ">
+                                    <a href="{{ route('moverments.indexs') }}">All</a>
+                                </li>
                                 
                             </ul>
                         </li>

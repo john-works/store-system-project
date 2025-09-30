@@ -21,6 +21,16 @@ class MovermentController extends Controller
     return view('moverments.index', compact('moverments', 'users'));
     }
 
+   public function indexs()
+    {
+
+    $moverments = Moverment::with(['item', 'user'])->get();
+    $users = User::all();
+    return view('moverments.indexs', compact('moverments', 'users'));
+    }
+
+
+
     /**
      * Show the form for creating a new resource.
      */

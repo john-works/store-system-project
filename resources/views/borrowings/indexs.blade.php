@@ -65,18 +65,18 @@
                                 </thead>
                                 <tbody>
                                
-                          @forelse($contracts as $contract)
+                          @forelse($borrowings as $borrowing)
                                 <tr>
-                                   <td>{{ $contract->request_date }}</td>
-                                    <td>{{ $contract->request_by }}</td>
-                                    <td>{{ $contract->request_item }}</td>
-                                     <td>{{ $contract->status }}</td>
-                                    <td>{{ $contract->current_step }}</td>
-                                    <td>{{ $contract->current_step_user }}</td>
-                                    <td>{{ $contract->current_step_start }}</td>
+                                   <td>{{ $borrowing->request_date }}</td>
+                                    <td>{{ $borrowing->request_by }}</td>
+                                    <td>{{ $borrowing->item->item_name }}</td>
+                                     <td>{{ $borrowing->status }}</td>
+                                    <td>{{ $borrowing->current_step }}</td>
+                                    <td>{{ $borrowing->current_step_user }}</td>
+                                    <td>{{ $borrowing->current_step_start }}</td>
                                 
                                     <td>
-                                          <span class="action-icon" data-id="{{ $contract->id }}">📄</span>
+                                          <span class="action-icon" data-id="{{ $borrowing->id }}">📄</span>
                                     </td>
                                 </tr>
                             @empty

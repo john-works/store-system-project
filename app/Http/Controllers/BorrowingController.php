@@ -18,6 +18,12 @@ class BorrowingController extends Controller
         return view('borrowings.index', compact('borrowings'));
     }
 
+        public function indexs()
+{
+    $borrowings = Borrowing::with('item')->get();
+    return view('borrowings.indexs', compact('borrowings'));
+}
+
     /**
      * Show the form for creating a new resource.
      */

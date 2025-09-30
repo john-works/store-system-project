@@ -86,20 +86,20 @@
                                     </tr>
                                 </thead>
      
-                          @forelse($borrowings as $borrowing)
+                          @forelse($disposals as $disposal)
                                 <tr>
-                                   <td>{{ $borrowing->id }}</td>
-                                    <td>{{ $borrowing->request_date }}</td>
-                                    <td>{{ $borrowing->request_by }}</td>
-                                    <td>{{ $borrowing->request_summary }}</td>
-                                    <td>{{ $borrowing->item->item_name }}</td>
-                                    <td>{{ $borrowing->item->asset_tag }}</td>
-                                    <th>{{ $borrowing->item->serier_number }}
-                                     <th>{{ $borrowing->status }}
+                                   <td>{{ $disposal->id }}</td>
+                                    <td>{{ $disposal->request_date }}</td>
+                                    <td>{{ $disposal->request_by }}</td>
+                                    <td>{{ $disposal->request_summary }}</td>
+                                    <td>{{ $disposal->item->item_name }}</td>
+                                    <td>{{ $disposal->item->asset_tag }}</td>
+                                    <th>{{ $disposal->item->serier_number }}
+                                     <th>{{ $disposal->status }}
 
                                     
                                     <td>
-                                     <span class="action-icon" data-id="{{ $borrowing->id }}">📄</span>
+                                     <span class="action-icon" data-id="{{ $disposal->id }}">📄</span>
                                     </td>
                                 </tr>
                             @empty

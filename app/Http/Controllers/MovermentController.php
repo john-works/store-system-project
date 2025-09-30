@@ -47,6 +47,7 @@ class MovermentController extends Controller
 'request_by'=>'required',
 'request_summary'=>'required',
 'item_id'=>'required',
+
 'from_department'=>'required',
 'to_department'=>'required',
 'user_id'=>'required',

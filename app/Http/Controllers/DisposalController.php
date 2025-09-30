@@ -12,15 +12,24 @@ class DisposalController extends Controller
      */
     public function index()
     {
-        //
+        $disposals = Disposal::with('item')->get();
+        return view('disposals.index', compact('disposals'));
     }
+
+
+      public function indexs()
+{
+    $disposals = Disposal::with('item')->get();
+    return view('disposals.indexs', compact('disposals'));
+}
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+        $items = Item::all();
+        return view('disposals.create', compact('items'));
     }
 
     /**
@@ -28,7 +37,23 @@ class DisposalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $request->validate([
+
+'request_date'=> 'required',
+'request_by'=> 'required',
+'request_summary'=> 'required',
+'item_id'=> 'required',
+'asset_tag'=> 'required',
+'serial_number'=> 'required',
+
+
+        ]);
+
+        // Save supplier
+        Borrowing::create($request->all());
+
+        return redirect()->route('disposals.index')
+                         ->with('success', 'Supplier created successfully.');
     }
 
     /**
@@ -36,7 +61,7 @@ class DisposalController extends Controller
      */
     public function show(Disposal $disposal)
     {
-        //
+        return view('disposals.show', compact('disposal'));
     }
 
     /**
@@ -44,7 +69,8 @@ class DisposalController extends Controller
      */
     public function edit(Disposal $disposal)
     {
-        //
+        $items = Item::all(); 
+        return view('disposals.edit', compact('disposal', 'items'));
     }
 
     /**
@@ -52,7 +78,21 @@ class DisposalController extends Controller
      */
     public function update(Request $request, Disposal $disposal)
     {
-        //
+        $request->validate([
+
+'request_date'=> 'required',
+'request_by'=> 'required',
+'request_summary'=> 'required',
+'item_id'=> 'required',
+'asset_tag'=> 'required',
+'serial_number'=> 'required',
+
+
+
+
+        ]);
+        $disposal->update($request->all());
+        return redirect()->route('disposals.index');
     }
 
     /**

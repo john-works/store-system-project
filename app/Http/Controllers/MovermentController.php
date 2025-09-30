@@ -19,6 +19,12 @@ class MovermentController extends Controller
         return view('moverments.index', compact('moverments'));
     }
 
+  public function indexs()
+    {
+          //Getting Item name
+        $moverments = Moverment::with('item')->get();
+        return view('moverments.indexs', compact('moverments'));
+    }
 
 
     /**
@@ -37,18 +43,14 @@ class MovermentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-// 'request_date' =>'required',
-// 'request_by' =>'required',
-// 'request_summary' =>'required',
-// 'current_step' =>'required',
-// 'status' =>'required',
-'item_description' =>'required',
-'asset_tag' =>'required',
-'serial_number' =>'required',
-'from_department' =>'required',
-'from_user' =>'required',
-'to_department' =>'required',
-'to_user' =>'required',
+'request_date'=>'required',
+'request_by'=>'required',
+'request_summary'=>'required',
+'item_id'=>'required',
+'from_department'=>'required',
+'to_department'=>'required',
+'user_id'=>'required',
+'supplier_id'=>'required',
            
         ]);
 
@@ -82,18 +84,14 @@ class MovermentController extends Controller
     {
         $request->validate([
 
-//             'request_date' =>'required',
-// 'request_by' =>'required',
-// 'request_summary' =>'required',
-// 'current_step' =>'required',
-// 'status' =>'required',
-'item_description' =>'required',
-'asset_tag' =>'required',
-'serial_number' =>'required',
-'from_department' =>'required',
-'from_user' =>'required',
-'to_department' =>'required',
-'to_user' =>'required',
+'request_date'=>'required',
+'request_by'=>'required',
+'request_summary'=>'required',
+'item_id'=>'required',
+'from_department'=>'required',
+'to_department'=>'required',
+'user_id'=>'required',
+'supplier_id'=>'required',
        
 
 

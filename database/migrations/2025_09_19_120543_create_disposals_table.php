@@ -13,7 +13,17 @@ return new class extends Migration
     {
         Schema::create('disposals', function (Blueprint $table) {
             $table->id();
-            
+             $table->string('request_date') ;
+            $table->string('request_by');
+            $table->string('request_summary');
+           $table->unsignedBigInteger('item_id');
+            $table->string('asset_tag');
+            $table->string('serial_number');
+            // $table->string('asset_tag');
+            $table->string('status') ->nullable();
+             $table->string('current_step') ->nullable();
+            $table->string('current_step_user') ->nullable();
+            $table->string('current_step_start') ->nullable();
             $table->timestamps();
         });
     }

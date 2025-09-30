@@ -17,10 +17,10 @@ return new class extends Migration
             $table->string('request_by');
             $table->string('request_summary');
             $table->string('amount');
-            $table->string('status');
-            $table->string('status');
-            $table->string('status') ->nullable();
-             $table->string('current_step') ->nullable();
+            // $table->string('status');
+            // $table->string('status');
+            // $table->string('status') ->nullable();
+            //  $table->string('current_step') ->nullable();
             $table->string('current_step_user') ->nullable();
             $table->string('current_step_start') ->nullable();
 

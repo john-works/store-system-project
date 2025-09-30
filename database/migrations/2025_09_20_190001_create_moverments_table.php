@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('request_by');
             $table->string('request_summary');
           $table->unsignedBigInteger('item_id');
+           $table->unsignedBigInteger('user_id');
             $table->string('asset_tag');
             $table->string('serial_number');
             $table->string('from_department');

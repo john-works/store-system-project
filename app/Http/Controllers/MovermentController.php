@@ -39,18 +39,17 @@ class MovermentController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-'request_date' => 'required',
-'request_by' => 'required',
-'request_summary' => 'required',
-'item_id' => 'required',
-'from_department' => 'required',
-'from_user' => 'required',
-'to_department' => 'required',
-'to_user' => 'required',
+        // dd($request->all());
 
-dd($request)
-           
+        $data = $request->validate([
+            'request_date' => 'required',
+            'request_by' => 'required',
+            'request_summary' => 'required',
+            'item_id' => 'required',
+            'from_department' => 'required',
+            'user_id' => 'required',
+            'to_department' => 'required',
+            'supplier_id' => 'required',
         ]);
 
         // Save supplier

@@ -11,12 +11,10 @@ class Moverment extends Model
 'request_by',
 'request_summary',
 'item_id',
-// 'asset_tag',
-// 'serial_number',
 'from_department',
-'from_user',
 'to_department',
-'to_user',
+'user_id',
+'supplier_id',
     ];
 
       public function item()

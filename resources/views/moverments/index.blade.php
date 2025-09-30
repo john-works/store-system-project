@@ -96,9 +96,9 @@
                                     <td>{{ $moverment->item->item_name }}</td>
                                     <td>{{ $moverment->item->asset_tag }}</td>
                                       <td>{{ $moverment->item->serier_number }}</td>
-                                    <td>{{ $moverment->from_user }}</td>
+                                    <td>{{ $moverment->user->name }}</td>
                                     {{-- <td>{{ $moverment->from_user }}</td> --}}
-                                    <td>{{ $moverment->to_user }}</td>
+                                    <td>{{ $moverment->supplier_id }}</td>
                                     {{-- <td>{{ $moverment->invoice_date }}</td> --}}
                                     
                                     <td>

@@ -85,7 +85,7 @@
 
                                               <div class="col-md-6 col-12">
                                                     <div class="form-group">
-                                                         <label for="user_id" class="form-label">Supplier</label>
+                                                         <label for="user_id" class="form-label">From User</label>
                                                 <select name="user_id" id="user_id" class="form-control" required>
                                         <option value="">Select User</option>
                                             @foreach($users as $user)
@@ -115,8 +115,8 @@
                  
                                                 <div class="col-md-6 col-12">
                                                     <div class="form-group">
-                                                         <label for="user_id" class="form-label">Supplier</label>
-                                                <select name="user_id" id="user_id" class="form-control" required>
+                                                         <label for="supplier_id" class="form-label">To User</label>
+                                                <select name="supplier_id" id="supplier_id" class="form-control" required>
                                         <option value="">Select User</option>
                                             @foreach($users as $user)
                                              <option value="{{ $user->id }}">{{ $user->name }}</option>

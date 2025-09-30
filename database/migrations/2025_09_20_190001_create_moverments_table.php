@@ -18,13 +18,9 @@ return new class extends Migration
             $table->string('request_summary');
           $table->unsignedBigInteger('item_id');
           $table->unsignedBigInteger('user_id')->nullable();
-            // $table->string('asset_tag');
-            // $table->string('serial_number');
             $table->string('from_department');
-            $table->string('from_user');
             $table->string('to_department');
-             $table->string('to_user');
-
+             $table->string('supplier_id');
              $table->string('status') ->nullable();
              $table->string('current_step') ->nullable();
             $table->string('current_step_user') ->nullable();

@@ -83,8 +83,7 @@
                                 
                                     
                                     <td>
-                                          <span class="action-icon" data-id="{{ $service->id }}">📄</span>
-                                    </td>
+                                          <span class="action-icon" data-id="{{ $service->id }}">📄</span> </td>
                                 </tr>
                             @empty
                                 <tr>

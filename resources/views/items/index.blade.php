@@ -124,13 +124,13 @@
     <ul>
         <li onclick="handleAction('view')">👁 View</li>
         <li onclick="handleAction('edit')">✏️ Edit</li>
-        <form action="{{ route('items.destroy', $item->id) }}" method="POST" style="display:inline-block;">
+        <li onclick="handleAction('edit')"><form action="{{ route('items.destroy', $item->id) }}" method="POST" style="display:inline-block;">
                         @csrf
                         @method('DELETE')
                         <button type="submit" onclick="return confirm('Delete this item?')" class="btn btn-sm btn-danger">
                             🗑 Delete
                         </button>
-                    </form>
+                    </form> </li>
         <li onclick="handleAction('history')">📜 History</li>
     </ul>
 </div>

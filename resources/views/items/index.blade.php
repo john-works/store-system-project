@@ -224,7 +224,7 @@
         } else if (action === "edit") {
             window.location.href = `/items/${id}/edit`;
         } else if (action === "delete") {
-            if (confirm("Are you sure you want to delete this item?")) {
+            if (confirm("Are you sure you want to delete this it?")) {
                 fetch(`/items/${id}`, {
                     method: "DELETE",
                     headers: {

@@ -42,7 +42,7 @@
                 <section class="section">
                     <div class="card">
                         <div class="card-header">
-                            Contracts Details
+                            Disposal Details
                         </div>
 
                         
@@ -65,23 +65,23 @@
                                 </thead>
                                 <tbody>
                                
-                          @forelse($borrowings as $borrowing)
+                          @forelse($disposals as $disposal)
                                 <tr>
-                                   <td>{{ $borrowing->request_date }}</td>
-                                    <td>{{ $borrowing->request_by }}</td>
-                                    <td>{{ $borrowing->item->item_name }}</td>
-                                     <td>{{ $borrowing->status }}</td>
-                                    <td>{{ $borrowing->current_step }}</td>
-                                    <td>{{ $borrowing->current_step_user }}</td>
-                                    <td>{{ $borrowing->current_step_start }}</td>
+                                   <td>{{ $disposal->request_date }}</td>
+                                    <td>{{ $disposal->request_by }}</td>
+                                    <td>{{ $disposal->item->item_name }}</td>
+                                     <td>{{ $disposal->status }}</td>
+                                    <td>{{ $disposal->current_step }}</td>
+                                    <td>{{ $disposal->current_step_user }}</td>
+                                    <td>{{ $disposal->current_step_start }}</td>
                                 
                                     <td>
-                                          <span class="action-icon" data-id="{{ $borrowing->id }}">📄</span>
+                                          <span class="action-icon" data-id="{{ $disposal->id }}">📄</span>
                                     </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="9" class="text-center">No Good found.</td>
+                                    <td colspan="9" class="text-center">No Disposal found.</td>
                                 </tr>
                             @endforelse
                                 </tbody>
@@ -189,9 +189,9 @@
         if (!id) return;
 
         if (action === "view") {
-            window.location.href = `/goods/${id}`;
+            window.location.href = `/disposals/${id}`;
         } else if (action === "edit") {
-            window.location.href = `/goods/${id}/edit`;
+            window.location.href = `/disposals/${id}/edit`;
         } else if (action === "delete") {
             if (confirm("Are you sure you want to delete this user?")) {
                 fetch(`/users/${id}`, {

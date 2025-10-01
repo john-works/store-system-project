@@ -66,7 +66,8 @@ Route::delete('/items/{item}', [ItemController::class, 'destroy'])->name('items.
 
 
 //dispoal in store
-Route::get('/disposals', [DisposalController::class, 'index'])->name('disposals.index');
+Route::get('/disposals/index', [DisposalController::class, 'index'])->name('disposals.index');
+Route::get('/disposals', [DisposalController::class, 'indexs'])->name('disposals.indexs');
 Route::get('/disposals/create', [DisposalController::class, 'create'])->name('disposals.create');
 Route::post('/disposals', [DisposalController::class, 'store'])->name('disposals.store');
 Route::get('/disposals/{disposal}', [DisposalController::class, 'show'])->name('disposals.show');

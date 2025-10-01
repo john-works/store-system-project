@@ -69,7 +69,7 @@
                                                     <div class="form-group">
                                                         <label for="request_summary">Request Summary</label>
                                                         <input type="text" id="request_summary" class="form-control"
-                                                            name="request_summary" prequired>
+                                                            name="request_summary"   placeholder="Enter the reason" required>
                                                     </div>
                                                 </div>
 

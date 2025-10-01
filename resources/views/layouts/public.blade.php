@@ -212,10 +212,10 @@
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                     <a href="{{ route('disposals.index') }}">view</a> 
+                                     <a href="{{ route('disposals.index') }}">My Request</a> 
                                 </li>
                                 <li class="submenu-item ">
-                                    <a href="{{ route('invoices.index') }}">create</a> 
+                                    <a href="{{ route('disposals.indexs') }}">All Items</a> 
                                 </li>
                                
                                 

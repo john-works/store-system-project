@@ -224,8 +224,8 @@
         } else if (action === "edit") {
             window.location.href = `/items/${id}/edit`;
         } else if (action === "delete") {
-            if (confirm("Are you sure you want to delete this user?")) {
-                fetch(`/users/${id}`, {
+            if (confirm("Are you sure you want to delete this item?")) {
+                fetch(`/items/${id}`, {
                     method: "DELETE",
                     headers: {
                         "X-CSRF-TOKEN": "{{ csrf_token() }}",

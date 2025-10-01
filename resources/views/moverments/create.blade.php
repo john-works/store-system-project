@@ -31,10 +31,7 @@
                     </div>
                 </div>
 
-                
-                
-
-
+         
                 <!-- // Basic multiple Column Form section start -->
                 <section id="multiple-column-form">
                     <div class="row match-height">
@@ -64,10 +61,7 @@
                                                     </div>
                                                 </div>
 
-
-                                              
-                                           
-                                             <div class="col-md-6 col-12">
+                                     <div class="col-md-6 col-12">
                                                     <div class="form-group">
                                                         <label for="from_department"> From Department</label>
                                                         <select type="text" id="from_department" class="form-control"
@@ -131,9 +125,6 @@
                                             <input type="hidden" name="request_summary" value="Summary of item needed">
                                             <input type="hidden" name="request_date" value="{{ now()->toDateString() }}">
                                             <input type="hidden" name="request_by" value="{{ auth()->user()->email }}">
-
-
-
 
                                                 <div class="form-group col-12">
                                                    

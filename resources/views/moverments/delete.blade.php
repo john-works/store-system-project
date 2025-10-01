@@ -7,9 +7,9 @@
     <p>Are you sure you want to delete this Moverment?</p>
 
     <ul class="list-group mb-3">
-        <li class="list-group-item"><strong>ID:</strong> {{ $item->id }}</li>
-        <li class="list-group-item"><strong>Name:</strong> {{ $item->item_name }}</li>
-        <li class="list-group-item"><strong>Description:</strong> {{ $item->description }}</li>
+        <li class="list-group-item"><strong>ID:</strong> {{ $moverment->id }}</li>
+        <li class="list-group-item"><strong>Name:</strong> {{ $moverment->item_name }}</li>
+        <li class="list-group-item"><strong>Description:</strong> {{ $moverment->description }}</li>
     </ul>
 
     <form action="{{ route('moverments.destroy', $moverment->id) }}" method="POST">

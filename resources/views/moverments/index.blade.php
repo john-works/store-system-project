@@ -224,16 +224,7 @@
             window.location.href = `/moverments/${id}`;
         } else if (action === "edit") {
             window.location.href = `/moverments/${id}/edit`;
-        } else if (action === "delete") {
-            if (confirm("Are you sure you want to delete this user?")) {
-                fetch(`/users/${id}`, {
-                    method: "DELETE",
-                    headers: {
-                        "X-CSRF-TOKEN": "{{ csrf_token() }}",
-                        "Content-Type": "application/json"
-                    }
-                }).then(() => window.location.reload());
-            }
+        
         } else if (action === "history") {
             alert("History for user ID: " + id);
         }

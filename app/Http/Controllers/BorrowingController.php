@@ -102,6 +102,9 @@ class BorrowingController extends Controller
      */
     public function destroy(Borrowing $borrowing)
     {
-        //
+        // $borrowing->delete();
+
+        // return redirect()->route('borrowings.index')
+        //                  ->with('success', 'Item deleted successfully.');
     }
 }

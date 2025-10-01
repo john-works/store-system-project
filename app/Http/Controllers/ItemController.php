@@ -37,24 +37,22 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-         $request->validate([
-                           
- 'supplier_id'=> 'required',
-'item_name'=> 'required',
-'unit_of_measure'=> 'required',
-'serier_number'=> 'required',
-'asset_tag'=> 'required',
-'date_delivered'=> 'required',
-'expiry_date'=> 'required',
-'qty'=> 'required',
-            
-        ]);
+        $validated = $request->validate([
+        'items.*.item_name' => 'required|string',
+        'items.*.supplier_id' => 'required|integer',
+        'items.*.unit_of_measure' => 'required|string',
+        'items.*.serier_number' => 'required|integer',
+        'items.*.asset_tag' => 'required|integer',
+        'items.*.date_delivered' => 'required|date',
+        'items.*.expiry_date' => 'required|date',
+        'items.*.qty' => 'required|integer',
+    ]);
 
-        // Save item
-        
-        Item::create($request->all());
+    foreach ($request->items as $item) {
+        \App\Models\Item::create($item);
+    }
 
-        return redirect()->route('items.index');
+    return redirect()->route('items.index')->with('success', 'Items added successfully.');
     }
 
     /**

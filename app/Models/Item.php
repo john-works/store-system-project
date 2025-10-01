@@ -41,4 +41,9 @@ public function supplier()
     {
         return $this->hasMany(Moverment::class);
     }
+
+    public function disposal()
+    {
+        return $this->hasMany(Disposal::class);
+    }
 }

@@ -41,11 +41,11 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Edit Borrowing Details</h4>
+                                    <h4 class="card-title">Edit Disposal Details</h4>
                                 </div>
                                 <div class="card-content">
                                     <div class="card-body">
-                                       <form action="{{ route('borrowings.update', $borrowing->id) }}" method="POST">
+                                       <form action="{{ route('disposals.update', $disposal->id) }}" method="POST">
         @csrf
         @method('PUT')     
                                     
@@ -72,22 +72,7 @@
 
       
                                             
-{{-- 
-                                                <div class="col-md-6 col-12">
-                                                    <div class="form-group">
-                                                        <label for="asset_tag">Asset Tag</label>
-                                                        <input type="text" id="asset_tag" class="form-control"
-                                                           value="{{ old('asset_tag', $borrowing->asset_tag) }}" name="asset_tag" required>
-                                                    </div>
-                                                </div>
-                 
-                                                 <div class="col-md-6 col-12">
-                                                    <div class="form-group">
-                                                        <label for="serial_number">Serial Number</label>
-                                                        <input type="text" id="serial_number" class="form-control"
-                                                          value="{{ old('serial_number', $borrowing->serial_number) }}"  name="serial_number" required>
-                                                    </div>
-                                                </div> --}}
+
 
 
 

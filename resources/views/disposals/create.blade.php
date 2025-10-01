@@ -65,7 +65,16 @@
                                                 </div>
 
 
-                                            <input type="hidden" name="request_summary" value="Summary of item needed">
+                                                  <div class="col-md-6 col-12">
+                                                    <div class="form-group">
+                                                        <label for="request_summary">Request Summary</label>
+                                                        <input type="text" id="request_summary" class="form-control"
+                                                            name="request_summary" prequired>
+                                                    </div>
+                                                </div>
+
+
+                                            {{-- <input type="hidden" name="request_summary" value="Summary of item needed"> --}}
                                             <input type="hidden" name="request_date" value="{{ now()->toDateString() }}">
                                             <input type="hidden" name="request_by" value="{{ auth()->user()->email }}">
 

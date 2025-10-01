@@ -16,4 +16,9 @@ class Disposal extends Model
 'serial_number',
 
     ];
+
+     public function item()
+        {
+            return $this->belongsTo(Item::class); // Or HasOne, HasMany, BelongsToMany, etc.
+        }
 }

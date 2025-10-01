@@ -95,7 +95,7 @@ class SupplierController extends Controller
      */
     public function destroy(Supplier $supplier)
     {
-         $supplier = Supplier::findOrFail($id);
+        //  $supplier = Supplier::findOrFail($id);
 
         $supplier->delete();
 

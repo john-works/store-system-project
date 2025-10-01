@@ -87,9 +87,9 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        // $supplier = Supplier::findOrFail($id);
-        // $supplier->delete();
+        $User->delete();
 
-        // return redirect()->route('suppliers.index')->with('success', 'Record deleted successfully.');
+        return redirect()->route('users.index')
+                         ->with('success', 'User deleted successfully.');
     }
 }

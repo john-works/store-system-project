@@ -128,7 +128,13 @@
     <ul>
         <li onclick="handleAction('view')">👁 View</li>
         <li onclick="handleAction('edit')">✏️ Edit</li>
-        <li onclick="handleAction('delete')">🗑 Delete</li>
+        <form action="{{ route('moverments.destroy', $moverment->id) }}" method="POST" style="display:inline-block;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" onclick="return confirm('Delete this moverment?')" class="btn btn-sm btn-danger">
+                            🗑 Delete
+                        </button>
+                    </form>
         <li onclick="handleAction('history')">📜 History</li>
     </ul>
 </div>

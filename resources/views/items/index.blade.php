@@ -99,16 +99,7 @@
                                     <td>{{ $item->qty }}</td>
                                     
                                     <td>
-                                        {{-- <a href="{{ route('items.show', $item->id) }}" class="btn btn-info btn-sm">Show</a>
-                                        <a href="{{ route('items.edit', $item->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                        <form action="{{ route('items.destroy', $item->id) }}" method="POST" style="display:inline;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm"
-                                                onclick="return confirm('Are you sure you want to delete this supplier?')">
-                                                Delete
-                                            </button>
-                                        </form> --}}  <span class="action-icon" data-id="{{ $item->id }}">📄</span>
+                                          <span class="action-icon" data-id="{{ $item->id }}">📄</span>
                                     </td>
                                 </tr>
                             @empty
@@ -133,7 +124,13 @@
     <ul>
         <li onclick="handleAction('view')">👁 View</li>
         <li onclick="handleAction('edit')">✏️ Edit</li>
-        <li onclick="handleAction('delete')">🗑 Delete</li>
+        <form action="{{ route('items.destroy', $item->id) }}" method="POST" style="display:inline-block;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" onclick="return confirm('Delete this item?')" class="btn btn-sm btn-danger">
+                            🗑 Delete
+                        </button>
+                    </form>
         <li onclick="handleAction('history')">📜 History</li>
     </ul>
 </div>
@@ -223,16 +220,7 @@
             window.location.href = `/items/${id}`;
         } else if (action === "edit") {
             window.location.href = `/items/${id}/edit`;
-        } else if (action === "delete") {
-            if (confirm("Are you sure you want to delete this it?")) {
-                fetch(`/items/${id}`, {
-                    method: "DELETE",
-                    headers: {
-                        "X-CSRF-TOKEN": "{{ csrf_token() }}",
-                        "Content-Type": "application/json"
-                    }
-                }).then(() => window.location.reload());
-            }
+        
         } else if (action === "history") {
             alert("History for user ID: " + id);
         }

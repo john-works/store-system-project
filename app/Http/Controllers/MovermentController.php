@@ -107,6 +107,9 @@ class MovermentController extends Controller
      */
     public function destroy(Moverment $moverment)
     {
-        //
+         $moverment->delete();
+
+        return redirect()->route('moverments.index')
+                         ->with('success', 'Item deleted successfully.');
     }
 }

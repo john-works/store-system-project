@@ -110,17 +110,12 @@ class ServiceController extends Controller
      */
     public function destroy(service $service)
     {
-        //
+         $service->delete();
+
+        return redirect()->route('services.index')
+                         ->with('success', 'Item deleted successfully.');
     }
 
 
 
-    //   public function all()
-    // {
-         
-    //       // Eager load supplier to avoid N+1 queries
-    //     $services = service::with('supplier')->get();
-    //     return view('services.all', compact('services'));
-
-    // }
 }

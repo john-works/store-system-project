@@ -95,7 +95,7 @@
                                    <td>{{ $moverment->request_by }}</td>
                                     <td>{{ $moverment->item->item_name }}</td>
                                     <td>{{ $moverment->item->asset_tag }}</td>
-                                      <td>{{ $moverment->item->serier_number }}</td>
+                                    <td>{{ $moverment->item->serier_number }}</td>
                                     <td>{{ $moverment->user->name }}</td>
                                     {{-- <td>{{ $moverment->from_user }}</td> --}}
                                     <td>{{ $moverment->supplier_id }}</td>
@@ -128,13 +128,7 @@
     <ul>
         <li onclick="handleAction('view')">👁 View</li>
         <li onclick="handleAction('edit')">✏️ Edit</li>
-        <li onclick="handleAction('edit')"> <form action="{{ route('moverments.destroy', $moverment->id) }}" method="POST" style="display:inline-block;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" onclick="return confirm('Delete this moverment?')" class="btn btn-sm btn-danger">
-                            🗑 Delete
-                        </button>
-                    </form></li>
+       
         <li onclick="handleAction('history')">📜 History</li>
     </ul>
 </div>
@@ -221,9 +215,9 @@
         if (!id) return;
 
         if (action === "view") {
-            window.location.href = `/moverments/${id}`;
+            window.location.href = `/moverment/${id}`;
         } else if (action === "edit") {
-            window.location.href = `/moverments/${id}/edit`;
+            window.location.href = `/moverment/${id}/edit`;
         
         } else if (action === "history") {
             alert("History for user ID: " + id);

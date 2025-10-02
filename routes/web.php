@@ -77,8 +77,8 @@ Route::delete('/disposals/{disposal}', [DisposalController::class, 'destroy'])->
 
 
 //services
-Route::get('/services/index', [ServiceController::class, 'index'])->name('services.index');
-Route::get('/services', [ServiceController::class, 'indexs'])->name('services.indexs');
+Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
+Route::get('/services/indexs', [ServiceController::class, 'indexs'])->name('services.indexs');
 Route::get('/services/create', [ServiceController::class, 'create'])->name('services.create');
 Route::post('/services', [ServiceController::class, 'store'])->name('services.store');
 Route::get('/services/{service}', [ServiceController::class, 'show'])->name('services.show');
@@ -99,8 +99,8 @@ Route::delete('/goods/{good}', [GoodController::class, 'destroy'])->name('goods.
 
 
 //borrowings
-Route::get('/borrowings/index', [BorrowingController::class, 'index'])->name('borrowings.index');
-Route::get('/borrowings', [BorrowingController::class, 'indexs'])->name('borrowings.indexs');
+Route::get('/borrowings', [BorrowingController::class, 'index'])->name('borrowings.index');
+Route::get('/borrowings/indexs', [BorrowingController::class, 'indexs'])->name('borrowings.indexs');
 Route::get('/borrowings/create', [BorrowingController::class, 'create'])->name('borrowings.create');
 Route::post('/borrowings', [BorrowingController::class, 'store'])->name('borrowings.store');
 Route::get('/borrowings/{borrowing}', [BorrowingController::class, 'show'])->name('borrowings.show');
@@ -110,8 +110,8 @@ Route::delete('/borrowings/{borrowing}', [BorrowingController::class, 'destroy']
 
 
 //moverments
-Route::get('/moverments/index', [MovermentController::class, 'index'])->name('moverments.index');
-Route::get('/moverments', [MovermentController::class, 'indexs'])->name('moverments.indexs');
+Route::get('/moverments', [MovermentController::class, 'index'])->name('moverments.index');
+Route::get('/moverments/indexs', [MovermentController::class, 'indexs'])->name('moverments.indexs');
 Route::get('/moverments/create', [MovermentController::class, 'create'])->name('moverments.create');
 Route::post('/moverments', [MovermentController::class, 'store'])->name('moverments.store');
 Route::get('/moverments/{moverment}', [MovermentController::class, 'show'])->name('moverments.show');

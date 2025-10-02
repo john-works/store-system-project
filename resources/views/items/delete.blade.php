@@ -9,7 +9,16 @@
     <ul class="list-group mb-3">
         <li class="list-group-item"><strong>ID:</strong> {{ $item->id }}</li>
         <li class="list-group-item"><strong>Name:</strong> {{ $item->item_name }}</li>
-        <li class="list-group-item"><strong>Description:</strong> {{ $item->description }}</li>
+        <li class="list-group-item"><strong>Description:</strong> {{ $item->supplier->supplier_name }}</li>
+      <li class="list-group-item"><strong>ID:</strong> {{ $item->unit_of_measure }}</li>
+        <li class="list-group-item"><strong>Name:</strong> {{ $item->serier_number }}</li>
+        <li class="list-group-item"><strong>Description:</strong> {{ $item->asset_tag }}</li>
+         <li class="list-group-item"><strong>ID:</strong> {{ $item->date_delivered }}</li>
+        <li class="list-group-item"><strong>Name:</strong> {{ $item->expiry_date }}</li>
+        <li class="list-group-item"><strong>Description:</strong> {{ $item->qty }}</li>
+      
+
+
     </ul>
 
     <form action="{{ route('items.destroy', $item->id) }}" method="POST">

@@ -35,82 +35,53 @@
                     <i class="bi bi-justify fs-3"></i>
                 </a>
             </header>
-			
-			
-			
-			
-
+	
             <div class="page-heading">
-                <div class="page-title">
-                    <div class="row">
-                        <div class="col-12 col-md-6 order-md-1 order-last">
-                            
-                        </div>
-                        <div class="col-12 col-md-6 order-md-2 order-first">
-                            <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">DataTable</li>
-                                </ol>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-				
-				
-				
-				
-				
+             
+			
                 <section class="section">
                     <div class="card">
                         <div class="card-header">
-                            Simple Datatable
+                            Contracts Details
                         </div>
-                        <div class="card-footer text-end">
-                                <a href="{{ route('contracts.create') }}" class="btn btn-secondary">Add New Contratct Request</a>
-                            </div>
+
+                        
                         <div class="card-body">
                             <table class="table table-striped" id="table1">
                                 <thead>
                                     <tr>
-                                        <th>Id</th>
-                                        <th>Supplier Name</th>
-                                        <th>Procurement Type</th>
-                                        <th>Amount Cost</th>
-                                        <th> Procument Subject</th>
-                                        <th> Termination Clauses</th>
+                                        <th>Request Date</th>
+                                        <th>Request By</th>
+                                        <th>Request Item</th>
                                         <th>Status</th>
+                                        <th>Current Step</th>
+                                        <th>Current Step User</th>
+                                         <th>Current Step Start</th>
+                                        
+                                        
+                                        <th>Action</th>
+                                       
                                     </tr>
                                 </thead>
                                 <tbody>
-                                 
+                               
                           @forelse($contracts as $contract)
                                 <tr>
-                                                                       
-    
-                                   <td>{{ $contract->id }}</td>
-                                <td>{{ $contract->supplier->supplier_name }}</td>
-                                    <td>{{ $contract->procurement_type }}</td>
-                                    <td>{{ $contract->amount_cost }}</td>
-                                    <td>{{ $contract->procument_subject }}</td>
-                                    <td>{{ $contract->termination_clauses }}</td>
-                                    
+                                   <td>{{ $contract->procurement_type }}</td>
+                                    <td>{{ $contract->request_by }}</td>
+                                    <td>{{ $contract->request_item }}</td>
+                                     <td>{{ $contract->status }}</td>
+                                    <td>{{ $contract->current_step }}</td>
+                                    <td>{{ $contract->current_step_user }}</td>
+                                    <td>{{ $contract->current_step_start }}</td>
+                                
                                     <td>
-                                        {{-- <a href="{{ route('contracts.show', $contract->id) }}" class="btn btn-info btn-sm">Show</a>
-                                        <a href="{{ route('contracts.edit', $contract->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                        <form action="{{ route('contracts.destroy', $contract->id) }}" method="POST" style="display:inline;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm"
-                                                onclick="return confirm('Are you sure you want to delete this supplier?')">
-                                                Delete
-                                            </button>
-                                        </form> --}} <span class="action-icon" data-id="{{ $contract->id }}">📄</span>
+                                          <span class="action-icon" data-id="{{ $contract->id }}">📄</span>
                                     </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="9" class="text-center">No suppliers found.</td>
+                                    <td colspan="9" class="text-center">No Good found.</td>
                                 </tr>
                             @endforelse
                                 </tbody>
@@ -218,9 +189,9 @@
         if (!id) return;
 
         if (action === "view") {
-            window.location.href = `/contracts/${id}`;
+            window.location.href = `/goods/${id}`;
         } else if (action === "edit") {
-            window.location.href = `/contracts/${id}/edit`;
+            window.location.href = `/goods/${id}/edit`;
         } else if (action === "delete") {
             if (confirm("Are you sure you want to delete this user?")) {
                 fetch(`/users/${id}`, {

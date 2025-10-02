@@ -67,7 +67,7 @@
                                
                           @forelse($contracts as $contract)
                                 <tr>
-                                   <td>{{ $contract->request_date }}</td>
+                                   <td>{{ $contract->procurement_type }}</td>
                                     <td>{{ $contract->request_by }}</td>
                                     <td>{{ $contract->request_item }}</td>
                                      <td>{{ $contract->status }}</td>

@@ -105,7 +105,7 @@
                                 </li>
 
                                 <li class="submenu-item ">
-                                    <a href="{{ route('contracts.indexs') }}">All</a>
+                                    <a href="{{ route('contracts.info') }}">All</a>
                                 </li>
                                
                                 

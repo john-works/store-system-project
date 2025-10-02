@@ -1,112 +1,64 @@
-
 @extends('layouts.public')
 
 @section('content')
 
 
-<!DOCTYPE html>
-<html lang="en">
+    <header class="mb-3">
+        <a href="#" class="burger-btn d-block d-xl-none">
+            <i class="bi bi-justify fs-3"></i>
+        </a>
+    </header>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DataTable </title>
+    <div class="page-heading">
+        <section class="section">
+            <div class="card">
+                <div class="card-header">
+                    User Information
+                </div>
 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/bootstrap.css">
+                <div class="card-footer text-end">
+                    <a href="{{ route('users.create') }}" class="btn btn-secondary">Add New User</a>
+                </div>
 
-    <link rel="stylesheet" href="assets/vendors/simple-datatables/style.css">
-
-    <link rel="stylesheet" href="assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
-    <link rel="stylesheet" href="assets/vendors/bootstrap-icons/bootstrap-icons.css">
-    <link rel="stylesheet" href="assets/css/app.css">
-    <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon">
-</head>
-
-<body>
-    <div id="app">
-        
-
-
-        <div id="main">
-            <header class="mb-3">
-                <a href="#" class="burger-btn d-block d-xl-none">
-                    <i class="bi bi-justify fs-3"></i>
-                </a>
-            </header>
-		
-
-            <div class="page-heading">
-                
-                <section class="section">
-                    <div class="card">
-                        <div class="card-header">
-                            User Information
-                        </div>
-
-                        <div class="card-footer text-end">
-                                <a href="{{ route('users.create') }}" class="btn btn-secondary">Add New User</a>
-                            </div>
-                        <div class="card-body">
-                            <table class="table table-striped" id="table1">
-                                <thead>
-                                    <tr>
-                                        <th>Id</th>
-                                        <th>User Name</th>
-                                        <th>Phone</th>
-                                        <th>Email</th>
-                                        <th>Role</th>
-                                        <th>Department</th>
-                                        
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                
-
-                          @forelse($users as $user)
-                                <tr>
-                                   <td>{{ $user->id }}</td>
-                                    <td>{{ $user->name }}</td>
-                                    <td>{{ $user->phone }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td>{{ $user->role }}</td>
-                                    <td>{{ $user->department }}</td>
-                                    {{-- <td>{{ $item->qty }}</td> --}}
-                                    
-                                    <td>
-                                        {{-- <a href="{{ route('users.show', $user->id) }}" class="btn btn-info btn-sm">Show</a>
-                                        <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                        <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display:inline;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm"
-                                                onclick="return confirm('Are you sure you want to delete this supplier?')">
-                                                Delete
-                                            </button>
-                                        </form> --}}  <span class="action-icon" data-id="{{ $user->id }}">📄</span>
-                                    </td>
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="9" class="text-center">No Info found.</td>
-                                </tr>
-                            @endforelse
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                </section>
+                <div class="card-body">
+                    <table class="table table-striped" id="table1">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>User Name</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Department</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @forelse($users as $user)
+                            <tr>
+                                <td>{{ $user->id }}</td>
+                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->phone }}</td>
+                                <td>{{ $user->email }}</td>
+                                <td>{{ $user->role }}</td>
+                                <td>{{ $user->department }}</td>
+                                <td>
+                                    <span class="action-icon" data-id="{{ $user->id }}">📄</span>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="7" class="text-center">No Info found.</td>
+                            </tr>
+                        @endforelse
+                        </tbody>
+                    </table>
+                </div>
             </div>
-
-           
-        </div>
+        </section>
     </div>
+</div>
 
-    
 <!-- Popup Menu -->
 <div class="popup-menu" id="popupMenu">
     <ul>
@@ -123,7 +75,6 @@
         font-size: 18px;
         color: #007bff;
     }
-
     .popup-menu {
         display: none;
         position: absolute;
@@ -135,65 +86,37 @@
         min-width: 110px;
         font-size: 13px;
     }
-
-    .popup-menu ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-    }
-
-    .popup-menu ul li {
-        padding: 6px 8px;
-        cursor: pointer;
-        border-bottom: 1px solid #eee;
-    }
-
-    .popup-menu ul li:last-child {
-        border-bottom: none;
-    }
-
-    .popup-menu ul li:hover {
-        background: #f5f5f5;
-    }
+    .popup-menu ul { list-style: none; margin: 0; padding: 0; }
+    .popup-menu ul li { padding: 6px 8px; cursor: pointer; border-bottom: 1px solid #eee; }
+    .popup-menu ul li:last-child { border-bottom: none; }
+    .popup-menu ul li:hover { background: #f5f5f5; }
 </style>
 
-<script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-<script src="assets/js/bootstrap.bundle.min.js"></script>
-<script src="assets/vendors/simple-datatables/simple-datatables.js"></script>
 <script>
-    // Simple Datatable
-    let table1 = document.querySelector('#table1');
-    let dataTable = new simpleDatatables.DataTable(table1);
-
     const popupMenu = document.getElementById("popupMenu");
     let currentIcon = null;
 
-    // Show popup when clicking file icon
     document.querySelectorAll(".action-icon").forEach(icon => {
         icon.addEventListener("click", (event) => {
             event.stopPropagation();
             currentIcon = event.target;
 
-            popupMenu.style.display = "block";
-
+            popupMenu.style.display = "block"; // show before measuring
             const rect = currentIcon.getBoundingClientRect();
-            const popupHeight = popupMenu.offsetHeight;
-            const popupWidth = popupMenu.offsetWidth;
 
-            const left = rect.right + window.scrollX - popupWidth;
-            const top = rect.top + window.scrollY - popupHeight - 12;
+            const left = rect.left + window.scrollX;
+            const top = rect.bottom + window.scrollY + 5;
 
             popupMenu.style.left = left + "px";
             popupMenu.style.top = top + "px";
         });
     });
 
-    // Hide popup when clicking outside
+    // Hide popup on outside click
     document.addEventListener("click", () => {
         popupMenu.style.display = "none";
     });
 
-    // Action handler
     function handleAction(action) {
         let id = currentIcon?.getAttribute("data-id");
         if (!id) return;
@@ -219,17 +142,5 @@
         popupMenu.style.display = "none";
     }
 </script>
-    <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
 
-    <script src="assets/vendors/simple-datatables/simple-datatables.js"></script>
-    <script>
-        // Simple Datatable
-        let table1 = document.querySelector('#table1');
-        let dataTable = new simpleDatatables.DataTable(table1);
-    </script>
-
-    <script src="assets/js/main.js"></script>
-</body>
-
-</html>
+@endsection

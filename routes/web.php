@@ -43,8 +43,8 @@ Route::put('/invoices/{invoice}', [InvoiceController::class, 'update'])->name('i
 Route::delete('/invoices/{invoice}', [InvoiceController::class, 'destroy'])->name('invoices.destroy');
 
 //contracts
-Route::get('/contracts/index', [ContractController::class, 'index'])->name('contracts.index');
-Route::get('/contracts', [ContractController::class, 'indexs'])->name('contracts.indexs');
+Route::get('/contracts', [ContractController::class, 'index'])->name('contracts.index');
+Route::get('/contracts/info', [ContractController::class, 'info'])->name('contracts.info');
 Route::get('/contracts/create', [ContractController::class, 'create'])->name('contracts.create');
 Route::post('/contracts', [ContractController::class, 'store'])->name('contracts.store');
 Route::get('/contracts/{contract}', [ContractController::class, 'show'])->name('contracts.show');
@@ -66,8 +66,8 @@ Route::delete('/items/{item}', [ItemController::class, 'destroy'])->name('items.
 
 
 //dispoal in store
-Route::get('/disposals/index', [DisposalController::class, 'index'])->name('disposals.index');
-Route::get('/disposals', [DisposalController::class, 'indexs'])->name('disposals.indexs');
+Route::get('/disposals', [DisposalController::class, 'index'])->name('disposals.index');
+Route::get('/disposals/indexs', [DisposalController::class, 'indexs'])->name('disposals.indexs');
 Route::get('/disposals/create', [DisposalController::class, 'create'])->name('disposals.create');
 Route::post('/disposals', [DisposalController::class, 'store'])->name('disposals.store');
 Route::get('/disposals/{disposal}', [DisposalController::class, 'show'])->name('disposals.show');
@@ -87,8 +87,8 @@ Route::put('/services/{service}', [ServiceController::class, 'update'])->name('s
 Route::delete('/services/{service}', [ServiceController::class, 'destroy'])->name('services.destroy');
 
 //goods
-Route::get('/goods/index', [GoodController::class, 'index'])->name('goods.index');
-Route::get('/goods', [GoodController::class, 'indexs'])->name('goods.indexs');
+Route::get('/goods', [GoodController::class, 'index'])->name('goods.index');
+Route::get('/goods/indexs', [GoodController::class, 'indexs'])->name('goods.indexs');
 Route::get('/goods/create', [GoodController::class, 'create'])->name('goods.create');
 Route::post('/goods', [GoodController::class, 'store'])->name('goods.store');
 Route::get('/goods/{good}', [GoodController::class, 'show'])->name('goods.show');

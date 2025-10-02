@@ -21,10 +21,10 @@ class ContractController extends Controller
     }
 
 
-    public function indexs()
+    public function info()
 {
     $contracts = Contract::with('supplier')->get();
-    return view('contracts.indexs', compact('contracts'));
+    return view('contracts.info', compact('contracts'));
 }
 
     /**

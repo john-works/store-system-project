@@ -104,15 +104,7 @@
     <ul>
         <li onclick="handleAction('view')">👁 View</li>
         <li onclick="handleAction('edit')">✏️ Edit</li>
-        <li onclick="handleAction('delete')"><form action="{{ route('contracts.destroy', $contract->id) }}" method="POST" class="d-inline">
-                        @csrf
-                        @method('DELETE')
-
-                        <button type="submit" class="btn btn-danger me-2">
-                            <i class="bi bi-trash3"></i> Yes, Delete Permanently
-                        </button>
-                        
-                    </form></li>
+        <li onclick="handleAction('delete')">📜 Delete</li>
         <li onclick="handleAction('history')">📜 History</li>
     </ul>
 </div>
@@ -194,17 +186,17 @@
     });
 
     // Action handler
-    function handleAction(action) {
+    function handleAction(action,url) {
         let id = currentIcon?.getAttribute("data-id");
         if (!id) return;
 
         if (action === "view") {
-            window.location.href = `/goods/${id}`;
+            window.location.href = `/contracts/${id}`;
         } else if (action === "edit") {
-            window.location.href = `/goods/${id}/edit`;
+            window.location.href = `/contracts/${id}/edit`;
         } else if (action === "delete") {
             if (confirm("Are you sure you want to delete this user?")) {
-                fetch(`/users/${id}`, {
+                fetch(`/contracts/${id}`, {
                     method: "DELETE",
                     headers: {
                         "X-CSRF-TOKEN": "{{ csrf_token() }}",

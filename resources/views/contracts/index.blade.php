@@ -44,7 +44,9 @@
                         <div class="card-header">
                             Contracts Details
                         </div>
-
+ <div class="card-footer text-end">
+                                <a href="{{ route('contracts.create') }}" class="btn btn-secondary">Add New Borrowing Request</a>
+                            </div>
                         
                         <div class="card-body">
                             <table class="table table-striped" id="table1">
@@ -102,7 +104,15 @@
     <ul>
         <li onclick="handleAction('view')">👁 View</li>
         <li onclick="handleAction('edit')">✏️ Edit</li>
-        <li onclick="handleAction('delete')">🗑 Delete</li>
+        <li onclick="handleAction('delete')"><form action="{{ route('contracts.destroy', $contract->id) }}" method="POST" class="d-inline">
+                        @csrf
+                        @method('DELETE')
+
+                        <button type="submit" class="btn btn-danger me-2">
+                            <i class="bi bi-trash3"></i> Yes, Delete Permanently
+                        </button>
+                        
+                    </form></li>
         <li onclick="handleAction('history')">📜 History</li>
     </ul>
 </div>

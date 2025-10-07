@@ -52,15 +52,14 @@
                             <table class="table table-striped" id="table1">
                                 <thead>
                                     <tr>
-                                        <th>Request Date</th>
-                                        <th>Request By</th>
-                                        <th>Request Item</th>
-                                        <th>Status</th>
-                                        <th>Current Step</th>
-                                        <th>Current Step User</th>
-                                         <th>Current Step Start</th>
-                                        
-                                        
+                                        <th>Supplier Name</th>
+                                        <th>Procurement Type</th>
+                                        <th>Amount Cost</th>
+                                        <th>Signing Date</th>
+                                        <th>Start Date</th>
+                                        <th>End Date</th>
+                                         {{-- <th>Current Step Start</th> --}}
+                                       
                                         <th>Action</th>
                                        
                                     </tr>
@@ -69,12 +68,13 @@
                                
                           @forelse($contracts as $contract)
                                 <tr>
-                                   <td>{{ $contract->procurement_type }}</td>
-                                    <td>{{ $contract->request_by }}</td>
-                                    <td>{{ $contract->request_item }}</td>
-                                     <td>{{ $contract->status }}</td>
-                                    <td>{{ $contract->current_step }}</td>
-                                    <td>{{ $contract->current_step_user }}</td>
+
+                                   <td>{{ $contract->supplier->supplier_name }}</td>
+                                    <td>{{ $contract->procurement_type }}</td>
+                                    <td>{{ $contract->amount_cost }}</td>
+                                     <td>{{ $contract->signing_date }}</td>
+                                    <td>{{ $contract->start_date }}</td>
+                                    <td>{{ $contract->end_date }}</td>
                                     <td>{{ $contract->current_step_start }}</td>
                                 
                                     <td>

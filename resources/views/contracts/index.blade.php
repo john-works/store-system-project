@@ -1,9 +1,9 @@
 
-@extends('layouts.public')
+@extends('layouts.app')
 
 @section('content')
 
-
+{{-- 
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,12 +22,12 @@
     <link rel="stylesheet" href="assets/vendors/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="assets/css/app.css">
     <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon">
-</head>
+</head> --}}
 
-<body>
+{{-- <body>
     <div id="app">
         
-
+ --}}
 
         <div id="main">
             <header class="mb-3">
@@ -35,10 +35,9 @@
                     <i class="bi bi-justify fs-3"></i>
                 </a>
             </header>
-	
+        
             <div class="page-heading">
-             
-			
+          
                 <section class="section">
                     <div class="card">
                         <div class="card-header">

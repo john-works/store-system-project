@@ -1,4 +1,4 @@
-@extends('layouts.public')
+@extends('layouts.app')
 
 @section('content')
 
@@ -102,13 +102,13 @@
                                                 </div>
                                                 
 
-                                                <div class="col-md-6 col-12">
+                                                {{-- <div class="col-md-6 col-12">
                                                     <div class="form-group">
                                                         <label for="received_amount">Received Amount</label>
                                                         <input type="number" id="received_amount" class="form-control"
                                                          value="{{ old('received_amount', $contract->received_amount) }}"   name="received_amount" required>
                                                     </div>
-                                                </div>
+                                                </div> --}}
                  
                                                  <div class="col-md-6 col-12">
                                                     <div class="form-group">

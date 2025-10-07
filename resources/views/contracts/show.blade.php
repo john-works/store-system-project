@@ -1,4 +1,4 @@
-@extends('layouts.public')
+@extends('layouts.app')
 
 @section('content')
 
@@ -53,7 +53,7 @@
                                     <div class="col-md-6"><p><strong>Signing Date:</strong> {{ \Carbon\Carbon::parse($contract->signing_date)->format('M d, Y') }}</p></div>
                                     <div class="col-md-6"><p><strong>Start Date:</strong> {{ \Carbon\Carbon::parse($contract->start_date)->format('M d, Y') }}</p></div>
                                     <div class="col-md-6"><p><strong>End Date:</strong> {{ \Carbon\Carbon::parse($contract->end_date)->format('M d, Y') }}</p></div>
-                                    <div class="col-md-6"><p><strong>Received Amount:</strong> {{ number_format($contract->received_amount, 2) }}</p></div>
+                                    {{-- <div class="col-md-6"><p><strong>Received Amount:</strong> {{ number_format($contract->received_amount) }}</p></div> --}}
                                     <div class="col-md-6"><p><strong>Procurement Subject:</strong> {{ $contract->procument_subject }}</p></div>
                                     <div class="col-md-12"><p><strong>Termination Clauses:</strong> {{ $contract->termination_clauses }}</p></div>
                                 </div>

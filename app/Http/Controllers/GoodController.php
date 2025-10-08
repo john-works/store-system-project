@@ -110,6 +110,9 @@ class GoodController extends Controller
      */
     public function destroy(Good $good)
     {
-        //
+          $good->delete();
+
+        return redirect()->route('goods.index')
+                         ->with('success', 'Item deleted successfully.');
     }
 }

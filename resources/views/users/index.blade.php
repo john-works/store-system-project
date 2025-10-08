@@ -1,40 +1,87 @@
-@extends('layouts.public')
+
+@extends('layouts.app')
 
 @section('content')
 
 
-    <header class="mb-3">
-        <a href="#" class="burger-btn d-block d-xl-none">
-            <i class="bi bi-justify fs-3"></i>
-        </a>
-    </header>
 
-    <div class="page-heading">
-        <section class="section">
-            <div class="card">
-                <div class="card-header">
-                    User Information
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+
+    <link rel="stylesheet" href="assets/vendors/simple-datatables/style.css">
+
+    <link rel="stylesheet" href="assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" href="assets/vendors/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon">
+
+
+<body>
+    <div id="app">
+        
+
+
+        <div id="main">
+            <header class="mb-3">
+                <a href="#" class="burger-btn d-block d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
+            </header>
+			
+			
+			
+			
+
+            <div class="page-heading">
+                <div class="page-title">
+                    <div class="row">
+                        <div class="col-12 col-md-6 order-md-1 order-last">
+                            <h3>DataTable</h3>
+                            <p class="text-subtitle text-muted">For user to check they list</p>
+                        </div>
+                        <div class="col-12 col-md-6 order-md-2 order-first">
+                            <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">DataTable</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
                 </div>
+				
+				
+				
+				
+				
+                <section class="section">
+                    <div class="card">
+                        <div class="card-header">
+                            Simple Datatable
+                        </div>
 
-                <div class="card-footer text-end">
-                    <a href="{{ route('users.create') }}" class="btn btn-secondary">Add New User</a>
-                </div>
-
-                <div class="card-body">
-                    <table class="table table-striped" id="table1">
-                        <thead>
-                            <tr>
-                                <th>Id</th>
+                        <div class="card-footer text-end">
+                                <a href="{{ route('users.create') }}" class="btn btn-secondary">Add New User </a>
+                            </div>
+                        <div class="card-body">
+                            <table class="table table-striped" id="table1">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
                                 <th>User Name</th>
                                 <th>Phone</th>
                                 <th>Email</th>
                                 <th>Role</th>
                                 <th>Department</th>
                                 <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        @forelse($users as $user)
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                 
+                                    
+                                    @forelse($users as $user)
                             <tr>
                                 <td>{{ $user->id }}</td>
                                 <td>{{ $user->name }}</td>
@@ -42,23 +89,28 @@
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->role }}</td>
                                 <td>{{ $user->department }}</td>
-                                <td>
-                                    <span class="action-icon" data-id="{{ $user->id }}">📄</span>
-                                </td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td colspan="7" class="text-center">No Info found.</td>
-                            </tr>
-                        @endforelse
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
-    </div>
-</div>
+                                    <td>
+                                         <span class="action-icon" data-id="{{ $user->id }}">📄</span>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="9" class="text-center">No User found.</td>
+                                </tr>
+                            @endforelse
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
 
+                </section>
+            </div>
+
+           
+        </div>
+    </div>
+
+    
 <!-- Popup Menu -->
 <div class="popup-menu" id="popupMenu">
     <ul>
@@ -75,6 +127,7 @@
         font-size: 18px;
         color: #007bff;
     }
+
     .popup-menu {
         display: none;
         position: absolute;
@@ -86,37 +139,65 @@
         min-width: 110px;
         font-size: 13px;
     }
-    .popup-menu ul { list-style: none; margin: 0; padding: 0; }
-    .popup-menu ul li { padding: 6px 8px; cursor: pointer; border-bottom: 1px solid #eee; }
-    .popup-menu ul li:last-child { border-bottom: none; }
-    .popup-menu ul li:hover { background: #f5f5f5; }
+
+    .popup-menu ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .popup-menu ul li {
+        padding: 6px 8px;
+        cursor: pointer;
+        border-bottom: 1px solid #eee;
+    }
+
+    .popup-menu ul li:last-child {
+        border-bottom: none;
+    }
+
+    .popup-menu ul li:hover {
+        background: #f5f5f5;
+    }
 </style>
 
+<script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendors/simple-datatables/simple-datatables.js"></script>
 <script>
+    // Simple Datatable
+    let table1 = document.querySelector('#table1');
+    let dataTable = new simpleDatatables.DataTable(table1);
+
     const popupMenu = document.getElementById("popupMenu");
     let currentIcon = null;
 
+    // Show popup when clicking file icon
     document.querySelectorAll(".action-icon").forEach(icon => {
         icon.addEventListener("click", (event) => {
             event.stopPropagation();
             currentIcon = event.target;
 
-            popupMenu.style.display = "block"; // show before measuring
-            const rect = currentIcon.getBoundingClientRect();
+            popupMenu.style.display = "block";
 
-            const left = rect.left + window.scrollX;
-            const top = rect.bottom + window.scrollY + 5;
+            const rect = currentIcon.getBoundingClientRect();
+            const popupHeight = popupMenu.offsetHeight;
+            const popupWidth = popupMenu.offsetWidth;
+
+            const left = rect.right + window.scrollX - popupWidth;
+            const top = rect.top + window.scrollY - popupHeight - 12;
 
             popupMenu.style.left = left + "px";
             popupMenu.style.top = top + "px";
         });
     });
 
-    // Hide popup on outside click
+    // Hide popup when clicking outside
     document.addEventListener("click", () => {
         popupMenu.style.display = "none";
     });
 
+    // Action handler
     function handleAction(action) {
         let id = currentIcon?.getAttribute("data-id");
         if (!id) return;
@@ -142,5 +223,17 @@
         popupMenu.style.display = "none";
     }
 </script>
+    <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
 
-@endsection
+    <script src="assets/vendors/simple-datatables/simple-datatables.js"></script>
+    <script>
+        // Simple Datatable
+        let table1 = document.querySelector('#table1');
+        let dataTable = new simpleDatatables.DataTable(table1);
+    </script>
+
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

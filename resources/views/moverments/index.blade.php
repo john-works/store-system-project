@@ -1,16 +1,8 @@
 
-@extends('layouts.public')
+@extends('layouts.app')
 
 @section('content')
 
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DataTable </title>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -22,9 +14,7 @@
     <link rel="stylesheet" href="assets/vendors/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="assets/css/app.css">
     <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon">
-</head>
 
-<body>
     <div id="app">
         
 
@@ -35,46 +25,23 @@
                     <i class="bi bi-justify fs-3"></i>
                 </a>
             </header>
-			
-			
-			
-			
-
+        
             <div class="page-heading">
-                <div class="page-title">
-                    <div class="row">
-                        <div class="col-12 col-md-6 order-md-1 order-last">
-                            <h3>DataTable</h3>
-                            <p class="text-subtitle text-muted">For user to check they list</p>
-                        </div>
-                        <div class="col-12 col-md-6 order-md-2 order-first">
-                            <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">DataTable</li>
-                                </ol>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-				
-				
-				
-				
-				
+          
                 <section class="section">
                     <div class="card">
                         <div class="card-header">
-                            Simple Datatable
+                            Item Details
                         </div>
-                        <div class="card-footer text-end">
-                                <a href="{{ route('moverments.create') }}" class="btn btn-secondary">Add New Moverment Request</a>
+ <div class="card-footer text-end">
+                                <a href="{{ route('moverments.create') }}" class="btn btn-secondary">Add New Item Details</a>
                             </div>
+                        
                         <div class="card-body">
                             <table class="table table-striped" id="table1">
                                 <thead>
                                     <tr>
-                                        <th>Id</th>
+                                       <th>Id</th>
                                         <th>Request Date</th>
                                         <th>Request By</th>
                                         <th>Item Name</th>
@@ -84,11 +51,11 @@
                                         <th>To user</th>
                                         {{-- <th>Invoice date</th> --}}
                                         <th>Status</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                              
-                          @forelse($moverments as $moverment)
+                           @forelse($moverments as $moverment)
                                 <tr>
                                    <td>{{ $moverment->id }}</td>
                                    <td>{{ $moverment->request_date }}</td>
@@ -97,17 +64,18 @@
                                     <td>{{ $moverment->item->asset_tag }}</td>
                                     <td>{{ $moverment->item->serier_number }}</td>
                                     <td>{{ $moverment->user->name }}</td>
+                                    <td></td>
                                     {{-- <td>{{ $moverment->from_user }}</td> --}}
                                     <td>{{ $moverment->supplier_id }}</td>
                                     {{-- <td>{{ $moverment->invoice_date }}</td> --}}
                                     
                                     <td>
-                                       <span class="action-icon" data-id="{{ $moverment->id }}">📄</span>
+                                          <span class="action-icon" data-id="{{ $moverment->id }}">📄</span>
                                     </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="9" class="text-center">No info found.</td>
+                                    <td colspan="9" class="text-center">No Moverment found.</td>
                                 </tr>
                             @endforelse
                                 </tbody>
@@ -128,7 +96,7 @@
     <ul>
         <li onclick="handleAction('view')">👁 View</li>
         <li onclick="handleAction('edit')">✏️ Edit</li>
-       
+        <li onclick="handleAction('delete')">📜 Delete</li>
         <li onclick="handleAction('history')">📜 History</li>
     </ul>
 </div>
@@ -210,15 +178,24 @@
     });
 
     // Action handler
-    function handleAction(action) {
+    function handleAction(action,url) {
         let id = currentIcon?.getAttribute("data-id");
         if (!id) return;
 
         if (action === "view") {
-            window.location.href = `/moverment/${id}`;
+            window.location.href = `/moverments/${id}`;
         } else if (action === "edit") {
-            window.location.href = `/moverment/${id}/edit`;
-        
+            window.location.href = `/moverments/${id}/edit`;
+        } else if (action === "delete") {
+            if (confirm("Are you sure you want to delete this A moverment?")) {
+                fetch(`/moverments/${id}`, {
+                    method: "DELETE",
+                    headers: {
+                        "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                        "Content-Type": "application/json"
+                    }
+                }).then(() => window.location.reload());
+            }
         } else if (action === "history") {
             alert("History for user ID: " + id);
         }

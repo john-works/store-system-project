@@ -12,8 +12,8 @@ class Borrowing extends Model
 'request_by',
 'request_summary',
 'item_id',
-'asset_tag',
-'serial_number',
+// 'asset_tag',
+// 'serial_number',
 
 
 

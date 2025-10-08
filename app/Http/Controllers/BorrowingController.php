@@ -44,8 +44,8 @@ class BorrowingController extends Controller
 'request_by'=> 'required',
 'request_summary'=> 'required',
 'item_id'=> 'required',
-'asset_tag'=> 'required',
-'serial_number'=> 'required',
+// 'asset_tag'=> 'required',
+// 'serial_number'=> 'required',
 
 
         ]);
@@ -102,9 +102,9 @@ class BorrowingController extends Controller
      */
     public function destroy(Borrowing $borrowing)
     {
-        // $borrowing->delete();
+         $borrowing->delete();
 
-        // return redirect()->route('borrowings.index')
-        //                  ->with('success', 'Item deleted successfully.');
+    return redirect()->route('borrowings.index')
+        ->with('success', 'Contract deleted successfully.');
     }
 }

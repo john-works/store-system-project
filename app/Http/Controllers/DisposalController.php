@@ -101,6 +101,9 @@ class DisposalController extends Controller
      */
     public function destroy(Disposal $disposal)
     {
-        //
+         $disposal->delete();
+
+    return redirect()->route('disposals.index')
+        ->with('success', 'Contract deleted successfully.');
     }
 }

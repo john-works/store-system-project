@@ -1,5 +1,5 @@
 
-@extends('layouts.public')
+@extends('layouts.app')
 
 @section('content')
 
@@ -75,7 +75,7 @@
                             <table class="table table-striped" id="table1">
                                 <thead>
                                     <tr>
-                                       
+                                       <th>Id</th>
                                         <th>Request Date</th>
                                         <th>Request By</th>
                                         <th>Request Summary</th>
@@ -88,7 +88,7 @@
      
                           @forelse($disposals as $disposal)
                                 <tr>
-                               
+                               <td>{{ $disposal->id }}</td>
                                     <td>{{ $disposal->request_date }}</td>
                                     <td>{{ $disposal->request_by }}</td>
                                     <td>{{ $disposal->request_summary }}</td>
@@ -216,7 +216,7 @@
             window.location.href = `/disposals/${id}/edit`;
         } else if (action === "delete") {
             if (confirm("Are you sure you want to delete this user?")) {
-                fetch(`/users/${id}`, {
+                fetch(`/disposals/${id}`, {
                     method: "DELETE",
                     headers: {
                         "X-CSRF-TOKEN": "{{ csrf_token() }}",

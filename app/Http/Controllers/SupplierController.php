@@ -31,23 +31,35 @@ class SupplierController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        $request->validate([
-            'supplier_name' => 'required|string|max:255',
-            'email'         => 'required|email|unique:suppliers,email',
-            'phone'         => 'required|string|max:20',
-            'address'       => 'required|string|max:255',
-            'tin'           => 'required|digits:10',
-            'bank_account'  => 'required|digits:10',
-            'type_of_good'  => 'required|string',
+{
+    // Validate inputs (optional but good practice)
+    $request->validate([
+        'supplier_name.*' => 'required|string|max:255',
+        'email.*' => 'required|email',
+        'phone.*' => 'required|string|max:20',
+        'address.*' => 'required|string|max:255',
+        'tin.*' => 'required|digits:10',
+        'bank_account.*' => 'required|digits:10',
+        'type_of_good.*' => 'required|string',
+    ]);
+
+    // Loop through supplier arrays
+    $count = count($request->supplier_name);
+
+    for ($i = 0; $i < $count; $i++) {
+        \App\Models\Supplier::create([
+            'supplier_name' => $request->supplier_name[$i],
+            'email' => $request->email[$i],
+            'phone' => $request->phone[$i],
+            'address' => $request->address[$i],
+            'tin' => $request->tin[$i],
+            'bank_account' => $request->bank_account[$i],
+            'type_of_good' => $request->type_of_good[$i],
         ]);
-
-        // Save supplier
-        Supplier::create($request->all());
-
-        return redirect()->route('suppliers.index')
-                         ->with('success', 'Supplier created successfully.');
     }
+
+    return redirect()->route('suppliers.index');
+}
 
     /**
      * Display the specified resource.

@@ -5,7 +5,6 @@
 
 <body>
     <div id="app">
-kkkkkkkkkkk
 
         <div id="main">
             <header class="mb-3">

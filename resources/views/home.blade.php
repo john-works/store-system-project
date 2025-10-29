@@ -62,8 +62,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-8">
-                                                <h6 class="text-muted font-semibold">Followers</h6>
-                                                <h6 class="font-extrabold mb-0">183.000</h6>
+                                                <h6 class="text-muted font-semibold">Goods</h6>
+                                                <h6 class="font-extrabold mb-0">{{ $goods }}</h6>
                                             </div>
                                         </div>
                                     </div>
@@ -79,8 +79,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-8">
-                                                <h6 class="text-muted font-semibold">Following</h6>
-                                                <h6 class="font-extrabold mb-0">80.000</h6>
+                                                <h6 class="text-muted font-semibold">Contracts</h6>
+                                                <h6 class="font-extrabold mb-0">{{$contracts}}</h6>
                                             </div>
                                         </div>
                                     </div>

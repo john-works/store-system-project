@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Supplier;
 use App\Models\Service;
 use App\Models\Good;
+use App\Models\Contract;
 
 class HomeController extends Controller
 {
@@ -30,9 +31,9 @@ class HomeController extends Controller
          $suppliers = Supplier::count();
         // $services = Service::count();
         $goods = Good::count();
-        // $borrowedAssets = \DB::table('asset_borrowings')->count(); // Example
+        $contracts = Contract::count();
 
-        return view('home', compact('suppliers', 'goods'));
+        return view('home', compact('suppliers', 'goods', 'contracts'));
         // return view('home');
     }
 }

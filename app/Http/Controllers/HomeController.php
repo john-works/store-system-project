@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Supplier;
+use App\Models\Service;
+use App\Models\Good;
 
 class HomeController extends Controller
 {
@@ -23,6 +26,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+
+         $suppliers = Supplier::count();
+        // $services = Service::count();
+        $goods = Good::count();
+        // $borrowedAssets = \DB::table('asset_borrowings')->count(); // Example
+
+        return view('home', compact('suppliers', 'goods'));
+        // return view('home');
     }
 }
+
+// {{ $items }}

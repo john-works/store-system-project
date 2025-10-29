@@ -86,6 +86,22 @@
                                     </div>
                                 </div>
                             </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            
+
                             <div class="col-6 col-lg-3 col-md-6">
                                 <div class="card">
                                     <div class="card-body px-3 py-4-5">
@@ -96,8 +112,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-8">
-                                                <h6 class="text-muted font-semibold">Saved Post</h6>
-                                                <h6 class="font-extrabold mb-0">112</h6>
+                                                <h6 class="text-muted font-semibold">Services</h6>
+                                                <h6 class="font-extrabold mb-0">{{ $services }}</h6>
                                             </div>
                                         </div>
                                     </div>
@@ -117,6 +133,7 @@
                             </div>
                         </div>
 
+                        
                         <div class="row">
                             <div class="col-12 col-xl-4">
                                 <div class="card">
@@ -232,6 +249,9 @@
                             </div>
                         </div>
                     </div>
+
+
+                    
                     <div class="col-12 col-lg-3">
                         <div class="card">
                             <div class="card-body py-4 px-5">

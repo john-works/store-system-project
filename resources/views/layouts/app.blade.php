@@ -293,7 +293,7 @@
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                   {{-- <a href="{{ route}}">User Details</a> --}}
+                                   <a href="{{ route('workflow_steps.index')}}">Approval Steps</a>
                                 </li>
                                 
                                

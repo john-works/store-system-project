@@ -12,6 +12,7 @@ use App\Http\Controllers\RequisitionController;
 use App\Http\Controllers\BorrowingController;
 use App\Http\Controllers\MovermentController;
 use App\Http\Controllers\DisposalController;
+use App\Http\Controllers\WorkflowstepController;
 
 
 // Route::get('/', function () {
@@ -144,6 +145,14 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// Auth::routes();
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+//workflow_steps
+Route::get('/workflow_steps', [WorkflowstepController::class, 'index'])->name('workflow_steps.index');
+Route::get('/workflow_steps/create', [WorkflowstepController::class, 'create'])->name('workflow_steps.create');
+Route::post('/workflow_steps', [WorkflowstepController::class, 'store'])->name('workflow_steps.store');
+// Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
+// Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+// Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
+// Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->boolean('is_completed')->default(false);
             $table->dateTime('date_completed')->nullable();
-            $table->enum('approved_status', ['pending', 'approved', 'rejected'])->default('pending');
+            $table->enum('approved_status', ['pending', 'approved', 'rejected', 'completed'])->default('pending');
            
             $table->timestamps();
             //  $table->foreignId('workflow_step_id')->constrained('workflow_steps')->onDelete('cascade');

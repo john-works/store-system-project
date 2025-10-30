@@ -24,7 +24,7 @@
                             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Supplier</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Settings</li>
                                 </ol>
                             </nav>
                         </div>
@@ -41,7 +41,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Add New Good Details</h4>
+                                    <h4 class="card-title">Add New workflow steps</h4>
                                 </div>
                                 <div class="card-content">
                                     <div class="card-body">
@@ -103,10 +103,10 @@
             
         </div>
     </div>
-    <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="{{asset('assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
+    <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
 
-    <script src="assets/js/main.js"></script>
+    <script src="{{asset('assets/js/main.js')}}"></script>
 </body>
 
 </html>

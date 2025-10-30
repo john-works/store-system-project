@@ -16,6 +16,19 @@ return new class extends Migration
              $table->string('step_name');
             $table->string('description')->nullable();
             $table->unsignedInteger('step_order')->default(1);
+            $table->foreignId('user_id')->comment('The officer who created the step');
+    
+    $table->enum('status', ['pending', 'manager_approved', 'hod_approved', 'store_approved', 'rejected'])
+          ->default('pending');
+
+    // Tracks which user approved and when
+    $table->foreignId('manager_id')->nullable();
+    $table->timestamp('manager_approved_at')->nullable();
+    $table->foreignId('hod_id')->nullable();
+    $table->timestamp('hod_approved_at')->nullable();
+    $table->foreignId('store_id')->nullable();
+    $table->timestamp('store_approved_at')->nullable();
+ 
             $table->timestamps();
         });
     }

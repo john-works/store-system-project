@@ -271,7 +271,7 @@
                           <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
                                 <i class="bi bi-stack"></i>
-                                <span>Administration</span>
+                                <span>User Management</span>
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
@@ -286,6 +286,20 @@
                         </li>
 
 
+                         <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-stack"></i>
+                                <span>Settings</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                   {{-- <a href="{{ route}}">User Details</a> --}}
+                                </li>
+                                
+                               
+                                
+                            </ul>
+                        </li>
 
 
 

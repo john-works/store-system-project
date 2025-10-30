@@ -53,6 +53,16 @@ class BorrowingController extends Controller
         // Save supplier
         Borrowing::create($request->all());
 
+
+    //         Workflow::create([
+    //     'borrowing_id' => $borrowing->id,
+    //     'step_name' => 'Borrow Request Created',
+    //     'user_id' => Auth::id(),
+    //     'is_completed' => false,
+    //     'approved_status' => 'pending',
+    // ]);
+
+
         return redirect()->route('borrowings.index')
                          ->with('success', 'Supplier created successfully.');
 

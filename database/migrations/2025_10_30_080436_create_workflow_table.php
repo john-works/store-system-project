@@ -13,11 +13,13 @@ return new class extends Migration
     {
         Schema::create('workflow', function (Blueprint $table) {
             $table->id();
-            $table->string('step_name');
-            $table->string('step_user');
-            $table->string('is_completed');
-            $table->string('date_completed');
-            $table->string('approved_status');
+            //  $table->string('step_name');
+             $table->foreignId('workflow_step_id')->constrained('workflow_steps')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->boolean('is_completed')->default(false);
+            $table->dateTime('date_completed')->nullable();
+            $table->enum('approved_status', ['pending', 'approved', 'rejected'])->default('pending');
+           
             $table->timestamps();
         });
     }

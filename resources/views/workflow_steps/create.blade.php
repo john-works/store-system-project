@@ -45,7 +45,7 @@
                                 </div>
                                 <div class="card-content">
                                     <div class="card-body">
-                                      <form action="{{ route('workflow_steps.store') }}" method="POST" class="form">
+                                      <form action="{{ route('workflow_step.store') }}" method="POST" class="form">
                                     @csrf
 
 

@@ -82,7 +82,7 @@ Route::put('/disposals/{disposal}', [DisposalController::class, 'update'])->name
 Route::delete('/disposals/{disposal}', [DisposalController::class, 'destroy'])->name('disposals.destroy');
 
 
-//services
+# services
 Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
 Route::get('/services/indexs', [ServiceController::class, 'indexs'])->name('services.indexs');
 Route::get('/services/create', [ServiceController::class, 'create'])->name('services.create');
@@ -92,7 +92,12 @@ Route::get('/services/{service}/edit', [ServiceController::class, 'edit'])->name
 Route::put('/services/{service}', [ServiceController::class, 'update'])->name('services.update');
 Route::delete('/services/{service}', [ServiceController::class, 'destroy'])->name('services.destroy');
 
-//goods
+// Workflow approve/reject routes for services
+Route::post('/services/{service}/approve', [ServiceController::class, 'approveWorkflowStep'])->name('services.approve');
+Route::post('/services/{service}/reject', [ServiceController::class, 'rejectWorkflowStep'])->name('services.reject');
+
+
+# goods
 Route::get('/goods', [GoodController::class, 'index'])->name('goods.index');
 Route::get('/goods/indexs', [GoodController::class, 'indexs'])->name('goods.indexs');
 Route::get('/goods/create', [GoodController::class, 'create'])->name('goods.create');
@@ -101,6 +106,10 @@ Route::get('/goods/{good}', [GoodController::class, 'show'])->name('goods.show')
 Route::get('/goods/{good}/edit', [GoodController::class, 'edit'])->name('goods.edit');
 Route::put('/goods/{good}', [GoodController::class, 'update'])->name('goods.update');
 Route::delete('/goods/{good}', [GoodController::class, 'destroy'])->name('goods.destroy');
+
+// Workflow approve/reject routes for goods
+Route::post('/goods/{good}/approve', [GoodController::class, 'approveWorkflowStep'])->name('goods.approve');
+Route::post('/goods/{good}/reject', [GoodController::class, 'rejectWorkflowStep'])->name('goods.reject');
 
 
 
@@ -153,10 +162,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 
-//workflow_steps
-Route::get('/workflow_steps', [WorkflowstepController::class, 'index'])->name('workflow_steps.index');
-Route::get('/workflow_steps/create', [WorkflowstepController::class, 'create'])->name('workflow_steps.create');
-Route::post('/workflow_steps', [WorkflowstepController::class, 'store'])->name('workflow_steps.store');
+//workflow_step
+Route::get('/workflow_step', [WorkflowstepController::class, 'index'])->name('workflow_step.index');
+Route::get('/workflow_step/create', [WorkflowstepController::class, 'create'])->name('workflow_step.create');
+Route::post('/workflow_step', [WorkflowstepController::class, 'store'])->name('workflow_step.store');
 // Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
 // Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
 // Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');

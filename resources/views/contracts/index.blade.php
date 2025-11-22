@@ -48,7 +48,7 @@
                                         <th>Start Date</th>
                                         <th>End Date</th>
                                          {{-- <th>Current Step Start</th> --}}
-                                       
+                                        <th>Workflow Status</th>
                                         <th>Action</th>
                                        
                                     </tr>
@@ -65,9 +65,36 @@
                                     <td>{{ $contract->start_date }}</td>
                                     <td>{{ $contract->end_date }}</td>
                                     <td>{{ $contract->current_step_start }}</td>
-                                
+                                    <td>
+                                        @php
+                                            $currentWorkflow = $contract->workflows->where('is_completed', false)->first();
+                                        @endphp
+                                        @if($currentWorkflow)
+                                            Step: {{ $currentWorkflow->workflow_step->step_name }} <br/>
+                                            Status:
+                                            @if($currentWorkflow->approved_status === null)
+                                                Pending
+                                            @elseif($currentWorkflow->approved_status)
+                                                Approved
+                                            @else
+                                                Rejected
+                                            @endif
+                                        @else
+                                            Completed
+                                        @endif
+                                    </td>
                                     <td>
                                           <span class="action-icon" data-id="{{ $contract->id }}">📄</span>
+                                          @if($currentWorkflow && $currentWorkflow->approved_status === null)
+                                            <form method="POST" action="{{ route('contracts.approve', $contract->id) }}" style="display:inline;">
+                                               @csrf
+                                               <button type="submit" class="btn btn-sm btn-success">Approve</button>
+                                            </form>
+                                            <form method="POST" action="{{ route('contracts.reject', $contract->id) }}" style="display:inline;">
+                                               @csrf
+                                               <button type="submit" class="btn btn-sm btn-danger">Reject</button>
+                                            </form>
+                                          @endif
                                     </td>
                                 </tr>
                             @empty

@@ -63,8 +63,8 @@
                                         <th>Invoice Value</th>
                                          {{-- <th>Quantity</th> --}}
                                         <th>Request By</th>
-                                        
-                                        <th>Status</th>
+                                        <th>Workflow Status</th>
+                                        <th>Action</th>
                                        
                                     </tr>
                                 </thead>
@@ -80,10 +80,38 @@
                                     {{-- <td>{{ $service->quality }}</td> --}}
                                     <td>{{ $service->request_by }}</td>
                                      {{-- <td>{{ $service->sum }}</td> --}}
-                                
-                                    
+                               
                                     <td>
-                                          <span class="action-icon" data-id="{{ $service->id }}">📄</span> </td>
+                                        @php
+                                            $currentWorkflow = $service->workflows->where('is_completed', false)->first();
+                                        @endphp
+                                        @if($currentWorkflow)
+                                            Step: {{ $currentWorkflow->workflow_step->step_name }} <br/>
+                                            Status:
+                                            @if($currentWorkflow->approved_status === null)
+                                                Pending
+                                            @elseif($currentWorkflow->approved_status)
+                                                Approved
+                                            @else
+                                                Rejected
+                                            @endif
+                                        @else
+                                            Completed
+                                        @endif
+                                    </td>
+                                    <td>
+                                          <span class="action-icon" data-id="{{ $service->id }}">📄</span>
+                                          @if($currentWorkflow && $currentWorkflow->approved_status === null)
+                                            <form method="POST" action="{{ route('services.approve', $service->id) }}" style="display:inline;">
+                                               @csrf
+                                               <button type="submit" class="btn btn-sm btn-success">Approve</button>
+                                            </form>
+                                            <form method="POST" action="{{ route('services.reject', $service->id) }}" style="display:inline;">
+                                               @csrf
+                                               <button type="submit" class="btn btn-sm btn-danger">Reject</button>
+                                            </form>
+                                          @endif
+                                    </td>
                                 </tr>
                             @empty
                                 <tr>

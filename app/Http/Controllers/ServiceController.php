@@ -14,8 +14,8 @@ class ServiceController extends Controller
     public function index()
     {
          
-          // Eager load supplier to avoid N+1 queries
-        $services = service::with('supplier')->get();
+          // Eager load supplier and workflows to avoid N+1 queries
+        $services = service::with(['supplier', 'workflows'])->get();
         return view('services.index', compact('services'));
 
     }
@@ -23,10 +23,10 @@ class ServiceController extends Controller
 
 
     public function indexs()
-{
-    $services = service::with('supplier')->get();
-    return view('services.indexs', compact('services'));
-}
+    {
+        $services = service::with(['supplier', 'workflows'])->get();
+        return view('services.indexs', compact('services'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -58,8 +58,20 @@ class ServiceController extends Controller
 
         ]);
 
-        // Save supplier
-        Service::create($request->all());
+        // Save service and initialize workflow
+        $service = service::create($request->all());
+
+        // Initialize workflow - create first step
+        $firstWorkflowStep = \App\Models\WorkflowStep::orderBy('step_order')->first();
+
+        if ($firstWorkflowStep) {
+            $service->workflows()->create([
+                'user_id' => auth()->id(),
+                'is_completed' => false,
+                'approved_status' => null,
+                'workflow_step_id' => $firstWorkflowStep->id,
+            ]);
+        }
 
         return redirect()->route('services.index');
     }
@@ -70,6 +82,7 @@ class ServiceController extends Controller
      */
     public function show(service $service)
     {
+        $service->load(['supplier', 'workflows']);
         return view('services.show', compact('service'));
     }
 
@@ -79,7 +92,7 @@ class ServiceController extends Controller
     public function edit(service $service)
     {
         $suppliers = Supplier::all(); // get all suppliers for dropdown
-    return view('services.edit', compact('service', 'suppliers'));
+        return view('services.edit', compact('service', 'suppliers'));
     }
 
     /**
@@ -118,5 +131,52 @@ class ServiceController extends Controller
     }
 
 
+    /**
+     * Approve the current workflow step, move to next step or complete workflow.
+     */
+    public function approveWorkflowStep(service $service)
+    {
+        $currentStep = $service->workflows()->where('is_completed', false)->first();
 
+        if ($currentStep) {
+            $currentStep->update([
+                'is_completed' => true,
+                'approved_status' => true,
+                'date_completed' => now(),
+            ]);
+
+            $nextStep = \App\Models\WorkflowStep::where('step_order', '>', $currentStep->workflow_step->step_order)
+                ->orderBy('step_order')
+                ->first();
+
+            if ($nextStep) {
+                $service->workflows()->create([
+                    'user_id' => auth()->id(),
+                    'is_completed' => false,
+                    'approved_status' => null,
+                    'workflow_step_id' => $nextStep->id,
+                ]);
+            }
+        }
+
+        return redirect()->back()->with('success', 'Workflow step approved.');
+    }
+
+    /**
+     * Reject current workflow step.
+     */
+    public function rejectWorkflowStep(service $service)
+    {
+        $currentStep = $service->workflows()->where('is_completed', false)->first();
+
+        if ($currentStep) {
+            $currentStep->update([
+                'is_completed' => true,
+                'approved_status' => false,
+                'date_completed' => now(),
+            ]);
+        }
+
+        return redirect()->back()->with('success', 'Workflow step rejected.');
+    }
 }

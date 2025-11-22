@@ -23,4 +23,9 @@ class Good extends Model
     {
         return $this->belongsTo(Supplier::class);
     }
+
+    public function workflows()
+    {
+        return $this->morphMany(\App\Models\Workflow::class, 'workflowable');
+    }
 }

@@ -13,19 +13,17 @@ class ContractController extends Controller
      */
     public function index()
     {
-          // Eager load supplier to avoid N+1 queries
-        $contracts = Contract::with('supplier')->get();
+          // Eager load supplier and workflows to avoid N+1 queries
+        $contracts = Contract::with(['supplier', 'workflows'])->get();
         return view('contracts.index', compact('contracts'));
-
-        
     }
 
 
     public function info()
-{
-    $contracts = Contract::with('supplier')->get();
-    return view('contracts.info');
-}
+    {
+        $contracts = Contract::with(['supplier', 'workflows'])->get();
+        return view('contracts.info', compact('contracts'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -46,18 +44,30 @@ class ContractController extends Controller
         $request->validate([
                            
         'supplier_id' => 'required|string',
-'procurement_type' => 'required|string',
-'amount_cost' => 'required|string',
-'signing_date' => 'required|string',
-'start_date' => 'required|string',
-'end_date' => 'required|string',
-'procument_subject' => 'required|string',
-'termination_clauses' => 'required|string',
+        'procurement_type' => 'required|string',
+        'amount_cost' => 'required|string',
+        'signing_date' => 'required|string',
+        'start_date' => 'required|string',
+        'end_date' => 'required|string',
+        'procument_subject' => 'required|string',
+        'termination_clauses' => 'required|string',
             
         ]);
 
-        // Save supplier
-        Contract::create($request->all());
+        // Save contract and initialize workflow
+        $contract = Contract::create($request->all());
+
+        // Initialize workflow - create first step
+        $firstWorkflowStep = \App\Models\WorkflowStep::orderBy('step_order')->first();
+
+        if ($firstWorkflowStep) {
+            $contract->workflows()->create([
+                'user_id' => auth()->id(),
+                'is_completed' => false,
+                'approved_status' => null,
+                'workflow_step_id' => $firstWorkflowStep->id,
+            ]);
+        }
 
         return redirect()->route('contracts.index');
         
@@ -68,6 +78,7 @@ class ContractController extends Controller
      */
     public function show(Contract $contract)
     {
+        $contract->load(['supplier', 'workflows']);
         return view('contracts.show', compact('contract'));
     }
 
@@ -77,7 +88,7 @@ class ContractController extends Controller
     public function edit(Contract $contract)
     {
         $suppliers = Supplier::all(); // get all suppliers for dropdown
-    return view('contracts.edit', compact('contract', 'suppliers'));
+        return view('contracts.edit', compact('contract', 'suppliers'));
     }
 
     /**
@@ -88,13 +99,13 @@ class ContractController extends Controller
         $request->validate([
 
            'supplier_id' => 'required|string',
-'procurement_type' => 'required|string',
-'amount_cost' => 'required|string',
-'signing_date' => 'required|string',
-'start_date' => 'required|string',
-'end_date' => 'required|string',
-'procument_subject' => 'required|string',
-'termination_clauses' => 'required|string',
+           'procurement_type' => 'required|string',
+           'amount_cost' => 'required|string',
+           'signing_date' => 'required|string',
+           'start_date' => 'required|string',
+           'end_date' => 'required|string',
+           'procument_subject' => 'required|string',
+           'termination_clauses' => 'required|string',
 
         ]);
         $contract->update($request->all());
@@ -109,7 +120,62 @@ class ContractController extends Controller
     {
          $contract->delete();
 
-    return redirect()->route('contracts.index')
-        ->with('success', 'Contract deleted successfully.');
+        return redirect()->route('contracts.index')
+            ->with('success', 'Contract deleted successfully.');
+    }
+
+    /**
+     * Approve the current workflow step, move to next step or complete workflow.
+     */
+    public function approveWorkflowStep(Contract $contract)
+    {
+        $currentStep = $contract->workflows()->where('is_completed', false)->first();
+
+        if ($currentStep) {
+            // Mark current step as approved and completed
+            $currentStep->update([
+                'is_completed' => true,
+                'approved_status' => true,
+                'date_completed' => now(),
+            ]);
+
+            // Get next workflow step
+            $nextStep = \App\Models\WorkflowStep::where('step_order', '>', $currentStep->workflow_step->step_order)
+                ->orderBy('step_order')
+                ->first();
+
+            if ($nextStep) {
+                // Create new workflow step
+                $contract->workflows()->create([
+                    'user_id' => auth()->id(),
+                    'is_completed' => false,
+                    'approved_status' => null,
+                    'workflow_step_id' => $nextStep->id,
+                ]);
+            } else {
+                // Mark workflow completed
+                // assuming you have a method or attribute for overall workflow completion
+            }
+        }
+
+        return redirect()->back()->with('success', 'Workflow step approved.');
+    }
+
+    /**
+     * Reject current workflow step.
+     */
+    public function rejectWorkflowStep(Contract $contract)
+    {
+        $currentStep = $contract->workflows()->where('is_completed', false)->first();
+
+        if ($currentStep) {
+            $currentStep->update([
+                'is_completed' => true,
+                'approved_status' => false,
+                'date_completed' => now(),
+            ]);
+        }
+
+        return redirect()->back()->with('success', 'Workflow step rejected.');
     }
 }

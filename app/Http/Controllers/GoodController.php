@@ -14,17 +14,17 @@ class GoodController extends Controller
     public function index()
     {
         
-         // Eager load supplier to avoid N+1 queries
-        $goods = Good::with('supplier')->get();
+         // Eager load supplier and workflows to avoid N+1 queries
+        $goods = Good::with(['supplier', 'workflows'])->get();
         return view('goods.index', compact('goods'));
     }
 
 
     public function indexs()
-{
-    $goods = Good::with('supplier')->get();
-    return view('goods.indexs', compact('goods'));
-}
+    {
+        $goods = Good::with(['supplier', 'workflows'])->get();
+        return view('goods.indexs', compact('goods'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -45,22 +45,34 @@ class GoodController extends Controller
 
          $request->validate([
                            
-'supplier_id'=>'required',
-'request_date'=>'required',
-'request_by'=>'required',
-'invoice_number'=>'required',
-// 'verified_by'=> 'required',
-'item__description'=>'required',
-'quality'=>'required',
-'invoice_value'=>'required',
-'request_item'=>'required',
+            'supplier_id'=>'required',
+            'request_date'=>'required',
+            'request_by'=>'required',
+            'invoice_number'=>'required',
+            // 'verified_by'=> 'required',
+            'item__description'=>'required',
+            'quality'=>'required',
+            'invoice_value'=>'required',
+            'request_item'=>'required',
 
 
         
         ]);
 
-        // Save supplier
-        Good::create($request->all());
+        // Save good and initialize workflow
+        $good = Good::create($request->all());
+
+        // Initialize workflow - create first step
+        $firstWorkflowStep = \App\Models\WorkflowStep::orderBy('step_order')->first();
+
+        if ($firstWorkflowStep) {
+            $good->workflows()->create([
+                'user_id' => auth()->id(),
+                'is_completed' => false,
+                'approved_status' => null,
+                'workflow_step_id' => $firstWorkflowStep->id,
+            ]);
+        }
 
         return redirect()->route('goods.index');
     }
@@ -70,6 +82,7 @@ class GoodController extends Controller
      */
     public function show(Good $good)
     {
+        $good->load(['supplier', 'workflows']);
         return view('goods.show', compact('good'));
     }
 
@@ -79,7 +92,7 @@ class GoodController extends Controller
     public function edit(Good $good)
     {
         $suppliers = Supplier::all(); // get all suppliers for dropdown
-    return view('goods.edit', compact('good', 'suppliers'));
+        return view('goods.edit', compact('good', 'suppliers'));
     }
 
     /**
@@ -90,14 +103,14 @@ class GoodController extends Controller
         $request->validate([
 
                 'supplier_id'=>'required',
-// 'request_date'=>'required',
-// 'request_by'=>'required',
-'invoice_number'=>'required',
-// 'verified_by'=> 'required',
-'item__description'=>'required',
-'quality'=>'required',
-'invoice_value'=>'required',
-'request_item'=>'required',
+                // 'request_date'=>'required',
+                // 'request_by'=>'required',
+                'invoice_number'=>'required',
+                // 'verified_by'=> 'required',
+                'item__description'=>'required',
+                'quality'=>'required',
+                'invoice_value'=>'required',
+                'request_item'=>'required',
 
         ]);
         $good->update($request->all());
@@ -114,5 +127,54 @@ class GoodController extends Controller
 
         return redirect()->route('goods.index')
                          ->with('success', 'Item deleted successfully.');
+    }
+
+    /**
+     * Approve the current workflow step, move to next step or complete workflow.
+     */
+    public function approveWorkflowStep(Good $good)
+    {
+        $currentStep = $good->workflows()->where('is_completed', false)->first();
+
+        if ($currentStep) {
+            $currentStep->update([
+                'is_completed' => true,
+                'approved_status' => true,
+                'date_completed' => now(),
+            ]);
+
+            $nextStep = \App\Models\WorkflowStep::where('step_order', '>', $currentStep->workflow_step->step_order)
+                ->orderBy('step_order')
+                ->first();
+
+            if ($nextStep) {
+                $good->workflows()->create([
+                    'user_id' => auth()->id(),
+                    'is_completed' => false,
+                    'approved_status' => null,
+                    'workflow_step_id' => $nextStep->id,
+                ]);
+            }
+        }
+
+        return redirect()->back()->with('success', 'Workflow step approved.');
+    }
+
+    /**
+     * Reject current workflow step.
+     */
+    public function rejectWorkflowStep(Good $good)
+    {
+        $currentStep = $good->workflows()->where('is_completed', false)->first();
+
+        if ($currentStep) {
+            $currentStep->update([
+                'is_completed' => true,
+                'approved_status' => false,
+                'date_completed' => now(),
+            ]);
+        }
+
+        return redirect()->back()->with('success', 'Workflow step rejected.');
     }
 }

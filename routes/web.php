@@ -43,7 +43,7 @@ Route::get('/invoices/{invoice}/edit', [InvoiceController::class, 'edit'])->name
 Route::put('/invoices/{invoice}', [InvoiceController::class, 'update'])->name('invoices.update');
 Route::delete('/invoices/{invoice}', [InvoiceController::class, 'destroy'])->name('invoices.destroy');
 
-//contracts
+# contracts
 Route::get('/contracts', [ContractController::class, 'index'])->name('contracts.index');
 Route::get('/contracts/info', [ContractController::class, 'info'])->name('contracts.info');
 Route::get('/contracts/create', [ContractController::class, 'create'])->name('contracts.create');
@@ -52,6 +52,11 @@ Route::get('/contracts/{contract}', [ContractController::class, 'show'])->name('
 Route::get('/contracts/{contract}/edit', [ContractController::class, 'edit'])->name('contracts.edit');
 Route::put('/contracts/{contract}', [ContractController::class, 'update'])->name('contracts.update');
 Route::delete('/contracts/{contract}', [ContractController::class, 'destroy'])->name('contracts.destroy');
+
+// Workflow approve/reject routes for contracts
+Route::post('/contracts/{contract}/approve', [ContractController::class, 'approveWorkflowStep'])->name('contracts.approve');
+Route::post('/contracts/{contract}/reject', [ContractController::class, 'rejectWorkflowStep'])->name('contracts.reject');
+
 
 
 

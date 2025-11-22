@@ -14,15 +14,15 @@ return new class extends Migration
         Schema::create('workflows', function (Blueprint $table) {
             $table->id();
              $table->unsignedBigInteger('workflow_step_id');
-    $table->foreign('workflow_step_id')->references('id')->on('workflow_step')->onDelete('cascade');
-            // $table->foreignId('workflow_step_id')->constrained('workflow_step')->onDelete('cascade');
+    $table->foreign('workflow_step_id')->references('id')->on('workflow_steps')->onDelete('cascade');
+            // $table->foreignId('workflow_step_id')->constrained('workflow_steps')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->boolean('is_completed')->default(false);
             $table->dateTime('date_completed')->nullable();
             $table->enum('approved_status', ['pending', 'approved', 'rejected', 'completed'])->default('pending');
            
             $table->timestamps();
-            //  $table->foreignId('workflow_step_id')->constrained('workflow_step')->onDelete('cascade');
+            //  $table->foreignId('workflow_step_id')->constrained('workflow_steps')->onDelete('cascade');
         });
     }
 
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('workflow');
+        Schema::dropIfExists('workflows');
     }
 };

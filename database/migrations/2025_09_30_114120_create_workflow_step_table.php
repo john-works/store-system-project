@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('workflow_step', function (Blueprint $table) {
+        Schema::create('workflow_steps', function (Blueprint $table) {
             $table->id();
              $table->string('step_name');
             $table->string('description')->nullable();
@@ -38,6 +38,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('workflow_step');
+        Schema::dropIfExists('workflow_steps');
     }
 };

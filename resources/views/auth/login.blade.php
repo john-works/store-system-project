@@ -91,7 +91,14 @@
             </form>
 
             {{-- Social Logins (optional) --}}
-            <hr>
+            {{-- <hr>
+            <div class="text-center">
+                <p class="small text-muted mb-2">Or continue with</p>
+                <div class="d-flex justify-content-center gap-2">
+                    <a href="{{ url('auth/google') }}" class="btn btn-outline-danger rounded-circle">
+                        <i class="bi bi-google"></i>
+                    </a>
+                    <a href="{{ url('auth/github') }}" class="btn btn-outline-dark rounded-circle">
             <div class="text-center">
                 <p class="small text-muted mb-2">Or continue with</p>
                 <div class="d-flex justify-content-center gap-2">
@@ -102,7 +109,30 @@
                         <i class="bi bi-github"></i>
                     </a>
                 </div>
-            </div>
+            </div>              <i class="bi bi-github"></i>
+                    </a>
+                </div>
+            </div>  <div class="text-center">
+                <p class="small text-muted mb-2">Or continue with</p>
+                <div class="d-flex justify-content-center gap-2">
+                    <a href="{{ url('auth/google') }}" class="btn btn-outline-danger rounded-circle">
+                        <i class="bi bi-google"></i>
+                    </a>
+                    <a href="{{ url('auth/github') }}" class="btn btn-outline-dark rounded-circle">
+                        <i class="bi bi-github"></i>
+                    </a>
+                </div>
+            </div>  <div class="text-center">
+                <p class="small text-muted mb-2">Or continue with</p>
+                <div class="d-flex justify-content-center gap-2">
+                    <a href="{{ url('auth/google') }}" class="btn btn-outline-danger rounded-circle">
+                        <i class="bi bi-google"></i>
+                    </a>
+                    <a href="{{ url('auth/github') }}" class="btn btn-outline-dark rounded-circle">
+                        <i class="bi bi-github"></i>
+                    </a>
+                </div>
+            </div> --}}
 
         </div>
     </div>

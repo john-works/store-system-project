@@ -3,21 +3,72 @@
 
 @section('content')
 
-    <div class="page-heading">
 
-        <section class="section">
-            <div class="card">
-                <div class="card-header">
-                    Moverments Details
-                </div>
-                <div class="card-footer text-end">
-                    <a href="{{ route('moverments.create') }}" class="btn btn-secondary">Add New Moverment Details</a>
-                </div>
 
-                <div class="card-body">
-                    <table class="table table-striped" id="table1">
-                        <thead>
-                            <tr>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+
+    <link rel="stylesheet" href="assets/vendors/simple-datatables/style.css">
+
+    <link rel="stylesheet" href="assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" href="assets/vendors/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon">
+
+
+<body>
+    <div id="app">
+        
+
+
+        <div id="main">
+            <header class="mb-3">
+                <a href="#" class="burger-btn d-block d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
+            </header>
+			
+			
+			
+			
+
+            <div class="page-heading">
+                <div class="page-title">
+                    <div class="row">
+                        <div class="col-12 col-md-6 order-md-1 order-last">
+                            <h3>DataTable</h3>
+                            <p class="text-subtitle text-muted">For user to check they list</p>
+                        </div>
+                        <div class="col-12 col-md-6 order-md-2 order-first">
+                            <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">DataTable</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+				
+				
+				
+				
+				
+                <section class="section">
+                    <div class="card">
+                        <div class="card-header">
+                            Simple Datatable
+                        </div>
+
+                        <div class="card-footer text-end">
+                                <a href="{{ route('moverments.create') }}" class="btn btn-secondary">Add New Moverments Request</a>
+                            </div>
+                        <div class="card-body">
+                            <table class="table table-striped" id="table1">
+                                <thead>
+                                    <tr>
                                <th>Id</th>
                                 <th>Request Date</th>
                                 <th>Request By</th>
@@ -30,9 +81,11 @@
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
-                        </thead>
-                        <tbody>
-                           @forelse($moverments as $moverment)
+                                </thead>
+                     <tbody>
+                                 
+                                    
+                      @forelse($moverments as $moverment)
                         <tr>
                            <td>{{ $moverment->id }}</td>
                            <td>{{ $moverment->request_date }}</td>
@@ -50,25 +103,30 @@
                                   <span class="action-icon" data-id="{{ $moverment->id }}">📄</span>
                             </td>
                         </tr>
-                    @empty
-                        <tr>
-                            <td colspan="9" class="text-center">No Moverment found.</td>
-                        </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="9" class="text-center">No moverments found.</td>
+                                </tr>
                     @endforelse
-                        </tbody>
-                    </table>
-                </div>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </section>
             </div>
 
-        </section>
+           
+        </div>
     </div>
 
+    
 <!-- Popup Menu -->
 <div class="popup-menu" id="popupMenu">
     <ul>
         <li onclick="handleAction('view')">👁 View</li>
         <li onclick="handleAction('edit')">✏️ Edit</li>
-        <li onclick="handleAction('delete')">📜 Delete</li>
+        <li onclick="handleAction('delete')">🗑 Delete</li>
         <li onclick="handleAction('history')">📜 History</li>
     </ul>
 </div>
@@ -111,23 +169,15 @@
     .popup-menu ul li:hover {
         background: #f5f5f5;
     }
-
-    .dataTable-top {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
 </style>
 
-<script src="{{ asset('assets/vendors/simple-datatables/simple-datatables.js') }}"></script>
+<script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendors/simple-datatables/simple-datatables.js"></script>
 <script>
     // Simple Datatable
     let table1 = document.querySelector('#table1');
-    if (table1) {
-        let dataTable = new simpleDatatables.DataTable(table1, {
-            perPageSelect: [5, 10, 15, 20, 25, "all"]
-        });
-    }
+    let dataTable = new simpleDatatables.DataTable(table1);
 
     const popupMenu = document.getElementById("popupMenu");
     let currentIcon = null;
@@ -158,7 +208,7 @@
     });
 
     // Action handler
-    function handleAction(action,url) {
+    function handleAction(action) {
         let id = currentIcon?.getAttribute("data-id");
         if (!id) return;
 
@@ -167,7 +217,7 @@
         } else if (action === "edit") {
             window.location.href = `/moverments/${id}/edit`;
         } else if (action === "delete") {
-            if (confirm("Are you sure you want to delete this A moverment?")) {
+            if (confirm("Are you sure you want to delete this user?")) {
                 fetch(`/moverments/${id}`, {
                     method: "DELETE",
                     headers: {
@@ -183,4 +233,17 @@
         popupMenu.style.display = "none";
     }
 </script>
-@endsection
+    <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+
+    <script src="assets/vendors/simple-datatables/simple-datatables.js"></script>
+    <script>
+        // Simple Datatable
+        let table1 = document.querySelector('#table1');
+        let dataTable = new simpleDatatables.DataTable(table1);
+    </script>
+
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

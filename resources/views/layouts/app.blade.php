@@ -93,7 +93,7 @@
 
                         <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
-                                <i class="bi bi-stack"></i>
+                                <i class="bi bi-file-earmark-text"></i>
                                 <span>Contract</span>
                             </a>
                             <ul class="submenu ">
@@ -116,7 +116,7 @@
 
                           <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
-                                <i class="bi bi-stack"></i>
+                                <i class="bi bi-box-seam"></i>
                                 <span>Store items</span>
                             </a>
                             <ul class="submenu ">
@@ -135,7 +135,7 @@
 
                           <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
-                                <i class="bi bi-stack"></i>
+                                <i class="bi bi-arrow-left-right"></i>
                                 <span>Asset Borrowing</span>
                             </a>
                             <ul class="submenu ">
@@ -156,7 +156,7 @@
 
                           <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
-                                <i class="bi bi-stack"></i>
+                                <i class="bi bi-arrows-move"></i>
                                 <span>Asset Movement</span>
                             </a>
                             <ul class="submenu ">
@@ -193,7 +193,7 @@
 
                           <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
-                                <i class="bi bi-stack"></i>
+                                <i class="bi bi-person-lines-fill"></i>
                                 <span>Supplier</span>
                             </a>
                             <ul class="submenu ">
@@ -207,7 +207,7 @@
 
                           <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
-                                <i class="bi bi-stack"></i>
+                                <i class="bi bi-trash"></i>
                                 <span>Disposal</span>
                             </a>
                             <ul class="submenu ">
@@ -224,7 +224,7 @@
 
                           <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
-                                <i class="bi bi-stack"></i>
+                                <i class="bi bi-box-arrow-in-down"></i>
                                 <span>Good Recieved</span>
                             </a>
                             <ul class="submenu ">
@@ -247,7 +247,7 @@
 
                           <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
-                                <i class="bi bi-stack"></i>
+                                <i class="bi bi-gear-wide-connected"></i>
                                 <span>Service Received</span>
                             </a>
                             <ul class="submenu ">
@@ -270,7 +270,7 @@
 
                           <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
-                                <i class="bi bi-stack"></i>
+                                <i class="bi bi-people-fill"></i>
                                 <span>User Management</span>
                             </a>
                             <ul class="submenu ">
@@ -288,7 +288,7 @@
 
                          <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
-                                <i class="bi bi-stack"></i>
+                                <i class="bi bi-gear"></i>
                                 <span>Settings</span>
                             </a>
                             <ul class="submenu ">

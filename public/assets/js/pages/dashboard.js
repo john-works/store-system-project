@@ -103,14 +103,14 @@ let optionsIndonesia = {
 
 
 
-var chartProfileVisit = new ApexCharts(document.querySelector("#chart-profile-visit"), optionsProfileVisit);
-var chartVisitorsProfile = new ApexCharts(document.getElementById('chart-visitors-profile'), optionsVisitorsProfile)
-var chartEurope = new ApexCharts(document.querySelector("#chart-europe"), optionsEurope);
-var chartAmerica = new ApexCharts(document.querySelector("#chart-america"), optionsAmerica);
-var chartIndonesia = new ApexCharts(document.querySelector("#chart-indonesia"), optionsIndonesia);
+var chartProfileVisit = document.querySelector("#chart-profile-visit") ? new ApexCharts(document.querySelector("#chart-profile-visit"), optionsProfileVisit) : null;
+var chartVisitorsProfile = document.getElementById('chart-visitors-profile') ? new ApexCharts(document.getElementById('chart-visitors-profile'), optionsVisitorsProfile) : null;
+var chartEurope = document.querySelector("#chart-europe") ? new ApexCharts(document.querySelector("#chart-europe"), optionsEurope) : null;
+var chartAmerica = document.querySelector("#chart-america") ? new ApexCharts(document.querySelector("#chart-america"), optionsAmerica) : null;
+var chartIndonesia = document.querySelector("#chart-indonesia") ? new ApexCharts(document.querySelector("#chart-indonesia"), optionsIndonesia) : null;
 
-chartIndonesia.render();
-chartAmerica.render();
-chartEurope.render();
-chartProfileVisit.render();
-chartVisitorsProfile.render()
+if (chartIndonesia) chartIndonesia.render();
+if (chartAmerica) chartAmerica.render();
+if (chartEurope) chartEurope.render();
+if (chartProfileVisit) chartProfileVisit.render();
+if (chartVisitorsProfile) chartVisitorsProfile.render();

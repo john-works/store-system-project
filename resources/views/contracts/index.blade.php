@@ -3,115 +3,88 @@
 
 @section('content')
 
+    <div class="page-heading">
 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/bootstrap.css">
+        <section class="section">
+            <div class="card">
+                <div class="card-header">
+                    Contracts Details
+                </div>
+                <div class="card-footer text-end">
+                    <a href="{{ route('contracts.create') }}" class="btn btn-secondary">Add New Borrowing Request</a>
+                </div>
 
-    <link rel="stylesheet" href="assets/vendors/simple-datatables/style.css">
+                <div class="card-body">
+                    <table class="table table-striped" id="table1">
+                        <thead>
+                            <tr>
+                                <th>Supplier Name</th>
+                                <th>Procurement Type</th>
+                                <th>Amount Cost</th>
+                                <th>Signing Date</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                {{-- <th>Current Step Start</th> --}}
+                                <th>Workflow Status</th>
+                                <th>Action</th>
 
-    <link rel="stylesheet" href="assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
-    <link rel="stylesheet" href="assets/vendors/bootstrap-icons/bootstrap-icons.css">
-    <link rel="stylesheet" href="assets/css/app.css">
-    <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon">
+                            </tr>
+                        </thead>
+                        <tbody>
 
-    <div id="app">
-        
+                            @forelse($contracts as $contract)
+                            <tr>
 
-
-        <div id="main">
-            <header class="mb-3">
-                <a href="#" class="burger-btn d-block d-xl-none">
-                    <i class="bi bi-justify fs-3"></i>
-                </a>
-            </header>
-        
-            <div class="page-heading">
-          
-                <section class="section">
-                    <div class="card">
-                        <div class="card-header">
-                            Contracts Details
-                        </div>
- <div class="card-footer text-end">
-                                <a href="{{ route('contracts.create') }}" class="btn btn-secondary">Add New Borrowing Request</a>
-                            </div>
-                        
-                        <div class="card-body">
-                            <table class="table table-striped" id="table1">
-                                <thead>
-                                    <tr>
-                                        <th>Supplier Name</th>
-                                        <th>Procurement Type</th>
-                                        <th>Amount Cost</th>
-                                        <th>Signing Date</th>
-                                        <th>Start Date</th>
-                                        <th>End Date</th>
-                                         {{-- <th>Current Step Start</th> --}}
-                                        <th>Workflow Status</th>
-                                        <th>Action</th>
-                                       
-                                    </tr>
-                                </thead>
-                                <tbody>
-                               
-                          @forelse($contracts as $contract)
-                                <tr>
-
-                                   <td>{{ $contract->supplier->supplier_name }}</td>
-                                    <td>{{ $contract->procurement_type }}</td>
-                                    <td>{{ $contract->amount_cost }}</td>
-                                     <td>{{ $contract->signing_date }}</td>
-                                    <td>{{ $contract->start_date }}</td>
-                                    <td>{{ $contract->end_date }}</td>
-                                    <td>{{ $contract->current_step_start }}</td>
-                                    <td>
-                                        @php
-                                            $currentWorkflow = $contract->workflows->where('is_completed', false)->first();
-                                        @endphp
-                                        @if($currentWorkflow)
-                                            Step: {{ $currentWorkflow->workflow_step->step_name }} <br/>
-                                            Status:
-                                            @if($currentWorkflow->approved_status === null)
-                                                Pending
-                                            @elseif($currentWorkflow->approved_status)
-                                                Approved
-                                            @else
-                                                Rejected
-                                            @endif
+                                <td>{{ $contract->supplier->supplier_name }}</td>
+                                <td>{{ $contract->procurement_type }}</td>
+                                <td>{{ $contract->amount_cost }}</td>
+                                <td>{{ $contract->signing_date }}</td>
+                                <td>{{ $contract->start_date }}</td>
+                                <td>{{ $contract->end_date }}</td>
+                                <td>{{ $contract->current_step_start }}</td>
+                                <td>
+                                    @php
+                                        $currentWorkflow = $contract->workflows->where('is_completed', false)->first();
+                                    @endphp
+                                    @if($currentWorkflow)
+                                        Step: {{ $currentWorkflow->workflow_step->step_name }} <br/>
+                                        Status:
+                                        @if($currentWorkflow->approved_status === null)
+                                            Pending
+                                        @elseif($currentWorkflow->approved_status)
+                                            Approved
                                         @else
-                                            Completed
+                                            Rejected
                                         @endif
-                                    </td>
-                                    <td>
-                                          <span class="action-icon" data-id="{{ $contract->id }}">📄</span>
-                                          @if($currentWorkflow && $currentWorkflow->approved_status === null)
-                                            <form method="POST" action="{{ route('contracts.approve', $contract->id) }}" style="display:inline;">
-                                               @csrf
-                                               <button type="submit" class="btn btn-sm btn-success">Approve</button>
-                                            </form>
-                                            <form method="POST" action="{{ route('contracts.reject', $contract->id) }}" style="display:inline;">
-                                               @csrf
-                                               <button type="submit" class="btn btn-sm btn-danger">Reject</button>
-                                            </form>
-                                          @endif
-                                    </td>
-                                </tr>
+                                    @else
+                                        Completed
+                                    @endif
+                                </td>
+                                <td>
+                                    <span class="action-icon" data-id="{{ $contract->id }}">📄</span>
+                                    @if($currentWorkflow && $currentWorkflow->approved_status === null)
+                                        <form method="POST" action="{{ route('contracts.approve', $contract->id) }}" style="display:inline;">
+                                            @csrf
+                                            <button type="submit" class="btn btn-sm btn-success">Approve</button>
+                                        </form>
+                                        <form method="POST" action="{{ route('contracts.reject', $contract->id) }}" style="display:inline;">
+                                            @csrf
+                                            <button type="submit" class="btn btn-sm btn-danger">Reject</button>
+                                        </form>
+                                    @endif
+                                </td>
+                            </tr>
                             @empty
-                                <tr>
-                                    <td colspan="9" class="text-center">No Good found.</td>
-                                </tr>
+                            <tr>
+                                <td colspan="9" class="text-center">No Good found.</td>
+                            </tr>
                             @endforelse
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                </section>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
-           
-        </div>
+        </section>
     </div>
 
     
@@ -165,13 +138,13 @@
     }
 </style>
 
-<script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-<script src="assets/js/bootstrap.bundle.min.js"></script>
-<script src="assets/vendors/simple-datatables/simple-datatables.js"></script>
+<script src="{{ asset('assets/vendors/simple-datatables/simple-datatables.js') }}"></script>
 <script>
     // Simple Datatable
     let table1 = document.querySelector('#table1');
-    let dataTable = new simpleDatatables.DataTable(table1);
+    if (table1) {
+        let dataTable = new simpleDatatables.DataTable(table1);
+    }
 
     const popupMenu = document.getElementById("popupMenu");
     let currentIcon = null;
@@ -227,17 +200,4 @@
         popupMenu.style.display = "none";
     }
 </script>
-    <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-
-    <script src="assets/vendors/simple-datatables/simple-datatables.js"></script>
-    <script>
-        // Simple Datatable
-        let table1 = document.querySelector('#table1');
-        let dataTable = new simpleDatatables.DataTable(table1);
-    </script>
-
-    <script src="assets/js/main.js"></script>
-</body>
-
-</html>
+@endsection

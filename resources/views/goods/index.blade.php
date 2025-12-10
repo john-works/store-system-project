@@ -3,118 +3,90 @@
 
 @section('content')
 
+    <div class="page-heading">
 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/bootstrap.css">
+        <section class="section">
+            <div class="card">
+                <div class="card-header">
+                    Goods Details
+                </div>
+                <div class="card-footer text-end">
+                    <a href="{{ route('goods.create') }}" class="btn btn-secondary">Add New Goods Request</a>
+                </div>
 
-    <link rel="stylesheet" href="assets/vendors/simple-datatables/style.css">
+                <div class="card-body">
+                    <table class="table table-striped" id="table1">
+                        <thead>
+                            <tr>
+                               <th>Id</th>
+                                <th>Supplier Name</th>
+                                <th>Request Date</th>
+                                <th>Request Item</th>
+                                <th>Invoice Value</th>
+                                 <th>Quantity</th>
+                                <th>Request By</th>
+                                <th>Workflow Status</th>
+                                <th>Action</th>
 
-    <link rel="stylesheet" href="assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
-    <link rel="stylesheet" href="assets/vendors/bootstrap-icons/bootstrap-icons.css">
-    <link rel="stylesheet" href="assets/css/app.css">
-    <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon">
+                            </tr>
+                        </thead>
+                        <tbody>
 
-    <div id="app">
-        
-
-
-        <div id="main">
-            <header class="mb-3">
-                <a href="#" class="burger-btn d-block d-xl-none">
-                    <i class="bi bi-justify fs-3"></i>
-                </a>
-            </header>
-        
-            <div class="page-heading">
-          
-                <section class="section">
-                    <div class="card">
-                        <div class="card-header">
-                            Contracts Details
-                        </div>
- <div class="card-footer text-end">
-                                <a href="{{ route('goods.create') }}" class="btn btn-secondary">Add New Borrowing Request</a>
-                            </div>
-                        
-                        <div class="card-body">
-                            <table class="table table-striped" id="table1">
-                                <thead>
-                                    <tr>
-                                       <th>Id</th>
-                                        <th>Supplier Name</th>
-                                        <th>Request Date</th>
-                                        <th>Request Item</th>
-                                        <th>Invoice Value</th>
-                                         <th>Quantity</th>
-                                        <th>Request By</th>
-                                        <th>Workflow Status</th>
-                                        <th>Action</th>
-                                       
-                                    </tr>
-                                </thead>
-                                <tbody>
-                               
                         @forelse($goods as $good)
-                                <tr>
-                                   <td>{{ $good->id }}</td>
-                                    <td>{{ $good->supplier->supplier_name }}</td>
-                                    <td>{{ $good->request_date }}</td>
-                                    <td>{{ $good->request_item }}</td>
-                                    <td>{{ $good->invoice_number }}</td>
-                                    <td>{{ $good->quality }}</td>
-                                    <td>{{ $good->request_by }}</td>
-                                     {{-- <td>{{ $good->sum }}</td> --}}
-                                    <td>
-                                        @php
-                                            $currentWorkflow = $good->workflows->where('is_completed', false)->first();
-                                        @endphp
-                                        @if($currentWorkflow)
-                                            Step: {{ $currentWorkflow->workflow_step->step_name }} <br/>
-                                            Status:
-                                            @if($currentWorkflow->approved_status === null)
-                                                Pending
-                                            @elseif($currentWorkflow->approved_status)
-                                                Approved
-                                            @else
-                                                Rejected
-                                            @endif
-                                        @else
-                                            Completed
-                                        @endif
-                                    </td>
-                                    <td>
-                                          <span class="action-icon" data-id="{{ $good->id }}">📄</span>
-                                          @if($currentWorkflow && $currentWorkflow->approved_status === null)
-                                            <form method="POST" action="{{ route('goods.approve', $good->id) }}" style="display:inline;">
-                                               @csrf
-                                               <button type="submit" class="btn btn-sm btn-success">Approve</button>
-                                            </form>
-                                            <form method="POST" action="{{ route('goods.reject', $good->id) }}" style="display:inline;">
-                                               @csrf
-                                               <button type="submit" class="btn btn-sm btn-danger">Reject</button>
-                                            </form>
-                                          @endif
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="9" class="text-center">No Good found.</td>
-                                </tr>
-                            @endforelse
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                </section>
+                        <tr>
+                           <td>{{ $good->id }}</td>
+                            <td>{{ $good->supplier->supplier_name }}</td>
+                            <td>{{ $good->request_date }}</td>
+                            <td>{{ $good->request_item }}</td>
+                            <td>{{ $good->invoice_number }}</td>
+                            <td>{{ $good->quality }}</td>
+                            <td>{{ $good->request_by }}</td>
+                             {{-- <td>{{ $good->sum }}</td> --}}
+                            <td>
+                                @php
+                                    $currentWorkflow = $good->workflows->where('is_completed', false)->first();
+                                @endphp
+                                @if($currentWorkflow)
+                                    Step: {{ $currentWorkflow->workflow_step->step_name }} <br/>
+                                    Status:
+                                    @if($currentWorkflow->approved_status === null)
+                                        Pending
+                                    @elseif($currentWorkflow->approved_status)
+                                        Approved
+                                    @else
+                                        Rejected
+                                    @endif
+                                @else
+                                    Completed
+                                @endif
+                            </td>
+                            <td>
+                                  <span class="action-icon" data-id="{{ $good->id }}">📄</span>
+                                  @if($currentWorkflow && $currentWorkflow->approved_status === null)
+                                    <form method="POST" action="{{ route('goods.approve', $good->id) }}" style="display:inline;">
+                                       @csrf
+                                       <button type="submit" class="btn btn-sm btn-success">Approve</button>
+                                    </form>
+                                    <form method="POST" action="{{ route('goods.reject', $good->id) }}" style="display:inline;">
+                                       @csrf
+                                       <button type="submit" class="btn btn-sm btn-danger">Reject</button>
+                                    </form>
+                                  @endif
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="9" class="text-center">No Good found.</td>
+                        </tr>
+                    @endforelse
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
-           
-        </div>
+        </section>
     </div>
 
-    
 <!-- Popup Menu -->
 <div class="popup-menu" id="popupMenu">
     <ul>
@@ -165,13 +137,13 @@
     }
 </style>
 
-<script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-<script src="assets/js/bootstrap.bundle.min.js"></script>
-<script src="assets/vendors/simple-datatables/simple-datatables.js"></script>
+<script src="{{ asset('assets/vendors/simple-datatables/simple-datatables.js') }}"></script>
 <script>
     // Simple Datatable
     let table1 = document.querySelector('#table1');
-    let dataTable = new simpleDatatables.DataTable(table1);
+    if (table1) {
+        let dataTable = new simpleDatatables.DataTable(table1);
+    }
 
     const popupMenu = document.getElementById("popupMenu");
     let currentIcon = null;
@@ -227,17 +199,4 @@
         popupMenu.style.display = "none";
     }
 </script>
-    <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-
-    <script src="assets/vendors/simple-datatables/simple-datatables.js"></script>
-    <script>
-        // Simple Datatable
-        let table1 = document.querySelector('#table1');
-        let dataTable = new simpleDatatables.DataTable(table1);
-    </script>
-
-    <script src="assets/js/main.js"></script>
-</body>
-
-</html>
+@endsection

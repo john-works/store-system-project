@@ -3,134 +3,91 @@
 
 @section('content')
 
+    <div class="page-heading">
 
-<!DOCTYPE html>
-<html lang="en">
+        <section class="section">
+            <div class="card">
+                <div class="card-header">
+                    Services Details
+                </div>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DataTable </title>
+                <div class="card-footer text-end">
+                    <a href="{{ route('services.create') }}" class="btn btn-secondary">Add New Service Detail</a>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped" id="table1">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Supplier Name</th>
+                                <th>Request Date</th>
+                                <th>Request Item</th>
+                                <th>Invoice Value</th>
+                                 {{-- <th>Quantity</th> --}}
+                                <th>Request By</th>
+                                <th>Workflow Status</th>
+                                <th>Action</th>
 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/bootstrap.css">
+                            </tr>
+                        </thead>
+                        <tbody>
 
-    <link rel="stylesheet" href="assets/vendors/simple-datatables/style.css">
-
-    <link rel="stylesheet" href="assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
-    <link rel="stylesheet" href="assets/vendors/bootstrap-icons/bootstrap-icons.css">
-    <link rel="stylesheet" href="assets/css/app.css">
-    <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon">
-</head>
-
-<body>
-    <div id="app">
-        
-
-
-        <div id="main">
-            <header class="mb-3">
-                <a href="#" class="burger-btn d-block d-xl-none">
-                    <i class="bi bi-justify fs-3"></i>
-                </a>
-            </header>
-			
-			
-			
-			
-
-            <div class="page-heading">
-             
-			
-                <section class="section">
-                    <div class="card">
-                        <div class="card-header">
-                            Good Details
-                        </div>
-
-                        <div class="card-footer text-end">
-                                <a href="{{ route('services.create') }}" class="btn btn-secondary">Add New Good  Detail</a>
-                            </div>
-                        <div class="card-body">
-                            <table class="table table-striped" id="table1">
-                                <thead>
-                                    <tr>
-                                        <th>Id</th>
-                                        <th>Supplier Name</th>
-                                        <th>Request Date</th>
-                                        <th>Request Item</th>
-                                        <th>Invoice Value</th>
-                                         {{-- <th>Quantity</th> --}}
-                                        <th>Request By</th>
-                                        <th>Workflow Status</th>
-                                        <th>Action</th>
-                                       
-                                    </tr>
-                                </thead>
-                                <tbody>
-                               
                           @forelse($services as $service)
-                                <tr>
-                                   <td>{{ $service->id }}</td>
-                                    <td>{{ $service->supplier->supplier_name }}</td>
-                                    <td>{{ $service->request_date }}</td>
-                                    <td>{{ $service->request_item }}</td>
-                                    <td>{{ $service->invoice_number }}</td>
-                                    {{-- <td>{{ $service->quality }}</td> --}}
-                                    <td>{{ $service->request_by }}</td>
-                                     {{-- <td>{{ $service->sum }}</td> --}}
-                               
-                                    <td>
-                                        @php
-                                            $currentWorkflow = $service->workflows->where('is_completed', false)->first();
-                                        @endphp
-                                        @if($currentWorkflow)
-                                            Step: {{ $currentWorkflow->workflow_step->step_name }} <br/>
-                                            Status:
-                                            @if($currentWorkflow->approved_status === null)
-                                                Pending
-                                            @elseif($currentWorkflow->approved_status)
-                                                Approved
-                                            @else
-                                                Rejected
-                                            @endif
-                                        @else
-                                            Completed
-                                        @endif
-                                    </td>
-                                    <td>
-                                          <span class="action-icon" data-id="{{ $service->id }}">📄</span>
-                                          @if($currentWorkflow && $currentWorkflow->approved_status === null)
-                                            <form method="POST" action="{{ route('services.approve', $service->id) }}" style="display:inline;">
-                                               @csrf
-                                               <button type="submit" class="btn btn-sm btn-success">Approve</button>
-                                            </form>
-                                            <form method="POST" action="{{ route('services.reject', $service->id) }}" style="display:inline;">
-                                               @csrf
-                                               <button type="submit" class="btn btn-sm btn-danger">Reject</button>
-                                            </form>
-                                          @endif
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="9" class="text-center">No Service found.</td>
-                                </tr>
-                            @endforelse
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                        <tr>
+                           <td>{{ $service->id }}</td>
+                            <td>{{ $service->supplier->supplier_name }}</td>
+                            <td>{{ $service->request_date }}</td>
+                            <td>{{ $service->request_item }}</td>
+                            <td>{{ $service->invoice_number }}</td>
+                            {{-- <td>{{ $service->quality }}</td> --}}
+                            <td>{{ $service->request_by }}</td>
+                             {{-- <td>{{ $service->sum }}</td> --}}
 
-                </section>
+                            <td>
+                                @php
+                                    $currentWorkflow = $service->workflows->where('is_completed', false)->first();
+                                @endphp
+                                @if($currentWorkflow)
+                                    Step: {{ $currentWorkflow->workflow_step->step_name }} <br/>
+                                    Status:
+                                    @if($currentWorkflow->approved_status === null)
+                                        Pending
+                                    @elseif($currentWorkflow->approved_status)
+                                        Approved
+                                    @else
+                                        Rejected
+                                    @endif
+                                @else
+                                    Completed
+                                @endif
+                            </td>
+                            <td>
+                                  <span class="action-icon" data-id="{{ $service->id }}">📄</span>
+                                  @if($currentWorkflow && $currentWorkflow->approved_status === null)
+                                    <form method="POST" action="{{ route('services.approve', $service->id) }}" style="display:inline;">
+                                       @csrf
+                                       <button type="submit" class="btn btn-sm btn-success">Approve</button>
+                                    </form>
+                                    <form method="POST" action="{{ route('services.reject', $service->id) }}" style="display:inline;">
+                                       @csrf
+                                       <button type="submit" class="btn btn-sm btn-danger">Reject</button>
+                                    </form>
+                                  @endif
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="9" class="text-center">No Service found.</td>
+                        </tr>
+                    @endforelse
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
-           
-        </div>
+        </section>
     </div>
 
-    
 <!-- Popup Menu -->
 <div class="popup-menu" id="popupMenu">
     <ul>
@@ -181,13 +138,13 @@
     }
 </style>
 
-<script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-<script src="assets/js/bootstrap.bundle.min.js"></script>
-<script src="assets/vendors/simple-datatables/simple-datatables.js"></script>
+<script src="{{ asset('assets/vendors/simple-datatables/simple-datatables.js') }}"></script>
 <script>
     // Simple Datatable
     let table1 = document.querySelector('#table1');
-    let dataTable = new simpleDatatables.DataTable(table1);
+    if (table1) {
+        let dataTable = new simpleDatatables.DataTable(table1);
+    }
 
     const popupMenu = document.getElementById("popupMenu");
     let currentIcon = null;
@@ -243,17 +200,4 @@
         popupMenu.style.display = "none";
     }
 </script>
-    <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-
-    <script src="assets/vendors/simple-datatables/simple-datatables.js"></script>
-    <script>
-        // Simple Datatable
-        let table1 = document.querySelector('#table1');
-        let dataTable = new simpleDatatables.DataTable(table1);
-    </script>
-
-    <script src="assets/js/main.js"></script>
-</body>
-
-</html>
+@endsection

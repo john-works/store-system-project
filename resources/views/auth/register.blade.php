@@ -93,6 +93,13 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+
+                                <div class="form-check mt-2">
+                                    <input class="form-check-input" type="checkbox" id="show-password">
+                                    <label class="form-check-label" for="show-password">
+                                        Show Password
+                                    </label>
+                                </div>
                             </div>
                         </div>
 
@@ -117,4 +124,16 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.getElementById('show-password').addEventListener('change', function() {
+        const passwordField = document.getElementById('password');
+        passwordField.type = this.checked ? 'text' : 'password';
+    });
+
+    document.getElementById('show-password-confirm').addEventListener('change', function() {
+        const confirmPasswordField = document.getElementById('password-confirm');
+        confirmPasswordField.type = this.checked ? 'text' : 'password';
+    });
+</script>
 @endsection

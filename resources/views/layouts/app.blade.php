@@ -114,7 +114,8 @@
                         
 
 
-                          <li class="sidebar-item  has-sub">
+                    @if(Auth::user()->role != 'officer' && Auth::user()->role != 'senior officer' && Auth::user()->role != 'manager')
+                        <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
                                 <i class="bi bi-box-seam"></i>
                                 <span>Store items</span>
@@ -126,10 +127,11 @@
                                 <li class="submenu-item ">
                                     <a href="{{ route('items.create') }}">Create</a>
                                 </li>
-                               
-                                
+
+
                             </ul>
                         </li>
+                    @endif
 
 
 
@@ -174,7 +176,7 @@
                             </ul>
                         </li>
 
-                          {{-- <li class="sidebar-item  has-sub">
+                        {{-- <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
                                 <i class="bi bi-stack"></i>
                                 <span>Store Requisition</span>
@@ -186,12 +188,13 @@
                                 <li class="submenu-item ">
                                     <a href="{{ route('requisitions.create') }}">create</a>
                                 </li>
-                               
-                                
+
+
                             </ul>
                         </li> --}}
 
-                          <li class="sidebar-item  has-sub">
+                    @if(Auth::user()->role != 'officer' && Auth::user()->role != 'senior officer' && Auth::user()->role != 'manager')
+                        <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
                                 <i class="bi bi-person-lines-fill"></i>
                                 <span>Supplier</span>
@@ -200,10 +203,11 @@
                                 <li class="submenu-item ">
                                     <a href="{{ route('suppliers.index') }}">Supplier Details</a>
                                 </li>
-                               
-                                
+
+
                             </ul>
                         </li>
+                    @endif
 
                           <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
@@ -268,7 +272,8 @@
                         </li>
 
 
-                          <li class="sidebar-item  has-sub">
+                    @if(Auth::user()->role == 'admin')
+                        <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
                                 <i class="bi bi-people-fill"></i>
                                 <span>User Management</span>
@@ -280,8 +285,8 @@
                                 <li class="submenu-item ">
                                    <a href="">Grate Permission</a>
                                 </li>
-                               
-                                
+
+
                             </ul>
                         </li>
 
@@ -295,11 +300,12 @@
                                 <li class="submenu-item ">
                                    <a href="{{ route('workflow_step.index')}}">Approval Steps</a>
                                 </li>
-                                
-                               
-                                
+
+
+
                             </ul>
                         </li>
+                    @endif
 
 
 

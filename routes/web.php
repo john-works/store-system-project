@@ -25,7 +25,7 @@ Route::get('/', function () {
 
 
 //supplier
-Route::middleware(['auth', 'role:officer,senior_officer,manager,admin'])->group(function () {
+Route::middleware(['auth', 'role:senior_officer,manager,admin'])->group(function () {
     Route::get('/suppliers', [SupplierController::class, 'index'])->name('suppliers.index');
     Route::get('/suppliers/create', [SupplierController::class, 'create'])->name('suppliers.create');
     Route::post('/suppliers', [SupplierController::class, 'store'])->name('suppliers.store');
@@ -67,7 +67,7 @@ Route::middleware(['auth', 'role:officer,senior_officer,manager,admin'])->group(
 
 
 //items in store
-Route::middleware(['auth', 'role:officer,senior_officer,manager,admin'])->group(function () {
+Route::middleware(['auth', 'role:senior_officer,manager,admin'])->group(function () {
     Route::get('/items', [ItemController::class, 'index'])->name('items.index');
     Route::get('/items/create', [ItemController::class, 'create'])->name('items.create');
     Route::post('/items', [ItemController::class, 'store'])->name('items.store');
@@ -128,14 +128,16 @@ Route::middleware(['auth', 'role:officer,senior_officer,manager,admin'])->group(
 
 
 //borrowings
-Route::get('/borrowings', [BorrowingController::class, 'index'])->name('borrowings.index');
-Route::get('/borrowings/indexs', [BorrowingController::class, 'indexs'])->name('borrowings.indexs');
-Route::get('/borrowings/create', [BorrowingController::class, 'create'])->name('borrowings.create');
-Route::post('/borrowings', [BorrowingController::class, 'store'])->name('borrowings.store');
-Route::get('/borrowings/{borrowing}', [BorrowingController::class, 'show'])->name('borrowings.show');
-Route::get('/borrowings/{borrowing}/edit', [BorrowingController::class, 'edit'])->name('borrowings.edit');
-Route::put('/borrowings/{borrowing}', [BorrowingController::class, 'update'])->name('borrowings.update');
-Route::delete('/borrowings/{borrowing}', [BorrowingController::class, 'destroy'])->name('borrowings.destroy');
+Route::middleware(['auth', 'role:officer,senior_officer,manager,admin'])->group(function () {
+    Route::get('/borrowings', [BorrowingController::class, 'index'])->name('borrowings.index');
+    Route::get('/borrowings/indexs', [BorrowingController::class, 'indexs'])->name('borrowings.indexs');
+    Route::get('/borrowings/create', [BorrowingController::class, 'create'])->name('borrowings.create');
+    Route::post('/borrowings', [BorrowingController::class, 'store'])->name('borrowings.store');
+    Route::get('/borrowings/{borrowing}', [BorrowingController::class, 'show'])->name('borrowings.show');
+    Route::get('/borrowings/{borrowing}/edit', [BorrowingController::class, 'edit'])->name('borrowings.edit');
+    Route::put('/borrowings/{borrowing}', [BorrowingController::class, 'update'])->name('borrowings.update');
+    Route::delete('/borrowings/{borrowing}', [BorrowingController::class, 'destroy'])->name('borrowings.destroy');
+});
 
 
 //moverments
@@ -165,13 +167,15 @@ Route::middleware(['auth', 'role:officer,senior_officer,manager,admin'])->group(
 
 
 //users
-Route::get('/users', [UserController::class, 'index'])->name('users.index');
-Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
-Route::post('/users', [UserController::class, 'store'])->name('users.store');
-Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
-Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
-Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
-Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+    Route::post('/users', [UserController::class, 'store'])->name('users.store');
+    Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
+    Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
+    Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+});
 
 Auth::routes();
 
@@ -181,10 +185,12 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 //workflow_step
-Route::get('/workflow_step', [WorkflowstepController::class, 'index'])->name('workflow_step.index');
-Route::get('/workflow_step/create', [WorkflowstepController::class, 'create'])->name('workflow_step.create');
-Route::post('/workflow_step', [WorkflowstepController::class, 'store'])->name('workflow_step.store');
-// Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
-// Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
-// Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
-// Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/workflow_step', [WorkflowstepController::class, 'index'])->name('workflow_step.index');
+    Route::get('/workflow_step/create', [WorkflowstepController::class, 'create'])->name('workflow_step.create');
+    Route::post('/workflow_step', [WorkflowstepController::class, 'store'])->name('workflow_step.store');
+    // Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
+    // Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+    // Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
+    // Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+});

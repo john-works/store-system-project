@@ -52,6 +52,7 @@
                     @enderror
                 </div>
 
+                {{-- Phone --}}
                 <div class="mb-3">
                     <label for="phone" class="form-label fw-semibold">{{ __('Phone') }}</label>
                     <input id="phone" type="text"

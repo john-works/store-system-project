@@ -82,13 +82,12 @@
                             {{ __('Forgot Your Password?') }}
                         </a>
                     @endif
-                    @if (Route::has('register'))
-                        <a class="small fw-semibold" href="{{ route('register') }}">
-                            {{ __("Don't have an account? Register") }}
-                        </a>
-                    @endif
                 </div>
+
+                 {{-- Links --}}
+               
             </form>
+            
 
             {{-- Social Logins (optional) --}}
             {{-- <hr>

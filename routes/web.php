@@ -13,6 +13,7 @@ use App\Http\Controllers\BorrowingController;
 use App\Http\Controllers\MovementController;
 use App\Http\Controllers\DisposalController;
 use App\Http\Controllers\WorkflowstepController;
+use App\Http\Controllers\PermissionController;
 
 
 // Route::get('/', function () {
@@ -193,4 +194,12 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     // Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
     // Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
     // Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+});
+
+//permissions
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/permissions', [PermissionController::class, 'index'])->name('permissions.index');
+    Route::get('/permissions/create', [PermissionController::class, 'create'])->name('permissions.create');
+    Route::post('/permissions', [PermissionController::class, 'store'])->name('permissions.store');
+    Route::get('/permissions/{id}', [PermissionController::class, 'show'])->name('permissions.show');
 });

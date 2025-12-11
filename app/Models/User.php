@@ -49,9 +49,19 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+        public function borrowing()
+    {
+        return $this->belongsTo(Moverment::class);
+    }
+
 
      public function moverment()
     {
         return $this->belongsTo(Moverment::class);
+    }
+
+    public function permissions()
+    {
+        return $this->hasMany(Permission::class);
     }
 }

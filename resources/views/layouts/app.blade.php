@@ -283,7 +283,7 @@
                                    <a href="{{ route('users.index') }}">User Details</a>
                                 </li>
                                 <li class="submenu-item ">
-                                   <a href="">Grate Permission</a>
+                                   <a href="{{ route('permissions.index') }}">Grant Permission</a>
                                 </li>
 
 

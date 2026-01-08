@@ -14,7 +14,9 @@
 
     <link rel="stylesheet" href="{{asset('assets/vendors/perfect-scrollbar/perfect-scrollbar.css')}}">
     <link rel="stylesheet" href="{{asset('assets/vendors/bootstrap-icons/bootstrap-icons.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/vendors/simple-datatables/style.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/app.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/overrides.css')}}">
     <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon">
 </head>
 
@@ -62,12 +64,12 @@
                         @endguest
                     </ul>
                 </div>
-            </div>
-        </nav>
+    </nav>
 
 
 
     <div id="app">
+        @auth
         <div id="sidebar" class="active">
             <div class="sidebar-wrapper active">
                 <div class="sidebar-header">
@@ -310,26 +312,22 @@
 
 
 
-
-
-
-
-
-
-
-
-
                     </ul>
                 </div>
                 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
             </div>
         </div>
-        <div id="main">
+
+        @endauth
+
+        {{-- <div id="main">
             <header class="mb-3">
                 <a href="#" class="burger-btn d-block d-xl-none">
                     <i class="bi bi-justify fs-3"></i>
                 </a>
             </header>
+
+        </div> --}}
 
          
 
@@ -360,6 +358,8 @@
 
     <script src="{{ asset('assets/vendors/apexcharts/apexcharts.js') }}"></script>
     <script src="{{ asset('assets/js/pages/dashboard.js') }}"></script>
+
+    <script src="{{ asset('assets/vendors/simple-datatables/simple-datatables.js') }}"></script>
 
     <script src="{{ asset('assets/js/main.js') }}"></script>
 </body>

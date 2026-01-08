@@ -165,9 +165,12 @@
 <script src="assets/js/bootstrap.bundle.min.js"></script>
 <script src="assets/vendors/simple-datatables/simple-datatables.js"></script>
 <script>
-    // Simple Datatable
-    let table1 = document.querySelector('#table1');
-    let dataTable = new simpleDatatables.DataTable(table1);
+    // Simple Datatable (guarded to avoid duplicate initialization)
+    var table1El = document.querySelector('#table1');
+    if (table1El && !table1El.__simpleDataTableInitialized) {
+        table1El.__simpleDataTableInitialized = true;
+        new simpleDatatables.DataTable(table1El);
+    }
 
     const popupMenu = document.getElementById("popupMenu");
     let currentIcon = null;
@@ -229,8 +232,11 @@
     <script src="assets/vendors/simple-datatables/simple-datatables.js"></script>
     <script>
         // Simple Datatable
-        let table1 = document.querySelector('#table1');
-        let dataTable = new simpleDatatables.DataTable(table1);
+        var table1El = document.querySelector('#table1');
+        if (table1El && !table1El.__simpleDataTableInitialized) {
+            table1El.__simpleDataTableInitialized = true;
+            new simpleDatatables.DataTable(table1El);
+        }
     </script>
 
     <script src="assets/js/main.js"></script>

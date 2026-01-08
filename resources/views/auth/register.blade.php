@@ -1,7 +1,8 @@
 @extends('layouts.public')
 
 @section('content')
-<div class="min-vh-100 d-flex align-items-center justify-content-center bg-light">
+<div class="min-vh-100 d-flex align-items-center justify-content-center" style="background-image: url('{{ asset('assets/images/geometric-blue.svg') }}'); background-size: cover; background-position: center; background-attachment: fixed;">
+   
     <div class="card shadow-lg border-0 rounded-4" style="width: 420px;">
         <div class="card-body p-4">
 

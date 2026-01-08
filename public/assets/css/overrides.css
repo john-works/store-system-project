@@ -1,0 +1,3 @@
+.navbar .dropdown-menu{z-index:2000;background-color:#fff !important}
+.navbar .dropdown-item{color:#212529 !important}
+.dropdown-toggle::after{color:#212529 !important}

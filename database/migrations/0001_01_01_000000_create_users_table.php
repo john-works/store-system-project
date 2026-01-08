@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('role')->nullable();
             // $table->string('role')->default(null)->change();
-            $table->string('department');
+            $table->string('department')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('phone')->nullable();
             $table->string('role')->nullable();
-            // $table->string('role')->default(null)->change();
+            // $table->string('role')->default(nunpmll)->change();
             $table->string('department')->nullable();
             $table->rememberToken();
             $table->timestamps();

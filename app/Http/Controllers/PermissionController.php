@@ -12,10 +12,13 @@ class PermissionController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        $permissions = Permission::with('user')->get()->groupBy('user_id');
-        return view('permissions.index', compact('permissions'));
-    }
+        {
+            // eager load the user relationship
+            $permissions = Permission::with('user')->get()->groupBy('user_id');
+
+            return view('permissions.index', compact('permissions'));
+        }
+
 
     /**
      * Show the form for creating a new resource.

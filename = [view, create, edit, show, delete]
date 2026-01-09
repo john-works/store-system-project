@@ -1,0 +1,16 @@
+[90m= [39m[
+    "[32msuppliers[39m",
+    "[32minvoices[39m",
+    "[32mcontracts[39m",
+    "[32mitems[39m",
+    "[32mgoods[39m",
+    "[32mservices[39m",
+    "[32musers[39m",
+    "[32mrequisitions[39m",
+    "[32mborrowings[39m",
+    "[32mmoverments[39m",
+    "[32mdisposals[39m",
+    "[32mworkflow_steps[39m",
+    "[32mpermissions[39m",
+  ]
+

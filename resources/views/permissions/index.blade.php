@@ -22,7 +22,7 @@
                     <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
-                                <a href="#">Dashboard</a>
+                                <a href="{{ route('home') }}">Dashboard</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
                                 Permissions
@@ -36,12 +36,9 @@
         <section class="section">
             <div class="card">
 
-                <div class="card-header">
+                <div class="card-header d-flex justify-content-between align-items-center">
                     <h4 class="card-title">User Permissions</h4>
-                </div>
-
-                <div class="card-footer text-end">
-                    <a href="{{ route('permissions.create') }}" class="btn btn-secondary">
+                    <a href="{{ route('permissions.create') }}" class="btn btn-primary btn-sm">
                         Grant Permissions
                     </a>
                 </div>
@@ -53,55 +50,51 @@
                                 <th>User</th>
                                 <th>Resource</th>
                                 <th>Allowed Actions</th>
-                                <th>Action</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @forelse($permissions as $userId => $userPermissions)
+                                @php
+                                    $permission = $userPermissions->first(); // get the first permission
+                                    $user = $permission?->user;             // safely get the user
+                                @endphp
 
-                        @forelse($permissions as $userId => $userPermissions)
-                            @php
-                                $permission = $userPermissions->first(); // get the first permission
-                                $user = $permission?->user;             // safely get the user
-                            @endphp
+                                @foreach($userPermissions->groupBy('resource') as $resource => $perms)
+                                    <tr>
+                                        <td>{{ $user?->name ?? 'Unknown User' }}</td>
+                                        <td>{{ ucfirst($resource) }}</td>
+                                        <td>
+                                            <span class="badge bg-info">
+                                                {{ $perms->pluck('action')->implode(', ') }}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('permissions.edit', $userId) }}" 
+                                               class="btn btn-sm btn-warning me-1">
+                                                Edit
+                                            </a>
 
-                            @foreach($userPermissions->groupBy('resource') as $resource => $perms)
+                                            <form action="{{ route('permissions.destroy', $userId) }}" 
+                                                  method="POST" class="d-inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" 
+                                                        class="btn btn-sm btn-danger"
+                                                        onclick="return confirm('Remove all permissions for this user?')">
+                                                    Remove All
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @empty
                                 <tr>
-                                    <td>{{ $user?->name ?? 'Unknown User' }}</td>
-                                    <td>{{ ucfirst($resource) }}</td>
-                                    <td>
-                                        <span class="badge bg-info">
-                                            {{ $perms->pluck('action')->implode(', ') }}
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <a href="{{ route('permissions.edit', $userId) }}"
-                                           class="btn btn-sm btn-warning">
-                                            Edit
-                                        </a>
-
-                                        <form action="{{ route('permissions.destroy', $userId) }}"
-                                              method="POST"
-                                              class="d-inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit"
-                                                    class="btn btn-sm btn-danger"
-                                                    onclick="return confirm('Remove all permissions for this user?')">
-                                                Remove All
-                                            </button>
-                                        </form>
+                                    <td colspan="4" class="text-center text-muted">
+                                        No permissions found.
                                     </td>
                                 </tr>
-                            @endforeach
-
-                        @empty
-                            <tr>
-                                <td colspan="4" class="text-center text-muted">
-                                    No permissions found.
-                                </td>
-                            </tr>
-                        @endforelse
-
+                            @endforelse
                         </tbody>
                     </table>
                 </div>
@@ -110,14 +103,16 @@
     </div>
 </div>
 
-{{-- Scripts --}}
-<script src="assets/vendors/simple-datatables/simple-datatables.js"></script>
+{{-- DataTables Script --}}
+<script src="{{ asset('assets/vendors/simple-datatables/simple-datatables.js') }}"></script>
 <script>
-    const tableEl = document.querySelector('#permissionsTable');
-    if (tableEl && !tableEl.__datatable) {
-        tableEl.__datatable = true;
-        new simpleDatatables.DataTable(tableEl);
-    }
+    document.addEventListener("DOMContentLoaded", function() {
+        const tableEl = document.querySelector('#permissionsTable');
+        if (tableEl && !tableEl.__datatable) {
+            tableEl.__datatable = true;
+            new simpleDatatables.DataTable(tableEl);
+        }
+    });
 </script>
 
 @endsection

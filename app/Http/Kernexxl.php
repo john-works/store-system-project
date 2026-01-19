@@ -4,6 +4,7 @@ namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
+
 class Kernel extends HttpKernel
 {
     /**
@@ -66,4 +67,5 @@ class Kernel extends HttpKernel
         // ✅ Custom permission middleware
         'permission' => \App\Http\Middleware\PermissionMiddleware::class,
     ];
+
 }

@@ -157,7 +157,7 @@
                         @endif
                         @if(Auth::user()->hasPermission('borrowings', 'view_all'))
                         <li class="submenu-item">
-                            <a href="{{ route('borrowings.indexs') }}">All</a>
+                            {{-- <a href="{{ route('borrowings.indexs') }}">All</a> --}}
                         </li>
                         @endif
                     </ul>
@@ -184,7 +184,7 @@
                         @endif
                         @if(Auth::user()->hasPermission('moverments', 'view_all'))
                         <li class="submenu-item">
-                            <a href="{{ route('moverments.indexs') }}">All</a>
+                            {{-- <a href="{{ route('moverments.indexs') }}">All</a> --}}
                         </li>
                         @endif
                     </ul>
@@ -218,7 +218,7 @@
                             <a href="{{ route('disposals.index') }}">My Request</a>
                         </li>
                         <li class="submenu-item">
-                            <a href="{{ route('disposals.indexs') }}">All Items</a>
+                            {{-- <a href="{{ route('disposals.indexs') }}">All Items</a> --}}
                         </li>
                     </ul>
                 </li>
@@ -244,7 +244,7 @@
                         @endif
                         @if(Auth::user()->hasPermission('goods', 'view_all'))
                         <li class="submenu-item">
-                            <a href="{{ route('goods.indexs') }}">All</a>
+                            {{-- <a href="{{ route('goods.indexs') }}">All</a> --}}
                         </li>
                         @endif
                     </ul>
@@ -271,7 +271,7 @@
                         @endif
                         @if(Auth::user()->hasPermission('services', 'view_all'))
                         <li class="submenu-item">
-                            <a href="{{ route('services.indexs') }}">All</a>
+                            {{-- <a href="{{ route('services.indexs') }}">All</a> --}}
                         </li>
                         @endif
                     </ul>

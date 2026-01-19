@@ -58,8 +58,10 @@
     </nav>
 
     <div id="app">
-        @auth
-<div id="sidebar" class="active">
+
+        
+@auth
+    <div id="sidebar" class="active">
     <div class="sidebar-wrapper active">
         <div class="sidebar-header">
             <div class="d-flex justify-content-between">
@@ -318,7 +320,7 @@
 
         <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
     </div>
-</div>
+    </div>
 @endauth
 
 

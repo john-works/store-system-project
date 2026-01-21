@@ -8,39 +8,23 @@ use Illuminate\Support\Facades\Auth;
 
 class PermissionMiddleware
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @param  string  $resource
-     * @param  string|null  $action
-     * @return mixed
-     */
-    public function handle(Request $request, Closure $next, $resource, $action = null)
+    public function handle(Request $request, Closure $next, string $resource, string $action = 'view')
     {
         $user = Auth::user();
 
-        // Check if user is logged in
         if (!$user) {
-            abort(403, 'Unauthorized');
+            abort(401);
         }
 
-        // If user is admin, allow everything
-        if (method_exists($user, 'isAdmin') && $user->isAdmin()) {
+        if ($user->role === 'admin') {
             return $next($request);
         }
 
-        // If action is not provided, default to 'view'
-        if (!$action) {
-            $action = 'view';
+        if (in_array($user->role, ['officer', 'senior_officer', 'manager']) &&
+            $user->hasPermission($resource, $action)) {
+            return $next($request);
         }
 
-        // Check permission on the user model
-        if (!method_exists($user, 'hasPermission') || !$user->hasPermission($resource, $action)) {
-            abort(403, 'Unauthorized');
-        }
-
-        return $next($request);
+        abort(403);
     }
 }

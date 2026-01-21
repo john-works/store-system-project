@@ -10,27 +10,35 @@ class CheckPermission
 {
     /**
      * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @param  string  $resource
-     * @param  string|null  $action
-     * @return mixed
      */
-    public function handle(Request $request, Closure $next, string $resource, string $action = null)
+    public function handle(Request $request, Closure $next, string $resource, string $action = 'view')
     {
         $user = Auth::user();
 
-        // If user is admin, allow everything
-        if ($user && $user->role === 'admin') {
+        // ❌ Not logged in
+        if (!$user) {
+            abort(401, 'Unauthenticated.');
+        }
+
+        // ✅ Admin bypasses ALL permission checks
+        if ($user->role === 'admin') {
             return $next($request);
         }
 
-        // Check permission
-        if ($user && $user->hasPermission($resource, $action ?? 'view')) {
-            return $next($request);
+        // ✅ Allowed roles (but permissions must exist)
+        $allowedRoles = ['officer', 'senior_officer', 'manager'];
+
+        if (in_array($user->role, $allowedRoles)) {
+
+            // Check DB permission granted by admin
+            if ($user->hasPermission($resource, $action)) {
+                return $next($request);
+            }
+
+            abort(403, 'Permission not granted.');
         }
 
-        abort(403, 'Unauthorized action.');
+        // ❌ Any other role is blocked
+        abort(403, 'Unauthorized role.');
     }
 }

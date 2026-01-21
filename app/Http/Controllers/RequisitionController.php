@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Requisition;
 use App\Models\Item;
+use App\Services\ResourceAuthorizationService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RequisitionController extends Controller
 {
@@ -13,9 +15,11 @@ class RequisitionController extends Controller
      */
     public function index()
     {
-
-        //Getting Item name
-        $requisitions = Requisition::with('item')->get();
+        $user = Auth::user();
+        $requisitions = ResourceAuthorizationService::filterByUserRole(
+            Requisition::query()->with('item', 'user'),
+            $user
+        )->get();
         return view('requisitions.index', compact('requisitions'));
     }
 
@@ -34,18 +38,20 @@ class RequisitionController extends Controller
      */
     public function store(Request $request)
     {
-         $request->validate([
-'request_date' => 'required',
-'request_by' => 'required',
-'request_summary' => 'required',
-'item_id' => 'required',
-'asset_tag'=>'required',
-'serial_number ' =>'required',
-            
+        $request->validate([
+            'request_date' => 'required',
+            'request_by' => 'required',
+            'request_summary' => 'required',
+            'item_id' => 'required',
+            'asset_tag'=>'required',
+            'serial_number ' =>'required',
         ]);
 
-        // Save supplier
-        Requisition::create($request->all());
+        // ✅ Automatically set user_id to current authenticated user
+        $data = $request->all();
+        $data['user_id'] = Auth::id();
+        
+        Requisition::create($data);
 
         return redirect()->route('requisitions.index')
                          ->with('success', 'Supplier created successfully.');

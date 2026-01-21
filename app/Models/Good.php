@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Good extends Model
 {
     protected $fillable=[
+'user_id',
 'supplier_id',
 'request_date',
 'request_by',
@@ -16,10 +17,14 @@ class Good extends Model
 'item__description',
 'quality',
 'request_summary',
-
     ];
 
-     public function supplier()
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function supplier()
     {
         return $this->belongsTo(Supplier::class);
     }

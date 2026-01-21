@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Contract extends Model
 {
     protected $fillable=[
-
+'user_id',
 'supplier_id',
 'procurement_type',
 'amount_cost',
@@ -16,8 +16,12 @@ class Contract extends Model
 'end_date',
 'procument_subject',
 'termination_clauses',
-
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function supplier()
     {

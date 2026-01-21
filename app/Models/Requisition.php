@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Requisition extends Model
 {
     protected $fillable=[
+'user_id',
 'request_date',
 'request_by',
 'request_summary',
@@ -15,8 +16,12 @@ class Requisition extends Model
 'status',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
-     public function items()
+    public function items()
     {
         return $this->hasMany(Item::class);
     }

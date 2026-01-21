@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Disposal;
 use App\Models\Item;
+use App\Services\ResourceAuthorizationService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DisposalController extends Controller
 {
@@ -13,14 +15,22 @@ class DisposalController extends Controller
      */
     public function index()
     {
-        $disposals = Disposal::with('item')->get();
+        $user = Auth::user();
+        $disposals = ResourceAuthorizationService::filterByUserRole(
+            Disposal::query()->with('item', 'user'),
+            $user
+        )->get();
         return view('disposals.index', compact('disposals'));
     }
 
 
       public function indexs()
 {
-    $disposals = Disposal::with('item')->get();
+    $user = Auth::user();
+    $disposals = ResourceAuthorizationService::filterByUserRole(
+        Disposal::query()->with('item', 'user'),
+        $user
+    )->get();
     return view('disposals.indexs', compact('disposals'));
 }
 
@@ -38,20 +48,18 @@ class DisposalController extends Controller
      */
     public function store(Request $request)
     {
-         $request->validate([
-
-'request_date'=> 'required',
-'request_by'=> 'required',
-'request_summary'=> 'required',
-'item_id'=> 'required',
-// 'asset_tag'=> 'required',
-// 'serial_number'=> 'required',
-
-
+        $request->validate([
+            'request_date'=> 'required',
+            'request_by'=> 'required',
+            'request_summary'=> 'required',
+            'item_id'=> 'required',
         ]);
 
-        // Save supplier
-        Disposal::create($request->all());
+        // ✅ Automatically set user_id to current authenticated user
+        $data = $request->all();
+        $data['user_id'] = Auth::id();
+
+        Disposal::create($data);
 
         return redirect()->route('disposals.index')
                          ->with('success', 'Supplier created successfully.');

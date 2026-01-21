@@ -50,7 +50,7 @@ return [
         'officer' => [
             'suppliers' => ['index', 'show'],
             'items' => ['index', 'show'],
-            'contracts' => ['index', 'show'],
+            'contracts' => ['index', 'show', 'create', 'store', 'edit', 'update'],
             'borrowings' => ['index', 'create', 'store', 'show'],
             'moverments' => ['index', 'show'],
             'requisitions' => ['index', 'create', 'store', 'show'],

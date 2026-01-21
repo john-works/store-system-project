@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\service;
 use App\Models\Supplier;
+use App\Services\ResourceAuthorizationService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ServiceController extends Controller
 {
@@ -13,18 +15,23 @@ class ServiceController extends Controller
      */
     public function index()
     {
-         
-          // Eager load supplier and workflows to avoid N+1 queries
-        $services = service::with(['supplier', 'workflows'])->get();
+        $user = Auth::user();
+        $services = ResourceAuthorizationService::filterByUserRole(
+            service::query()->with(['supplier', 'workflows', 'user']),
+            $user
+        )->get();
         return view('services.index', compact('services'));
-
     }
 
 
 
     public function indexs()
     {
-        $services = service::with(['supplier', 'workflows'])->get();
+        $user = Auth::user();
+        $services = ResourceAuthorizationService::filterByUserRole(
+            service::query()->with(['supplier', 'workflows', 'user']),
+            $user
+        )->get();
         return view('services.indexs', compact('services'));
     }
 
@@ -43,23 +50,21 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-         $request->validate([
-                           
-         'supplier_id'=>'required',
-'request_date'=>'required',
-'request_by'=>'required',
-'invoice_number'=>'required',
-// 'verified_by'=> 'required',
-'item__description'=>'required',
-// 'quality'=>'required',
-'invoice_value'=>'required',
-'request_item'=>'required',
-
-
+        $request->validate([
+            'supplier_id'=>'required',
+            'request_date'=>'required',
+            'request_by'=>'required',
+            'invoice_number'=>'required',
+            'item__description'=>'required',
+            'invoice_value'=>'required',
+            'request_item'=>'required',
         ]);
 
-        // Save service and initialize workflow
-        $service = service::create($request->all());
+        // ✅ Automatically set user_id to current authenticated user
+        $data = $request->all();
+        $data['user_id'] = Auth::id();
+
+        $service = service::create($data);
 
         // Initialize workflow - create first step
         $firstWorkflowStep = \App\Models\WorkflowStep::orderBy('step_order')->first();

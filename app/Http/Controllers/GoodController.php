@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Good;
 use App\Models\Supplier;
+use App\Services\ResourceAuthorizationService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class GoodController extends Controller
 {
@@ -13,16 +15,22 @@ class GoodController extends Controller
      */
     public function index()
     {
-        
-         // Eager load supplier and workflows to avoid N+1 queries
-        $goods = Good::with(['supplier', 'workflows'])->get();
+        $user = Auth::user();
+        $goods = ResourceAuthorizationService::filterByUserRole(
+            Good::query()->with(['supplier', 'workflows', 'user']),
+            $user
+        )->get();
         return view('goods.index', compact('goods'));
     }
 
 
     public function indexs()
     {
-        $goods = Good::with(['supplier', 'workflows'])->get();
+        $user = Auth::user();
+        $goods = ResourceAuthorizationService::filterByUserRole(
+            Good::query()->with(['supplier', 'workflows', 'user']),
+            $user
+        )->get();
         return view('goods.indexs', compact('goods'));
     }
 
@@ -41,26 +49,22 @@ class GoodController extends Controller
      */
     public function store(Request $request)
     {
-        //  $sum = $invoice_value * $quality;
-
-         $request->validate([
-                           
+        $request->validate([
             'supplier_id'=>'required',
             'request_date'=>'required',
             'request_by'=>'required',
             'invoice_number'=>'required',
-            // 'verified_by'=> 'required',
             'item__description'=>'required',
             'quality'=>'required',
             'invoice_value'=>'required',
             'request_item'=>'required',
-
-
-        
         ]);
 
-        // Save good and initialize workflow
-        $good = Good::create($request->all());
+        // ✅ Automatically set user_id to current authenticated user
+        $data = $request->all();
+        $data['user_id'] = Auth::id();
+
+        $good = Good::create($data);
 
         // Initialize workflow - create first step
         $firstWorkflowStep = \App\Models\WorkflowStep::orderBy('step_order')->first();

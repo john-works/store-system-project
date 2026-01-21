@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Moverment;
 use App\Models\User;
 use App\Models\Item;
+use App\Services\ResourceAuthorizationService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MovermentController extends Controller
 {
@@ -14,8 +16,11 @@ class MovermentController extends Controller
      */
     public function index()
     {
-          //Getting Item name
-        $moverments = Moverment::with('item')->get();
+        $user = Auth::user();
+        $moverments = ResourceAuthorizationService::filterByUserRole(
+            Moverment::query()->with('item', 'user'),
+            $user
+        )->get();
         return view('moverments.index', compact('moverments'));
     }
 

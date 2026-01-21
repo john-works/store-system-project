@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Borrowing;
 use App\Models\Item;
+use App\Services\ResourceAuthorizationService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BorrowingController extends Controller
 {
@@ -13,14 +15,21 @@ class BorrowingController extends Controller
      */
     public function index()
     {
-         //Getting Item name
-        $borrowings = Borrowing::with('item')->get();
+        $user = Auth::user();
+        $borrowings = ResourceAuthorizationService::filterByUserRole(
+            Borrowing::query()->with('item', 'user'),
+            $user
+        )->get();
         return view('borrowings.index', compact('borrowings'));
     }
 
         public function indexs()
 {
-    $borrowings = Borrowing::with('item')->get();
+    $user = Auth::user();
+    $borrowings = ResourceAuthorizationService::filterByUserRole(
+        Borrowing::query()->with('item', 'user'),
+        $user
+    )->get();
     return view('borrowings.indexs', compact('borrowings'));
 }
 
@@ -38,20 +47,18 @@ class BorrowingController extends Controller
      */
     public function store(Request $request)
     {
-          $request->validate([
-
-'request_date'=> 'required',
-'request_by'=> 'required',
-'request_summary'=> 'required',
-'item_id'=> 'required',
-// 'asset_tag'=> 'required',
-// 'serial_number'=> 'required',
-
-
+        $request->validate([
+            'request_date'=> 'required',
+            'request_by'=> 'required',
+            'request_summary'=> 'required',
+            'item_id'=> 'required',
         ]);
 
-        // Save supplier
-        Borrowing::create($request->all());
+        // ✅ Automatically set user_id to current authenticated user
+        $data = $request->all();
+        $data['user_id'] = Auth::id();
+        
+        Borrowing::create($data);
 
 
     //         Workflow::create([

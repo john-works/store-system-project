@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Contract;
 use App\Models\Supplier;
+use App\Services\ResourceAuthorizationService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ContractController extends Controller
 {
@@ -13,8 +15,11 @@ class ContractController extends Controller
      */
     public function index()
     {
-          // Eager load supplier and workflows to avoid N+1 queries
-        $contracts = Contract::with(['supplier', 'workflows'])->get();
+        $user = Auth::user();
+        $contracts = ResourceAuthorizationService::filterByUserRole(
+            Contract::query()->with(['supplier', 'workflows', 'user']),
+            $user
+        )->get();
         return view('contracts.index', compact('contracts'));
     }
 
@@ -40,22 +45,22 @@ class ContractController extends Controller
      */
     public function store(Request $request)
     {
-
         $request->validate([
-                           
-        'supplier_id' => 'required|string',
-        'procurement_type' => 'required|string',
-        'amount_cost' => 'required|string',
-        'signing_date' => 'required|string',
-        'start_date' => 'required|string',
-        'end_date' => 'required|string',
-        'procument_subject' => 'required|string',
-        'termination_clauses' => 'required|string',
-            
+            'supplier_id' => 'required|string',
+            'procurement_type' => 'required|string',
+            'amount_cost' => 'required|string',
+            'signing_date' => 'required|string',
+            'start_date' => 'required|string',
+            'end_date' => 'required|string',
+            'procument_subject' => 'required|string',
+            'termination_clauses' => 'required|string',
         ]);
 
-        // Save contract and initialize workflow
-        $contract = Contract::create($request->all());
+        // ✅ Automatically set user_id to current authenticated user
+        $data = $request->all();
+        $data['user_id'] = Auth::id();
+
+        $contract = Contract::create($data);
 
         // Initialize workflow - create first step
         $firstWorkflowStep = \App\Models\WorkflowStep::orderBy('step_order')->first();

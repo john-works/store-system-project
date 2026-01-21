@@ -98,7 +98,7 @@
                                     $currentWorkflow = $good->workflows->where('is_completed', false)->first();
                                 @endphp
                                 @if($currentWorkflow)
-                                    Step: {{ $currentWorkflow->workflow_step->step_name }} <br/>
+                                    Step: {{ $currentWorkflow->workflow_steps->step_name }} <br/>
                                     Status:
                                     @if($currentWorkflow->approved_status === null)
                                         Pending

@@ -9,8 +9,8 @@ class WorkflowstepController extends Controller
 {
       public function index()
     {
-        // $workflow_step = WorkflowStep::all(); // fetch all suppliers
-        return view('workflow_step.index');
+        // $workflow_steps = WorkflowStep::all(); // fetch all suppliers
+        return view('workflow_steps.index');
     }
 
     /**
@@ -18,7 +18,7 @@ class WorkflowstepController extends Controller
      */
     public function create()
     {
-         return view('workflow_step.create');
+         return view('workflow_steps.create');
     }
 
 }

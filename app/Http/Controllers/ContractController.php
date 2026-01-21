@@ -65,7 +65,7 @@ class ContractController extends Controller
                 'user_id' => auth()->id(),
                 'is_completed' => false,
                 'approved_status' => null,
-                'workflow_step_id' => $firstWorkflowStep->id,
+                'workflow_steps_id' => $firstWorkflowStep->id,
             ]);
         }
 
@@ -140,7 +140,7 @@ class ContractController extends Controller
             ]);
 
             // Get next workflow step
-            $nextStep = \App\Models\WorkflowStep::where('step_order', '>', $currentStep->workflow_step->step_order)
+            $nextStep = \App\Models\WorkflowStep::where('step_order', '>', $currentStep->workflow_steps->step_order)
                 ->orderBy('step_order')
                 ->first();
 
@@ -150,7 +150,7 @@ class ContractController extends Controller
                     'user_id' => auth()->id(),
                     'is_completed' => false,
                     'approved_status' => null,
-                    'workflow_step_id' => $nextStep->id,
+                    'workflow_steps_id' => $nextStep->id,
                 ]);
             } else {
                 // Mark workflow completed

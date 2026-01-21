@@ -301,7 +301,7 @@
                 @endif
 
                 {{-- Workflow / Settings --}}
-                @if(Auth::user()->hasPermission('workflow_step', ['view','create']))
+                @if(Auth::user()->hasPermission('workflow_steps', ['view','create']))
                 <li class="sidebar-item has-sub">
                     <a href="#" class="sidebar-link">
                         <i class="bi bi-gear"></i>
@@ -309,7 +309,7 @@
                     </a>
                     <ul class="submenu">
                         <li class="submenu-item">
-                            <a href="{{ route('workflow_step.index') }}">Approval Steps</a>
+                            {{-- <a href="{{ route('workflow_steps.index') }}">Approval Steps</a> --}}
                         </li>
                     </ul>
                 </li>

@@ -4,10 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Permission;
 use App\Models\User;
+use App\Services\PermissionService;
 use Illuminate\Http\Request;
 
 class PermissionController extends Controller
 {
+    protected PermissionService $permissionService;
+
+    public function __construct(PermissionService $permissionService)
+    {
+        $this->permissionService = $permissionService;
+    }
     public function index()
     {
         $permissions = Permission::with('user')
@@ -20,28 +27,10 @@ class PermissionController extends Controller
     public function create()
     {
         $users = User::all();
-
-        $resources = [
-            'suppliers',
-            'items',
-            'contracts',
-            'borrowings',
-            'moverments',
-            'requisitions',
-            'goods',
-            'services',
-            'disposals',
-        ];
-
-        $actions = [
-            'index',
-            'create',
-            'store',
-            'show',
-            'edit',
-            'update',
-            'destroy',
-        ];
+        
+        // ✅ Load from config instead of hardcoding
+        $resources = config('permissions.resources');
+        $actions = config('permissions.actions');
 
         return view('permissions.create', compact('users', 'resources', 'actions'));
     }
@@ -67,6 +56,9 @@ class PermissionController extends Controller
             );
         }
 
+        // ✅ Invalidate user's permission cache
+        $this->permissionService->invalidateCache($request->user_id);
+
         return redirect()
             ->route('permissions.index')
             ->with('success', 'Permissions granted successfully');
@@ -80,27 +72,9 @@ class PermissionController extends Controller
             ->get()
             ->groupBy('resource');
 
-        $resources = [
-            'suppliers',
-            'items',
-            'contracts',
-            'borrowings',
-            'moverments',
-            'requisitions',
-            'goods',
-            'services',
-            'disposals',
-        ];
-
-        $actions = [
-            'index',
-            'create',
-            'store',
-            'show',
-            'edit',
-            'update',
-            'destroy',
-        ];
+        // ✅ Load from config instead of hardcoding
+        $resources = config('permissions.resources');
+        $actions = config('permissions.actions');
 
         return view('permissions.edit', compact(
             'user',
@@ -130,6 +104,9 @@ class PermissionController extends Controller
             ]);
         }
 
+        // ✅ Invalidate user's permission cache
+        $this->permissionService->invalidateCache((int)$id);
+
         return redirect()
             ->route('permissions.index')
             ->with('success', 'Permissions updated successfully');
@@ -138,6 +115,9 @@ class PermissionController extends Controller
     public function destroy(string $id)
     {
         Permission::where('user_id', $id)->delete();
+
+        // ✅ Invalidate user's permission cache
+        $this->permissionService->invalidateCache((int)$id);
 
         return redirect()
             ->route('permissions.index')

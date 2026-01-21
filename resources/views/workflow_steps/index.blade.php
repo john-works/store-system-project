@@ -34,7 +34,7 @@
                             Contracts Details
                         </div>
  <div class="card-footer text-end">
-                                <a href="{{ route('workflow_step.create') }}" class="btn btn-secondary">Add New Borrowing Request</a>
+                                <a href="{{ route('workflow_steps.create') }}" class="btn btn-secondary">Add New Borrowing Request</a>
                             </div>
                         
                         <div class="card-body">

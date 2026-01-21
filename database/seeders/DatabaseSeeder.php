@@ -14,7 +14,13 @@ class DatabaseSeeder extends Seeder
         // Create default admin user
         $this->call(AdminUserSeeder::class);
 
-        // OPTIONAL: create test users (comment out in production)
+        // Create test users with different roles (optional)
+        $this->call(TestUserSeeder::class);
+
+        // Seed default permissions based on roles
+        $this->call(DefaultPermissionSeeder::class);
+
+        // OPTIONAL: create additional test users
         // \App\Models\User::factory(10)->create();
     }
 }

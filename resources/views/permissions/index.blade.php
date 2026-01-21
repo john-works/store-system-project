@@ -63,7 +63,10 @@
                                 @foreach($userPermissions->groupBy('resource') as $resource => $perms)
                                     <tr>
                                         <td>{{ $user?->name ?? 'Unknown User' }}</td>
+                                         <td>{{ $user?->role ?? 'Unknown Role' }}</td>
                                         <td>{{ ucfirst($resource) }}</td>
+
+                                        
                                         <td>
                                             <span class="badge bg-info">
                                                 {{ $perms->pluck('action')->implode(', ') }}

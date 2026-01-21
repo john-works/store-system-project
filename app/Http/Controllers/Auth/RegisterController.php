@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Permission;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -66,7 +67,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'phone' => $data['phone'],
             'role' => $data['role'],
@@ -74,5 +75,37 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        // ✅ Automatically assign default permissions based on role
+        $this->assignDefaultPermissions($user);
+
+        return $user;
+    }
+
+    /**
+     * Assign default permissions to newly registered user based on their role
+     * ✅ Pulls from config('permissions.role_defaults')
+     */
+    protected function assignDefaultPermissions(User $user): void
+    {
+        $roleDefaults = config('permissions.role_defaults');
+
+        // Check if role has default permissions defined
+        if (isset($roleDefaults[$user->role])) {
+            foreach ($roleDefaults[$user->role] as $resource => $actions) {
+                foreach ($actions as $action) {
+                    Permission::updateOrCreate(
+                        [
+                            'user_id'  => $user->id,
+                            'resource' => $resource,
+                            'action'   => $action,
+                        ],
+                        [
+                            'allowed' => true,
+                        ]
+                    );
+                }
+            }
+        }
     }
 }

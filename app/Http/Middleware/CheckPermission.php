@@ -5,13 +5,24 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Services\PermissionService;
 
 class CheckPermission
 {
     /**
+     * Permission service instance
+     */
+    protected PermissionService $permissionService;
+
+    public function __construct(PermissionService $permissionService)
+    {
+        $this->permissionService = $permissionService;
+    }
+
+    /**
      * Handle an incoming request.
      */
-    public function handle(Request $request, Closure $next, string $resource, string $action = 'view')
+    public function handle(Request $request, Closure $next, string $resource, string $action = 'index')
     {
         $user = Auth::user();
 
@@ -25,13 +36,12 @@ class CheckPermission
             return $next($request);
         }
 
-        // ✅ Allowed roles (but permissions must exist)
+        // ✅ Allowed roles (but permissions must exist in database)
         $allowedRoles = ['officer', 'senior_officer', 'manager'];
 
         if (in_array($user->role, $allowedRoles)) {
-
-            // Check DB permission granted by admin
-            if ($user->hasPermission($resource, $action)) {
+            // ✅ Use PermissionService with caching
+            if ($this->permissionService->hasPermission($user, $resource, $action)) {
                 return $next($request);
             }
 

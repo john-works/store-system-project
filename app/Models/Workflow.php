@@ -12,7 +12,7 @@ class Workflow extends Model
 'is_completed',
 'date_completed',
 'approved_status',
-'workflow_step_id',
+'workflow_steps_id',
 
     ];
 }

@@ -69,7 +69,7 @@ class ServiceController extends Controller
                 'user_id' => auth()->id(),
                 'is_completed' => false,
                 'approved_status' => null,
-                'workflow_step_id' => $firstWorkflowStep->id,
+                'workflow_steps_id' => $firstWorkflowStep->id,
             ]);
         }
 
@@ -145,7 +145,7 @@ class ServiceController extends Controller
                 'date_completed' => now(),
             ]);
 
-            $nextStep = \App\Models\WorkflowStep::where('step_order', '>', $currentStep->workflow_step->step_order)
+            $nextStep = \App\Models\WorkflowStep::where('step_order', '>', $currentStep->workflow_steps->step_order)
                 ->orderBy('step_order')
                 ->first();
 
@@ -154,7 +154,7 @@ class ServiceController extends Controller
                     'user_id' => auth()->id(),
                     'is_completed' => false,
                     'approved_status' => null,
-                    'workflow_step_id' => $nextStep->id,
+                    'workflow_steps_id' => $nextStep->id,
                 ]);
             }
         }
